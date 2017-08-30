@@ -2,7 +2,7 @@ on boot
     # Tap to wake
     chown system system /sys/devices/virtual/input/clearpad/wakeup_gesture
 
-service power-hal-1-2 /vendor/bin/hw/android.hardware.power@1.2-service.loire
+service vendor.power-hal-1-2 /vendor/bin/hw/android.hardware.power@1.2-service.loire
     class hal
     user system
     group system
