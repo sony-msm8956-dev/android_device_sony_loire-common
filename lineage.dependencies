@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "android_kernel_sony_msm8956",
+    "target_path": "kernel/sony/msm8956"
+  }
+]

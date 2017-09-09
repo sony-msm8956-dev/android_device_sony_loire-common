@@ -1,0 +1,196 @@
+# Copyright (c) 2009-2012, 2014-2017, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of The Linux Foundation nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+on boot
+    # Enable sched boost
+    write /proc/sys/kernel/sched_boost 1
+
+on charger
+    # Disable thermal
+    write /sys/module/msm_thermal/core_control/enabled 0
+
+    # Bring up all cores online
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+
+    # Configure governor settings for little cluster
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 400000
+
+    # Configure governor settings for big cluster
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 400000
+
+    # Bring up all cores offline
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
+    write /sys/devices/system/cpu/cpu4/online 0
+    write /sys/devices/system/cpu/cpu5/online 0
+
+    # Re-enable thermal
+    write /sys/module/msm_thermal/core_control/enabled 1
+
+on enable-low-power
+    # HMP scheduler (big.Little cluster related) settings
+    write /proc/sys/kernel/sched_upmigrate 95
+    write /proc/sys/kernel/sched_downmigrate 85
+
+    write /proc/sys/kernel/sched_window_stats_policy 2
+    write /proc/sys/kernel/sched_ravg_hist_size 5
+
+    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu4/sched_mostly_idle_nr_run 3
+    write /sys/devices/system/cpu/cpu5/sched_mostly_idle_nr_run 3
+
+    # Enable bus-dcvs
+    write /sys/class/devfreq/qcom,mincpubw.50/governor "cpufreq"
+    write /sys/class/devfreq/qcom,cpubw.49/governor "bw_hwmon"
+    write /sys/class/devfreq/qcom,cpubw.49/bw_hwmon/io_percent 20
+    write /sys/class/devfreq/qcom,cpubw.49/bw_hwmon/guard_band_mbps 30
+
+    # Disable thermal & BCL hotplug to update governor settings
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/devices/soc.0/qcom,bcl.56/mode "disable"
+    write /sys/devices/soc.0/qcom,bcl.56/hotplug_mask 0
+    write /sys/devices/soc.0/qcom,bcl.56/hotplug_soc_mask 0
+    write /sys/devices/soc.0/qcom,bcl.56/mode "enable"
+
+    # Bring CPU0 core online
+    write /sys/devices/system/cpu/cpu0/online 1
+
+    # Configure governor settings for little cluster
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 59000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 80
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 1305600
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "1 691200:80"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 691200
+
+    # Bring CPU4 core online
+    write /sys/devices/system/cpu/cpu4/online 1
+
+    # Configure governor settings for big cluster
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "19000 1382400:39000"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 85
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 1382400
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "85 1382400:90 1747200:80"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 883200
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 60000
+
+    # HMP Task packing settings for 8976
+    write /proc/sys/kernel/sched_small_task 30
+    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_load 20
+    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_load 20
+    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_load 20
+    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_load 20
+    write /sys/devices/system/cpu/cpu4/sched_mostly_idle_load 20
+    write /sys/devices/system/cpu/cpu5/sched_mostly_idle_load 20
+
+    # Disable sched boost
+    write /proc/sys/kernel/sched_boost 0
+
+    # Bring up all cores online
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+
+    # Enable LPM Prediction
+    write /sys/module/lpm_levels/parameters/lpm_prediction 1
+
+    # Turn on low power modes
+    write /sys/module/lpm_levels/parameters/sleep_disabled 0
+
+    # Disable L2 GDHS on 8976
+    write /sys/module/lpm_levels/system/a53/a53-l2-gdhs/idle_enabled N
+    write /sys/module/lpm_levels/system/a72/a72-l2-gdhs/idle_enabled N
+
+    # Enable sched guided freq control
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
+    write /proc/sys/kernel/sched_freq_inc_notify 50000
+    write /proc/sys/kernel/sched_freq_dec_notify 50000
+
+    # Enable core control
+    write /sys/devices/system/cpu/cpu4/core_ctl/min_cpus 2
+    write /sys/devices/system/cpu/cpu4/core_ctl/max_cpus 4
+    write /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres 68
+    write /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres 40
+    write /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms 100
+    write /sys/devices/system/cpu/cpu4/core_ctl/is_big_cluster 1
+
+    # Re-enable thermal & BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/devices/soc.0/qcom,bcl.56/mode "disable"
+    write /sys/devices/soc.0/qcom,bcl.56/hotplug_mask 48
+    write /sys/devices/soc.0/qcom,bcl.56/hotplug_soc_mask 48
+    write /sys/devices/soc.0/qcom,bcl.56/mode "enable"
+
+    # Enable timer migration to little cluster
+    write /proc/sys/kernel/power_aware_timer_migration 1
+
+    # Enable sched colocation and colocation inheritance
+    write /proc/sys/kernel/sched_grp_upmigrate 130
+    write /proc/sys/kernel/sched_grp_downmigrate 110
+    write /proc/sys/kernel/sched_enable_thread_grouping 1
+
+    write /proc/sys/kernel/sched_upmigrate_min_nice 9
+
+    # Set cpu_boost parameters
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1305600"
+    write /sys/module/cpu_boost/parameters/input_boost_ms "40"
+
+    # Set allocstall_threshold to 0
+    write /sys/module/vmpressure/parameters/allocstall_threshold 0
+
+    start qcom-post-boot
+
+    # Set perfd properties
+    setprop sys.post_boot.parsed 1
+
+on property:dev.bootcomplete=1
+    trigger enable-low-power
+	
+on property:init.svc.recovery=running
+    trigger enable-low-power
