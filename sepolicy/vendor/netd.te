@@ -1,2 +1,0 @@
-#============= netd ==============
-allow netd sysfs_net:file w_file_perms;
