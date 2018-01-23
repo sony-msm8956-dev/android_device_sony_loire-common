@@ -1,3 +1,2 @@
 #============= init ==============
-allow init tad_block_device:blk_file setattr;
 allow init tmpfs:lnk_file create;
