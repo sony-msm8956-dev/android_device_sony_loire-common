@@ -1,14 +1,14 @@
 # /data
-type cnd_data_file, file_type, data_file_type;
-type credmgrd_data_file, file_type, data_file_type;
-type fingerprint_data_file, file_type, data_file_type;
+type cnd_data_file, file_type, data_file_type, core_data_file_type;
+type credmgrd_data_file, file_type, data_file_type, core_data_file_type;
+type fingerprint_data_file, file_type, data_file_type, core_data_file_type;
 type location_data_file, file_type, data_file_type;
 type mediadrm_vendor_data_file, file_type, data_file_type;
 type mpctl_data_file, file_type, data_file_type;
 type netmgr_data_file, file_type, data_file_type;
 type nfc_vendor_data_file, file_type, data_file_type;
 type radio_vendor_data_file, file_type, data_file_type, mlstrustedobject;
-type ta_data_file, file_type, data_file_type;
+type ta_data_file, file_type, data_file_type, core_data_file_type;
 type tombstone_vendor_data_file, file_type, data_file_type;
 
 # debugfs
