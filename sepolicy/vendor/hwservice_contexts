@@ -3,6 +3,8 @@ com.qualcomm.qti.uceservice::IUceService                        u:object_r:hal_i
 com.qualcomm.qti.imscmservice::IImsCmService                    u:object_r:hal_imsrcsd_hwservice:s0
 com.quicinc.cne.api::IApiService                                u:object_r:hal_cne_hwservice:s0
 com.quicinc.cne.server::IServer                                 u:object_r:hal_cne_hwservice:s0
+vendor.nxp.nxpnfc::INxpNfc                                      u:object_r:nxpnfc_hwservice:s0
+vendor.nxp.nxpese::INxpEse                                      u:object_r:nxpese_hwservice:s0
 vendor.qti.gnss::ILocHidlGnss                                   u:object_r:hal_gnss_hwservice:s0
 vendor.qti.hardware.perf::IPerf                                 u:object_r:hal_perf_hwservice:s0
 vendor.qti.hardware.radio.am::IQcRilAudio                       u:object_r:hal_telephony_hwservice:s0
