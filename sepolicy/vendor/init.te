@@ -1,2 +1,4 @@
 allow init { idd_data_file idd_rca_file qns_file }:dir mounton;
 
+# Allow init to check LD_PRELOAD for secd process
+allow init secd:process noatsecure;
