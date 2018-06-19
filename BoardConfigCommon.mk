@@ -196,5 +196,8 @@ BOARD_PLAT_PUBLIC_SEPOLICY_DIR := $(PLATFORM_PATH)/sepolicy/public
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR := $(PLATFORM_PATH)/sepolicy/private
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
 
+# Vendor SPL
+VENDOR_SECURITY_PATCH = "2018-09-01"
+
 # Platform vendor
 -include vendor/sony/loire-common/BoardConfigVendor.mk
