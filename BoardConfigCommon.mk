@@ -159,6 +159,9 @@ BOARD_SECCOMP_POLICY := $(COMMON_PATH)/seccomp
 # SEPolicy
 BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
+# Setting vendor SPL
+VENDOR_SECURITY_PATCH := "2019-03-01"
+
 # Shims
 TARGET_LD_SHIM_LIBS := \
     /vendor/lib64/libril-qc-qmi-1.so|libaudioclient_shim.so

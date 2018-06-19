@@ -121,10 +121,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.apm_sim_not_pwdn=1 \
     persist.radio.oem_socket=false
 
-# Security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2019-03-01
-
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sensors.max_accel_rate=false \
