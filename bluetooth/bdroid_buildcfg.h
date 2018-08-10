@@ -48,4 +48,5 @@ static inline const char* getBTDefaultName()
 // VSC spec support
 #define BLE_VND_INCLUDED TRUE
 
+#undef PROPERTY_VALUE_MAX
 #endif
