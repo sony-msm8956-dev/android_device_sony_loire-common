@@ -170,11 +170,9 @@ PRODUCT_PACKAGES += \
 # NFC
 PRODUCT_PACKAGES += \
     com.android.nfc_extras \
-    android.hardware.nfc@1.0-service \
-    android.hardware.nfc@1.0-impl \
     NfcNci \
     Tag \
-    nfc_nci.msm8952
+    android.hardware.nfc@1.1-service
 
 # OMX
 PRODUCT_PACKAGES += \
