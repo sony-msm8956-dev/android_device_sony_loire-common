@@ -453,8 +453,8 @@ etc/firmware/a530_pm4.fw
 # Idd
 vendor/bin/hw/vendor.semc.system.idd.fallback@1.0-service
 vendor/bin/hw/vendor.semc.system.idd@1.0-service
-vendor/etc/init/vendor.semc.system.idd.fallback@1.0-service.rc
-vendor/etc/init/vendor.semc.system.idd@1.0-service.rc
+vendor/etc/init/vendor.semc.system.idd.fallback@1.0-service.rc|fc3c5115cb2163c4c9a3d6b2c0f516e5558b4b69
+vendor/etc/init/vendor.semc.system.idd@1.0-service.rc|5c3963b90e6d3af88253b4717665f59f888c7e31
 vendor/etc/security/idd_config.pem
 vendor/etc/security/idd_report.pem
 vendor/lib/libidd.so
@@ -795,7 +795,7 @@ vendor/lib64/libtime_genoff.so
 
 # Widevine
 vendor/bin/hw/android.hardware.drm@1.0-service.widevine
-vendor/etc/init/android.hardware.drm@1.0-service.widevine.rc
+vendor/etc/init/android.hardware.drm@1.0-service.widevine.rc|eb65aa1e4c72668db7d01600290dcf1b7ad98546
 vendor/lib/libwvhidl.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib64/libwvhidl.so
