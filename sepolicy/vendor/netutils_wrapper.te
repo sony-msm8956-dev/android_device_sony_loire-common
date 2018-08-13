@@ -1,0 +1,5 @@
+#============= netutils_wrapper ==============
+allow netutils_wrapper netmgrd:fd use;
+allow netutils_wrapper netmgrd:fifo_file { getattr read write };
+dontaudit netutils_wrapper self:capability sys_module;
+dontaudit netutils_wrapper netmgrd:unix_stream_socket { read write };

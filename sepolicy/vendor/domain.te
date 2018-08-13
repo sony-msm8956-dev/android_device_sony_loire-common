@@ -1,0 +1,2 @@
+#============= domain ==============
+allow domain debugfs_kgsl:dir search;

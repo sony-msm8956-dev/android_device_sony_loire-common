@@ -1,0 +1,3 @@
+type cne_service,                 service_manager_type;
+type izat_service,                app_api_service, system_api_service, service_manager_type;
+type uce_service,                 service_manager_type;

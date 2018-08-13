@@ -1,0 +1,4 @@
+binder_call(dataservice_app, cnd)
+
+#============= dataservice_app ==============
+allow dataservice_app hal_cne_hwservice:hwservice_manager find;

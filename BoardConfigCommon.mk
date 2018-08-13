@@ -183,5 +183,10 @@ WIFI_DRIVER_FW_PATH_AP      := "/system/etc/firmware/wlan/bcmdhd/fw_bcmdhd_apsta
 WIFI_DRIVER_FW_PATH_STA     := "/system/etc/firmware/wlan/bcmdhd/fw_bcmdhd.bin"
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 
+# SELinux
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR := $(PLATFORM_PATH)/sepolicy/public
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR := $(PLATFORM_PATH)/sepolicy/private
+BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
+
 # Platform vendor
 -include vendor/sony/loire-common/BoardConfigVendor.mk

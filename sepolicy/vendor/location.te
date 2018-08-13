@@ -1,0 +1,25 @@
+type location, domain;
+type location_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(location)
+net_domain(location)
+
+qmux_socket(location)
+
+get_prop(location, wifi_prop)
+
+#============= location ==============
+allow location diag_device:chr_file rw_file_perms;
+allow location location_data_file:dir create_dir_perms;
+allow location location_data_file:file create_file_perms;
+allow location location_data_file:sock_file create_file_perms;
+allow location location_exec:file rx_file_perms;
+allow location self:capability { setgid setuid };
+allow location self:netlink_generic_socket create_socket_perms_no_ioctl;
+allow location self:netlink_route_socket create_socket_perms_no_ioctl;
+allow location self:socket create_socket_perms;
+allow location self:udp_socket ioctl;
+allowxperm location self:socket ioctl msm_sock_ipc_ioctls;
+allowxperm location self:udp_socket ioctl priv_sock_ioctls;
+r_dir_file(location, sysfs_msm_subsys)
+r_dir_file(location, sysfs_soc)

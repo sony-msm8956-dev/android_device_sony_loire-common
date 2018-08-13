@@ -1,0 +1,56 @@
+# proc
+genfscon proc /bluetooth/sleep/btwrite                u:object_r:proc_bluetooth_writable:s0
+genfscon proc /bluetooth/sleep/lpm                    u:object_r:proc_bluetooth_writable:s0
+genfscon proc /irq                                    u:object_r:proc_irq:s0
+genfscon proc /sys/kernel/power_aware_timer_migration u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_boost                 u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_downmigrate           u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_enable_thread_grouping  u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_freq_dec_notify       u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_freq_inc_notify       u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_grp_downmigrate       u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_grp_upmigrate         u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_init_task_load        u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_ravg_hist_size        u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_small_task            u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_spill_nr_run          u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_upmigrate             u:object_r:proc_kernel_sched:s0
+genfscon proc /sys/kernel/sched_window_stats_policy   u:object_r:proc_kernel_sched:s0
+
+# debugfs
+genfscon debugfs /kgsl/proc                           u:object_r:debugfs_kgsl:s0
+genfscon debugfs /rmt_storage                         u:object_r:debugfs_rmt_storage:s0
+
+# sysfs
+genfscon sysfs /bus/msm_subsys                                          u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /class/devfreq                                           u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /class/kgsl                                              u:object_r:sysfs_kgsl:s0
+genfscon sysfs /class/qns                                               u:object_r:sysfs_qns:s0
+genfscon sysfs /class/thermal                                           u:object_r:sysfs_thermal:s0
+genfscon sysfs /class/uio                                               u:object_r:sysfs_uio:s0
+genfscon sysfs /devices/soc.0/0.qcom,rmtfs_sharedmem                    u:object_r:sysfs_rmtfs:s0
+genfscon sysfs /devices/soc.0/1a00000.qcom,mdss_mdp/caps                u:object_r:sysfs_mdss_mdp_caps:s0
+genfscon sysfs /devices/soc.0/1a00000.qcom,mdss_mdp/qcom,mdss_fb_primary.175/leds u:object_r:sysfs_leds:s0
+genfscon sysfs /devices/soc.0/1c00000.qcom,kgsl-3d0                     u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /devices/soc.0/1de0000.qcom,venus                        u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /devices/soc.0/4080000.qcom,mss                          u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /devices/soc.0/7af6000.i2c/i2c-6/6-0042                  u:object_r:sysfs_leds:s0
+genfscon sysfs /devices/soc.0/a21b000.qcom,pronto                       u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /devices/soc.0/c200000.qcom,lpass                        u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /devices/soc.0/qcom,cpubw.49                             u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /devices/soc.0/qcom,gpubw.35                             u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /devices/soc.0/qpnp-flash-led-22/leds                    u:object_r:sysfs_leds:s0
+genfscon sysfs /devices/soc.0/qpnp-smbcharger-16/power_supply/battery   u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/soc0                                            u:object_r:sysfs_soc:s0
+genfscon sysfs /devices/sony_camera_0/info                              u:object_r:sysfs_camera:s0
+genfscon sysfs /devices/sony_camera_1/info                              u:object_r:sysfs_camera:s0
+genfscon sysfs /devices/virtual/graphics/fb0                            u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/virtual/graphics/fb1                            u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/virtual/net                                     u:object_r:sysfs_net:s0
+genfscon sysfs /devices/virtual/smdpkt/smdcntl0/open_timeout            u:object_r:sysfs_smd_open_timeout:s0
+genfscon sysfs /devices/virtual/smdpkt/smdcntl8/open_timeout            u:object_r:sysfs_smd_open_timeout:s0
+genfscon sysfs /devices/virtual/thermal                                 u:object_r:sysfs_thermal:s0
+genfscon sysfs /kernel/irq_helper/irq_blacklist_on                      u:object_r:sysfs_irq:s0
+genfscon sysfs /kernel/mm/ksm                                           u:object_r:sysfs_memory:s0
+genfscon sysfs /module/lpm_levels                                       u:object_r:sysfs_power_management:s0
+genfscon sysfs /module/msm_thermal                                      u:object_r:sysfs_thermal:s0

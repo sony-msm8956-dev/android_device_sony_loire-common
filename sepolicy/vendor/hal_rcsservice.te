@@ -1,0 +1,10 @@
+type hal_rcsservice, domain;
+type hal_rcsservice_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hal_rcsservice)
+net_domain(hal_rcsservice)
+
+hwbinder_use(hal_rcsservice)
+add_hwservice(hal_rcsservice, hal_imsrcsd_hwservice)
+
+unix_socket_connect(hal_rcsservice, ims, ims)

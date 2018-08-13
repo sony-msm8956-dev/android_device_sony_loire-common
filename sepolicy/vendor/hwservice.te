@@ -1,0 +1,10 @@
+type hal_atfwd_hwservice, hwservice_manager_type;
+type hal_cne_hwservice, hwservice_manager_type;
+type hal_dpmqmi_hwservice, hwservice_manager_type;
+type hal_idd_fallback_hwservice, hwservice_manager_type;
+type hal_idd_hwservice, hwservice_manager_type;
+type hal_imsrcsd_hwservice, hwservice_manager_type;
+type hal_imsrtp_hwservice, hwservice_manager_type;
+type hal_miscta_hwservice, hwservice_manager_type;
+type hal_perf_hwservice, hwservice_manager_type;
+type hal_secd_hwservice, hwservice_manager_type;

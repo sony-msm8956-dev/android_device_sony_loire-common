@@ -1,0 +1,19 @@
+type secd, domain;
+type secd_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(secd)
+
+hwbinder_use(secd)
+
+binder_call(secd, hal_idd_default)
+
+unix_socket_connect(secd, tad, tad)
+
+get_prop(secd, hwservicemanager_prop)
+
+#============= secd ==============
+allow secd credmgrd_data_file:dir rw_dir_perms;
+allow secd credmgrd_data_file:file create_file_perms;
+allow secd hal_idd_hwservice:hwservice_manager find;
+allow secd ion_device:chr_file r_file_perms;
+allow secd tee_device:chr_file rw_file_perms;

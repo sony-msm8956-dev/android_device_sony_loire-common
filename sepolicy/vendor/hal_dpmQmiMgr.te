@@ -1,0 +1,14 @@
+type hal_dpmQmiMgr, domain;
+type hal_dpmQmiMgr_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hal_dpmQmiMgr)
+
+add_hwservice(hal_dpmQmiMgr, hal_dpmqmi_hwservice)
+
+hwbinder_use(hal_dpmQmiMgr)
+net_domain(hal_dpmQmiMgr)
+
+get_prop(hal_dpmQmiMgr, hwservicemanager_prop)
+
+#============= hal_dpmQmiMgr ==============
+r_dir_file(hal_dpmQmiMgr, sysfs_msm_subsys)

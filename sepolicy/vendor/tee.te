@@ -1,0 +1,14 @@
+set_prop(tee, keymaster_prop)
+set_prop(tee, tee_listener_prop)
+
+#============= tee ==============
+allow tee block_device:dir r_dir_perms;
+allow tee persist_data_file:dir create_dir_perms;
+allow tee persist_data_file:file create_file_perms;
+allow tee rpmb_block_device:blk_file rw_file_perms;
+allow tee self:capability { setgid setuid };
+allow tee ssd_block_device:blk_file rw_file_perms;
+allow tee system_data_file:dir r_dir_perms;
+allow tee time_daemon:unix_stream_socket connectto;
+r_dir_file(tee, firmware_file)
+r_dir_file(tee, persist_file)

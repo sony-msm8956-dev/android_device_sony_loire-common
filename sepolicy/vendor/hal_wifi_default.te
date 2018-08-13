@@ -1,0 +1,2 @@
+#============= hal_wifi_default ==============
+r_dir_file(hal_wifi_default, ta_data_file)

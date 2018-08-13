@@ -1,0 +1,20 @@
+type per_mgr, domain;
+type per_mgr_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(per_mgr);
+
+add_service(per_mgr, per_mgr_service)
+
+use_per_mgr(per_mgr)
+
+binder_call(per_mgr, hal_gnss_qti)
+binder_call(per_mgr, rild)
+
+set_prop(per_mgr, vendor_per_mgr_state_prop);
+
+#============= per_mgr ==============
+allow per_mgr self:capability net_bind_service;
+allow per_mgr self:socket create_socket_perms;
+allow per_mgr ssr_device:chr_file r_file_perms;
+allowxperm per_mgr self:socket ioctl msm_sock_ipc_ioctls;
+r_dir_file(per_mgr, sysfs_msm_subsys)
