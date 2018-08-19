@@ -9,7 +9,7 @@ on boot
     chown system system /sys/class/rtc/rtc0/since_epoch
 
 # Time service
-service timekeep /vendor/bin/timekeep restore
+service vendor.timekeep /vendor/bin/timekeep restore
     class late_start
     user system
     group system

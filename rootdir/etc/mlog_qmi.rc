@@ -1,5 +1,5 @@
 # MLog
-service mlog_qmi_service /vendor/bin/mlog_qmi_service
+service vendor.mlog_qmi_service /vendor/bin/mlog_qmi_service
     class core
     user root
     writepid /dev/cpuset/system-background/tasks

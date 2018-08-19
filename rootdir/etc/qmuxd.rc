@@ -3,7 +3,7 @@ on boot
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
 
 # Qmi MUX Daemon
-service qmuxd /vendor/bin/qmuxd
+service vendor.qmuxd /vendor/bin/qmuxd
     class main
     user radio
     group radio audio bluetooth wakelock gps nfc diag
@@ -13,4 +13,4 @@ service qmuxd /vendor/bin/qmuxd
 on property:ro.boot.baseband=apq
     setprop ro.radio.noril yes
     stop ril-daemon
-    enable qmuxd
+    enable vendor.qmuxd

@@ -8,14 +8,14 @@ on post-fs-data
     chmod 0770 /data/vendor/netmgr
 
 # NET Manager Daemon
-service netmgrd /vendor/bin/netmgrd
+service vendor.netmgrd /vendor/bin/netmgrd
     class main
     group system wakelock
     disabled
     writepid /dev/cpuset/system-background/tasks
 
 on property:ro.boot.baseband=msm
-    enable netmgrd
+    enable vendor.netmgrd
 
 on property:ro.boot.baseband=sdm
-    enable netmgrd
+    enable vendor.netmgrd

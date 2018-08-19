@@ -11,11 +11,11 @@ on post-fs-data
     chmod 660 /dev/sensors
 
 # Sensor service
-service sensors /vendor/bin/sensors.qcom
+service vendor.sensors /vendor/bin/sensors.qcom
     class core
     user system
     group system
     disabled
 
 on property:sys.qcom.devup=1
-    enable sensors
+    enable vendor.sensors

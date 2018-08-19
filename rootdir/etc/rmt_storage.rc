@@ -1,5 +1,5 @@
 # Remote Storage
-service rmt_storage /vendor/bin/rmt_storage
+service vendor.rmt_storage /vendor/bin/rmt_storage
     class core
     user root
     group system wakelock

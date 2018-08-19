@@ -13,9 +13,9 @@
 # limitations under the License.
 
 on charger
-    start rmt_storage
-    start mlog_qmi_service
-    start irsc_util
+    start vendor.rmt_storage
+    start vendor.mlog_qmi_service
+    start vendor.irsc_util
 
 # Offline charger
 service charger /charger
@@ -34,7 +34,7 @@ on init
 
     # qseecomd needs /dev/block/bootdevice
     # vold needs keymaster that needs qseecomd
-    start qseecomd
+    start vendor.qseecomd
 
     # Enable subsystem restart
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
@@ -103,7 +103,7 @@ on late-fs
     wait_for_prop hwservicemanager.ready true
 
     # Start devices by sysfs trigger
-    start devstart_sh
+    start vendor.devstart_sh
 
 on post-fs-data
     # We can start netd here before in is launched in common init.rc on zygote-start
@@ -440,7 +440,7 @@ on property:bluetooth.isEnabled=true
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
 on property:ro.boot.baseband=msm
-    enable qmuxd
+    enable vendor.qmuxd
 
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
@@ -448,4 +448,4 @@ on property:sys.boot_completed=1
 
 on property:sys.listeners.registered=true
     # load IPA FWs
-    start ipastart_sh
+    start vendor.ipastart_sh
