@@ -1,0 +1,25 @@
+cc_binary {
+    name: "android.hardware.biometrics.fingerprint@2.1-service.loire",
+    defaults: ["hidl_defaults"],
+    init_rc: ["android.hardware.biometrics.fingerprint@2.1-service.loire.rc"],
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: [
+        "BiometricsFingerprint.cpp",
+        "service.cpp",
+        "WorkerThread.cpp",
+        "FingerprintScanner.c",
+        "QSEEComFunc.c",
+    ],
+    header_libs: ["generated_kernel_headers"],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libhidlbase",
+        "libhidltransport",
+        "libhardware",
+        "libutils",
+        "libdl",
+        "android.hardware.biometrics.fingerprint@2.1",
+    ],
+}
