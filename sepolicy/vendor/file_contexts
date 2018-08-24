@@ -107,6 +107,7 @@
 /data/connectivity(/.*)?       u:object_r:cnd_data_file:s0
 /data/credmgr(/.*)?            u:object_r:credmgrd_data_file:s0
 /data/etc(/.*)?                u:object_r:ta_data_file:s0
+/data/fpc(/.*)?                u:object_r:fingerprint_data_file:s0
 /data/nfc(/.*)?                u:object_r:nfc_data_file:s0
 /data/time(/.*)?               u:object_r:time_data_file:s0
 /data/vendor/location(/.*)?    u:object_r:location_data_file:s0

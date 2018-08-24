@@ -1,6 +1,7 @@
 # /data
 type cnd_data_file, file_type, data_file_type;
 type credmgrd_data_file, file_type, data_file_type;
+type fingerprint_data_file, file_type, data_file_type;
 type location_data_file, file_type, data_file_type;
 type mpctl_data_file, file_type, data_file_type;
 type netmgr_data_file, file_type, data_file_type;
@@ -55,6 +56,7 @@ type proc_kernel_sched, fs_type;
 
 # /sys
 type sysfs_camera, sysfs_type, fs_type;
+type sysfs_fingerprint, sysfs_type, fs_type;
 type sysfs_graphics, sysfs_type, fs_type;
 type sysfs_irq, sysfs_type, fs_type;
 type sysfs_kgsl, sysfs_type, fs_type;

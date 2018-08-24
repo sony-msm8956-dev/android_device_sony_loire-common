@@ -41,6 +41,7 @@ genfscon sysfs /devices/soc.0/qcom,cpubw.49                             u:object
 genfscon sysfs /devices/soc.0/qcom,gpubw.35                             u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /devices/soc.0/qpnp-flash-led-22/leds                    u:object_r:sysfs_leds:s0
 genfscon sysfs /devices/soc.0/qpnp-smbcharger-16/power_supply/battery   u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/soc.0/0.fpc1145                                 u:object_r:sysfs_fingerprint:s0
 genfscon sysfs /devices/soc0                                            u:object_r:sysfs_soc:s0
 genfscon sysfs /devices/sony_camera_0/info                              u:object_r:sysfs_camera:s0
 genfscon sysfs /devices/sony_camera_1/info                              u:object_r:sysfs_camera:s0

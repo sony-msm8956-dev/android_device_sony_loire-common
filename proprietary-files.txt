@@ -352,6 +352,16 @@ vendor/lib64/libsecureui_svcsock.so
 vendor/lib64/libssd.so
 vendor/lib64/libStDrvInt.so
 
+# Fingerprint
+lib/hw/fingerprint.msm8952.so
+lib/lib_fpc_tac_shared.so
+lib/libfpc_oem.so
+lib64/hw/fingerprint.msm8952.so
+lib64/lib_fpc_tac_shared.so
+lib64/libfpc_oem.so
+vendor/lib/liblights-core.so|1542d46e168722f92c9ef0f55857c6996cddb332
+vendor/lib64/liblights-core.so|9b75ca453c7e770edd50f0c337b08a214db26757
+
 # Gatekeeper
 vendor/lib64/hw/gatekeeper.msm8952.so
 
@@ -723,6 +733,11 @@ etc/firmware/tzattest.b01
 etc/firmware/tzattest.b02
 etc/firmware/tzattest.b03
 etc/firmware/tzattest.mdt
+etc/firmware/tzfingerprint.b00
+etc/firmware/tzfingerprint.b01
+etc/firmware/tzfingerprint.b02
+etc/firmware/tzfingerprint.b03
+etc/firmware/tzfingerprint.mdt
 etc/firmware/tzhdcp.b00
 etc/firmware/tzhdcp.b01
 etc/firmware/tzhdcp.b02
@@ -755,8 +770,10 @@ etc/firmware/tzwvcpybuf.b03
 etc/firmware/tzwvcpybuf.mdt
 
 # Sensors
+lib/sensors.finger-pickup.so
+lib64/sensors.finger-pickup.so
 vendor/bin/sensors.qcom
-vendor/etc/sensors/hals.conf|bf3677cbfa5ce5735662e8c259cb027969f65c87
+vendor/etc/sensors/hals.conf
 vendor/lib/libsensor_reg.so
 vendor/lib/libsensor1.so
 vendor/lib/sensors.ssc.so

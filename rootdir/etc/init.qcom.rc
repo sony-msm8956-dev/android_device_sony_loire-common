@@ -312,6 +312,9 @@ on post-fs-data
     # Create FTM_AP dir for factory test
     mkdir /data/FTM_AP 0775 system system
 
+    # Fingerprint data folder
+    mkdir /data/fpc 0770 system system
+
     mkdir /data/credmgr 0770 system oem_2996
 
     mkdir /data/etc 0755 root shell
