@@ -49,7 +49,6 @@ genfscon sysfs /devices/soc/qpnp-fg-17                                  u:object
 genfscon sysfs /devices/soc/qpnp-flash-led-22/leds                      u:object_r:sysfs_leds:s0
 genfscon sysfs /devices/soc/qpnp-smbcharger-16/power_supply/battery     u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/soc/soc:bcm43xx/rfkill/rfkill0/state            u:object_r:sysfs_bluetooth_writable:s0
-genfscon sysfs /devices/soc/soc:fpc1145                                 u:object_r:sysfs_fingerprint:s0
 genfscon sysfs /devices/soc/soc:qcom,bcl/power_supply                   u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/soc/soc:qcom,cpubw                              u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /devices/soc/soc:qcom,gpubw                              u:object_r:sysfs_msm_subsys:s0

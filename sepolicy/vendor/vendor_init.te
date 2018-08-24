@@ -12,7 +12,6 @@ allow vendor_init {
   cnd_data_file
   credmgrd_data_file
   dhcp_data_file
-  fingerprint_data_file
   media_rw_data_file
   nfc_data_file
   system_data_file

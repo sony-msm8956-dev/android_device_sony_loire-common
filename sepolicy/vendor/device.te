@@ -1,6 +1,7 @@
 # /dev
 type avtimer_device, dev_type;
 type diag_device, dev_type, mlstrustedobject;
+type fingerprint_device, dev_type;
 type latency_device, dev_type;
 type qdsp_device, dev_type, mlstrustedobject;
 type rmnet_device, dev_type;

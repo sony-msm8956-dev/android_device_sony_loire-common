@@ -285,13 +285,7 @@
 /dev/hbtp_vm              0660   system     system
 
 # Fingerprint sensor device
-/sys/devices/soc/soc:fpc1145 hw_reset         0220 system input
-/sys/devices/soc/soc:fpc1145 pinctl_set       0220 system input
-/sys/devices/soc/soc:fpc1145 regulator_enable 0220 system input
-/sys/devices/soc/soc:fpc1145 spi_prepare      0220 system input
-/sys/devices/soc/soc:fpc1145 irq              0660 system input
-/sys/devices/soc/soc:fpc1145 wakeup_enable    0660 system input
-/sys/devices/soc/soc:fpc1145 pm_wakeup        0660 system input
+/dev/fpc1145              0664   system     input
 
 # FRP
 /dev/block/platform/soc/7824900.sdhci/by-name/config    0600  system      system

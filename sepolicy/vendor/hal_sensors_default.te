@@ -2,9 +2,6 @@ typeattribute hal_sensors_default data_between_core_and_vendor_violators;
 
 #============= hal_sensors_default ==============
 allow hal_sensors_default diag_device:chr_file rw_file_perms;
-allow hal_sensors_default fingerprint_data_file:dir search;
-allow hal_sensors_default fingerprint_data_file:sock_file w_file_perms;
-allow hal_sensors_default hal_fingerprint_default:unix_stream_socket connectto;
 allow hal_sensors_default persist_file:dir r_dir_perms;
 allow hal_sensors_default self:socket create_socket_perms;
 allowxperm hal_sensors_default self:socket ioctl msm_sock_ipc_ioctls;
