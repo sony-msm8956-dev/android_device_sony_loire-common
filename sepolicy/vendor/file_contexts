@@ -100,6 +100,7 @@
 /(vendor|system/vendor)/bin/hw/vendor\.semc\.system\.idd\.fallback@1\.0-service   u:object_r:hal_idd_fallback_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.somc\.hardware\.miscta@1\.0-service        u:object_r:hal_miscta_default_exec:s0
 /(vendor|system/vendor)/bin/init\.qcom\.post_boot\.sh        u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/init\.radio\.sh        u:object_r:init_radio-sh_exec:s0
 
 # /data
 /data/connectivity(/.*)?       u:object_r:cnd_data_file:s0

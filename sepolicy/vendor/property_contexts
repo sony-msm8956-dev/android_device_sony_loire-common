@@ -2,6 +2,7 @@ persist.net.doxlat                u:object_r:vendor_net_radio_prop:s0
 persist.tareset.notfirstboot      u:object_r:updatemiscta_prop:s0
 persist.vendor.radio              u:object_r:vendor_radio_prop:s0
 radio.atfwd.start                 u:object_r:atfwd_start_prop:s0
+ro.telephony.default_network      u:object_r:radio_prop:s0
 ro.vendor.ril.                    u:object_r:vendor_radio_prop:s0
 sys.keymaster.loaded              u:object_r:keymaster_prop:s0
 sys.listeners.registered          u:object_r:tee_listener_prop:s0

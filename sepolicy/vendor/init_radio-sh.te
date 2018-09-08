@@ -1,0 +1,10 @@
+type init_radio-sh, domain;
+type init_radio-sh_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(init_radio-sh)
+
+set_prop(init_radio-sh, radio_prop)
+
+#============= init_radio-sh ==============
+allow init_radio-sh proc_simslot:file r_file_perms;
+allow init_radio-sh vendor_toolbox_exec:file rx_file_perms;

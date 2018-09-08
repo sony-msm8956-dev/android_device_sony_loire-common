@@ -52,6 +52,7 @@ type persist_time_file, file_type;
 
 # /proc
 type proc_irq, fs_type;
+type proc_simslot, fs_type;
 type proc_kernel_sched, fs_type;
 
 # /sys
