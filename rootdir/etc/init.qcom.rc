@@ -469,12 +469,11 @@ service qcamerasvr /vendor/bin/mm-qcamera-daemon
     group camera system inet input graphics
     socket cammw_tintless stream 0660 camera camera
 
-service tad_static /sbin/tad_static /dev/block/bootdevice/by-name/TA 0,16
+service tad_static /vendor/bin/tad_static /dev/block/bootdevice/by-name/TA 0,16
     class core
     user oem_2997
     group oem_2997 root
     socket tad stream 0660 system oem_2993
-    seclabel u:r:tad:s0
 
 service adsprpcd /vendor/bin/adsprpcd
     class main
