@@ -146,6 +146,10 @@ DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
+# NFC
+BOARD_NFC_HAL_SUFFIX := $(TARGET_BOARD_PLATFORM)
+NXP_CHIP_TYPE := 1 # PN547C2
+
 # Peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
