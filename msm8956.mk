@@ -15,6 +15,10 @@
 # Common path
 COMMON_PATH := device/sony/msm8956-common
 
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(COMMON_PATH)
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 
