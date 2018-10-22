@@ -64,6 +64,7 @@ type sysfs_irq, sysfs_type, fs_type;
 type sysfs_kgsl, sysfs_type, fs_type;
 type sysfs_mdss_mdp_caps, sysfs_type, fs_type;
 type sysfs_memory, sysfs_type, fs_type;
+type sysfs_msm_perf, sysfs_type, fs_type;
 type sysfs_msm_subsys, sysfs_type, fs_type;
 type sysfs_net, sysfs_type, fs_type;
 type sysfs_power_management, sysfs_type, fs_type;

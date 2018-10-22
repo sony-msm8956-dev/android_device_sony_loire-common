@@ -799,12 +799,8 @@ vendor/lib64/libmiscta.so
 vendor/lib64/vendor.somc.hardware.miscta@1.0_vendor.so
 
 # Thermal
-vendor/bin/thermal-engine
-vendor/lib/libthermal_engine.so
 -vendor/lib/libthermalclient.so
-vendor/lib64/libthermal_engine.so
 -vendor/lib64/libthermalclient.so
-vendor/lib64/libthermalioctl.so
 
 # Time services
 -vendor/app/TimeService/TimeService.apk

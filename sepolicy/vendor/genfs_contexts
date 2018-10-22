@@ -58,4 +58,5 @@ genfscon sysfs /devices/virtual/thermal                                 u:object
 genfscon sysfs /kernel/irq_helper/irq_blacklist_on                      u:object_r:sysfs_irq:s0
 genfscon sysfs /kernel/mm/ksm                                           u:object_r:sysfs_memory:s0
 genfscon sysfs /module/lpm_levels                                       u:object_r:sysfs_power_management:s0
+genfscon sysfs /module/msm_performance                                  u:object_r:sysfs_msm_perf:s0
 genfscon sysfs /module/msm_thermal                                      u:object_r:sysfs_thermal:s0
