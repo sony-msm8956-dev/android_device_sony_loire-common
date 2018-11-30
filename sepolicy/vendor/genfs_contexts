@@ -21,6 +21,7 @@ genfscon proc /sys/kernel/sched_window_stats_policy   u:object_r:proc_kernel_sch
 # debugfs
 genfscon debugfs /kgsl/proc                           u:object_r:debugfs_kgsl:s0
 genfscon debugfs /rmt_storage                         u:object_r:debugfs_rmt_storage:s0
+genfscon debugfs /rpm_stats                           u:object_r:debugfs_rpm:s0
 
 # sysfs
 genfscon sysfs /bus/msm_subsys                                          u:object_r:sysfs_msm_subsys:s0
@@ -48,6 +49,8 @@ genfscon sysfs /devices/sony_camera_0/info                              u:object
 genfscon sysfs /devices/sony_camera_1/info                              u:object_r:sysfs_camera:s0
 genfscon sysfs /devices/virtual/graphics/fb0                            u:object_r:sysfs_graphics:s0
 genfscon sysfs /devices/virtual/graphics/fb1                            u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/virtual/input/input4/wakeup_gesture             u:object_r:sysfs_touch:s0
+genfscon sysfs /devices/virtual/input/input6/wakeup_gesture             u:object_r:sysfs_touch:s0
 genfscon sysfs /devices/virtual/net                                     u:object_r:sysfs_net:s0
 genfscon sysfs /devices/virtual/smdpkt/smdcntl0/open_timeout            u:object_r:sysfs_smd_open_timeout:s0
 genfscon sysfs /devices/virtual/smdpkt/smdcntl8/open_timeout            u:object_r:sysfs_smd_open_timeout:s0

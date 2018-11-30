@@ -163,6 +163,10 @@ USE_SENSOR_MULTI_HAL := true
 # Qualcomm hardware
 BOARD_USES_QCOM_HARDWARE := true
 
+# Power
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/clearpad/wakeup_gesture"
+TARGET_USES_INTERACTION_BOOST := true
+
 # Dex
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
