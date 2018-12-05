@@ -551,7 +551,8 @@ vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so
 vendor/bin/msm_irqbalance|3f7a923d9d01dbfda40ebdfdd27a62167df69c13
 
 # Keystore
-vendor/lib64/hw/keystore.msm8952.so
+vendor/lib64/hw/keystore.msm8952.so|0f5b3722cdc4e442d6b128775a32be8d8f49b83e
+vendor/lib64/libcrypto_keystore.so|2cf07b7dbac977ca6fced269a4411c2419839e4c
 
 # Media
 lib/libOmxVpp.so
