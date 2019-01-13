@@ -301,10 +301,15 @@ on post-fs-data
     chmod 2770 /data/system/swap
 
     # QCOM Sensors
+    chown system system /persist/sensors
     chmod 0775 /persist/sensors
+    chown system system /persist/sensors/registry
+    chown system system /persist/sensors/registry/registry
+    write /persist/sensors/sensors_settings 1
+    chown system system /persist/sensors/sensors_settings
     chmod 0664 /persist/sensors/sensors_settings
-    chown system root /persist/sensors/sensors_settings
-    mkdir /persist/sensors/registry/registry
+    chown system system /persist/sensors/sns.reg
+    chmod 0664 /persist/sensors/sns.reg
 
     # Create vpp directory
     mkdir /data/vendor/vpp 0770 media media
@@ -623,8 +628,8 @@ service rmt_storage /vendor/bin/rmt_storage
 
 service sensors /vendor/bin/sensors.qcom
     class core
-    user root
-    group root
+    user system
+    group system
 
 service thermanager /vendor/bin/thermanager /vendor/etc/thermanager.xml
     class main
