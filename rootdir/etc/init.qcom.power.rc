@@ -74,17 +74,17 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu5/sched_mostly_idle_nr_run 3
 
     # Enable bus-dcvs
-    write /sys/class/devfreq/qcom,mincpubw.50/governor "cpufreq"
-    write /sys/class/devfreq/qcom,cpubw.49/governor "bw_hwmon"
-    write /sys/class/devfreq/qcom,cpubw.49/bw_hwmon/io_percent 20
-    write /sys/class/devfreq/qcom,cpubw.49/bw_hwmon/guard_band_mbps 30
+    write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
+    write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 20
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 30
 
     # Disable thermal & BCL hotplug to update governor settings
     write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/devices/soc.0/qcom,bcl.56/mode "disable"
-    write /sys/devices/soc.0/qcom,bcl.56/hotplug_mask 0
-    write /sys/devices/soc.0/qcom,bcl.56/hotplug_soc_mask 0
-    write /sys/devices/soc.0/qcom,bcl.56/mode "enable"
+    write /sys/devices/soc/soc:qcom,bcl/mode "disable"
+    write /sys/devices/soc/soc:qcom,bcl/hotplug_mask 0
+    write /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask 0
+    write /sys/devices/soc/soc:qcom,bcl/mode "enable"
 
     # Bring CPU0 core online
     write /sys/devices/system/cpu/cpu0/online 1
@@ -162,10 +162,10 @@ on enable-low-power
 
     # Re-enable thermal & BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
-    write /sys/devices/soc.0/qcom,bcl.56/mode "disable"
-    write /sys/devices/soc.0/qcom,bcl.56/hotplug_mask 48
-    write /sys/devices/soc.0/qcom,bcl.56/hotplug_soc_mask 48
-    write /sys/devices/soc.0/qcom,bcl.56/mode "enable"
+    write /sys/devices/soc/soc:qcom,bcl/mode "disable"
+    write /sys/devices/soc/soc:qcom,bcl/hotplug_mask 48
+    write /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask 48
+    write /sys/devices/soc/soc:qcom,bcl/mode "enable"
 
     # Enable timer migration to little cluster
     write /proc/sys/kernel/power_aware_timer_migration 1

@@ -40,22 +40,22 @@
 /dev/block/mmcblk0                                                u:object_r:root_block_device:s0
 /dev/block/mmcblk0p1                                              u:object_r:tad_block_device:s0
 /dev/block/mmcblk0rpmb                                            u:object_r:rpmb_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/apps_log        u:object_r:appslog_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/boot            u:object_r:boot_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/cache           u:object_r:cache_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/config          u:object_r:frp_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/diag            u:object_r:diag_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/FOTAKernel      u:object_r:recovery_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/fsg             u:object_r:modem_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/misc            u:object_r:misc_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/modemst[12]     u:object_r:modem_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/persist         u:object_r:persist_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/Qnovo	          u:object_r:qnovo_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/rdimage         u:object_r:ramdump_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/ssd             u:object_r:ssd_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/system          u:object_r:system_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/TA              u:object_r:tad_block_device:s0
-/dev/block/platform/soc\.0/7824900\.sdhci/by-name/userdata        u:object_r:userdata_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/apps_log           u:object_r:appslog_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/boot               u:object_r:boot_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/cache              u:object_r:cache_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/config             u:object_r:frp_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/diag               u:object_r:diag_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/FOTAKernel         u:object_r:recovery_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/fsg                u:object_r:modem_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/misc               u:object_r:misc_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/modemst[12]        u:object_r:modem_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/persist            u:object_r:persist_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/Qnovo	          u:object_r:qnovo_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/rdimage            u:object_r:ramdump_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/ssd                u:object_r:ssd_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/system             u:object_r:system_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/TA                 u:object_r:tad_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/userdata           u:object_r:userdata_block_device:s0
 /dev/block/zram0                                                  u:object_r:swap_block_device:s0
 
 # files in /vendor
@@ -145,9 +145,6 @@
 /persist/rfs(/.*)?             u:object_r:persist_rfs_file:s0
 /persist/sensors(/.*)?         u:object_r:persist_sensors_file:s0
 /persist/time(/.*)?            u:object_r:persist_time_file:s0
-
-# /sys
-/sys/devices/soc.0/bcm43xx.([0-9])+/rfkill/rfkill0/state    u:object_r:sysfs_bluetooth_writable:s0
 
 # /
 /tombstones                    u:object_r:rootfs:s0
