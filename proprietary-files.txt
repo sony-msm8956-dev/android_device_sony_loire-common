@@ -50,7 +50,7 @@ lib/libmm-qcamera.so
 lib/libqomx_core.so
 lib64/libcamera_clientsemc.so
 vendor/bin/mm-qcamera-daemon
-vendor/lib/hw/camera.qcom.so
+vendor/lib/hw/camera.qcom.so|0ca6c86f6eaf4147b40d0e5fc40bd32e36e89ad3
 vendor/lib/libcammw_util.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libjpegdhw.so
