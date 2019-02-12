@@ -103,7 +103,9 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger_res_images
+    charger_anim \
+    charger_font \
+    sony_charger_res_images
 
 # Display
 PRODUCT_PACKAGES += \

@@ -1,0 +1,17 @@
+# animation: num_cycles, first_frame_repeats, animation_file
+animation: 4 2 charger/sony_battery_scale
+
+# fail: fail_file
+fail: charger/sony_battery_fail
+
+# percent_display: text_percent_pos_x, text_percent_pos_y, color_r, color_g, color_b, color_a, font_file
+percent_display: c 390 255 255 255 255 charger/charger_font
+
+# frame: disp_time min_level max_level
+frame: 650 0 15
+frame: 650 0 35
+frame: 650 0 50
+frame: 650 0 60
+frame: 650 0 80
+frame: 650 0 99
+frame: 650 0 100
