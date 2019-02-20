@@ -253,8 +253,8 @@ on post-fs-data
     mkdir /data/fota 0771
     chown system system /data/fota
 
-    # Create /data/time folder for time-services
-    mkdir /data/time 0700 system system
+    # Create /data/vendor/time folder for time-services
+    mkdir /data/vendor/time/ 0700 system system
 
     mkdir /data/vendor/audio 0770 media audio
 
@@ -413,6 +413,23 @@ on boot
 
     # Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
+
+    # Copy data/time to data/vendor/time
+    copy /data/time/ats_1 /data/vendor/time/ats_1
+    chown system net_raw /data/vendor/time/ats_1
+    chmod 0600 /data/vendor/time/ats_1
+    rm /data/time/ats_1
+
+    copy /data/time/ats_2 /data/vendor/time/ats_2
+    chown system net_raw /data/vendor/time/ats_2
+    chmod 0600 /data/vendor/time/ats_2
+    rm /data/time/ats_2
+
+    copy /data/time/ats_16 /data/vendor/time/ats_16
+    chown system net_raw /data/vendor/time/ats_16
+    chmod 0600 /data/vendor/time/ats_16
+    rm /data/time/ats_16
+    rmdir /data/time
 
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath

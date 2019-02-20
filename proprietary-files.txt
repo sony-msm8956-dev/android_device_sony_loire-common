@@ -802,11 +802,11 @@ vendor/lib64/vendor.somc.hardware.miscta@1.0_vendor.so
 -vendor/lib/libthermalclient.so
 -vendor/lib64/libthermalclient.so
 
-# Time services
--vendor/app/TimeService/TimeService.apk
-vendor/bin/time_daemon
-vendor/lib/libtime_genoff.so
-vendor/lib64/libtime_genoff.so
+# Time services - from poplar - 47.2.A.8.24 ()
+-vendor/app/TimeService/TimeService.apk|44698e55fe4ea1dad568838d537257f2aaec5e47
+vendor/bin/time_daemon|0557e5c402bd0a7eabc79417c67ac6c13bb5d0ed
+vendor/lib/libtime_genoff.so|87dfe50d46e306b73efcd859ce9c7c9fa86cd5b5
+vendor/lib64/libtime_genoff.so|e341ec29dbfb6d1fae84915a6151fd56d25f4ddc
 
 # Widevine
 vendor/bin/hw/android.hardware.drm@1.0-service.widevine
