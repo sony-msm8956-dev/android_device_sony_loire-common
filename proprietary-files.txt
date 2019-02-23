@@ -578,7 +578,7 @@ etc/firmware/venus-v1.mbn
 etc/firmware/venus-v1.mdt
 
 # NFC
-lib64/hw/libpn547_fw.so
+lib64/hw/libpn547_fw.so:vendor/firmware/libpn547_fw.so
 
 # Perf
 vendor/bin/hw/vendor.qti.hardware.perf@1.0-service
