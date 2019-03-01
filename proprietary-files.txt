@@ -526,6 +526,9 @@ vendor/lib64/lib-uceservice.so
 vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so
 vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so
 
+# IRQ balance - from marlin - PQ3A.190801.002
+vendor/bin/msm_irqbalance|3f7a923d9d01dbfda40ebdfdd27a62167df69c13
+
 # Keystore
 vendor/lib64/hw/keystore.msm8952.so
 
@@ -579,7 +582,6 @@ lib64/hw/libpn547_fw.so:vendor/lib/libpn547_fw.so
 
 # Perf
 vendor/bin/hw/vendor.qti.hardware.perf@1.0-service
-vendor/bin/msm_irqbalance
 vendor/etc/init/vendor.qti.hardware.perf@1.0-service.rc
 vendor/etc/perf/perfboostsconfig.xml
 vendor/lib/libfeedbackhandler.so
