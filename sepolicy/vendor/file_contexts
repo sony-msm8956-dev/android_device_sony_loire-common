@@ -98,7 +98,7 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.1-service\.clearkey      u:object_r:hal_drm_clearkey_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.loire       u:object_r:hal_light_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.2-service\.loire       u:object_r:hal_power_default_exec:s0
-/(vendor|system/vendor)/bin/hw/vendor\.qti\.gnss@1\.0-service                     u:object_r:hal_gnss_qti_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.qti\.gnss@2\.0-service                     u:object_r:hal_gnss_qti_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.perf@1\.0-service           u:object_r:hal_perf_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.semc\.hardware\.secd@1\.0-service          u:object_r:hal_secd_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.semc\.system\.idd@1\.0-service             u:object_r:hal_idd_default_exec:s0
