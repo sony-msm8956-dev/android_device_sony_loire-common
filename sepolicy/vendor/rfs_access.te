@@ -6,6 +6,7 @@ init_daemon_domain(rfs_access)
 wakelock_use(rfs_access)
 
 #============= rfs_access ==============
+allow rfs_access mnt_vendor_file:dir search;
 allow rfs_access persist_file:dir search;
 allow rfs_access persist_rfs_file:dir create_dir_perms;
 allow rfs_access persist_rfs_file:file create_file_perms;
