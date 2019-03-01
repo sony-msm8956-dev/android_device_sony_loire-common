@@ -94,7 +94,7 @@
 /(vendor|system/vendor)/bin/time_daemon            u:object_r:time_daemon_exec:s0
 /(vendor|system/vendor)/bin/updatemiscta           u:object_r:updatemiscta_exec:s0
 /(vendor|system/vendor)/bin/xtra-daemon            u:object_r:location_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.0-service\.widevine      u:object_r:hal_drm_widevine_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.1-service\.widevine      u:object_r:hal_drm_widevine_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.1-service\.clearkey      u:object_r:hal_drm_clearkey_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.loire       u:object_r:hal_light_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.2-service\.loire       u:object_r:hal_power_default_exec:s0
@@ -114,6 +114,7 @@
 /data/fpc(/.*)?                u:object_r:fingerprint_data_file:s0
 /data/nfc(/.*)?                u:object_r:nfc_data_file:s0
 /data/vendor/location(/.*)?    u:object_r:location_data_file:s0
+/data/vendor/mediadrm(/.*)?    u:object_r:mediadrm_vendor_data_file:s0
 /data/vendor/netmgr(/.*)?      u:object_r:netmgr_data_file:s0
 /data/vendor/nfc(/.*)?         u:object_r:nfc_vendor_data_file:s0
 /data/vendor/perfd(/.*)?       u:object_r:mpctl_data_file:s0

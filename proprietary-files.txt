@@ -808,13 +808,13 @@ vendor/bin/time_daemon|0557e5c402bd0a7eabc79417c67ac6c13bb5d0ed
 vendor/lib/libtime_genoff.so|87dfe50d46e306b73efcd859ce9c7c9fa86cd5b5
 vendor/lib64/libtime_genoff.so|e341ec29dbfb6d1fae84915a6151fd56d25f4ddc
 
-# Widevine
-vendor/bin/hw/android.hardware.drm@1.0-service.widevine
-vendor/etc/init/android.hardware.drm@1.0-service.widevine.rc|eb65aa1e4c72668db7d01600290dcf1b7ad98546
-vendor/lib/libwvhidl.so
-vendor/lib/mediadrm/libwvdrmengine.so
-vendor/lib64/libwvhidl.so
-vendor/lib64/mediadrm/libwvdrmengine.so
+# Widevine - from poplar - 47.2.A.8.24
+vendor/bin/hw/android.hardware.drm@1.1-service.widevine|62000c39e78a2118a0c9be04f430099c2f1022c9
+vendor/etc/init/android.hardware.drm@1.1-service.widevine.rc|ed7bb839961ce66e14af12ba2d5252030966753d
+vendor/lib/libwvhidl.so|f526b34f354855710821703c37cb17c584d045d4
+vendor/lib/mediadrm/libwvdrmengine.so|4100f43270b98d3ea3d756fcc5aae0109c2d04ef
+vendor/lib64/libwvhidl.so|e602682d2357d4ec2ae7a97229c3831e629e08e0
+vendor/lib64/mediadrm/libwvdrmengine.so|3d86fff84c6a7699f3dcedf5605a31eae528b163
 
 # WiFi
 etc/firmware/wlan/bcmdhd/fw_bcmdhd.bin
