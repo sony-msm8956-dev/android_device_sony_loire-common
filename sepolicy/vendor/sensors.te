@@ -13,8 +13,7 @@ allow sensors persist_sensors_file:file create_file_perms;
 allow sensors self:capability { setuid setgid net_bind_service };
 allow sensors self:socket create_socket_perms;
 allow sensors sensors_device:chr_file r_file_perms;
-allow sensors sysfs_msm_subsys:dir rw_dir_perms;
-allow sensors sysfs_msm_subsys:file create_file_perms;
 allowxperm sensors self:socket ioctl msm_sock_ipc_ioctls;
 dontaudit sensors self:capability net_raw;
+r_dir_file(sensors, sysfs_msm_subsys)
 r_dir_file(sensors, sysfs_soc)
