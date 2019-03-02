@@ -1,13 +1,14 @@
 type cnd, domain;
 type cnd_exec, exec_type, vendor_file_type, file_type;
-typeattribute cnd data_between_core_and_vendor_violators;
 
 init_daemon_domain(cnd)
 net_domain(cnd)
 
 unix_socket_send(cnd, wpa, hal_wifi_supplicant)
 
+add_hwservice(cnd, hal_datafactory_hwservice)
 add_hwservice(cnd, hal_cne_hwservice)
+add_hwservice(cnd, hal_latency_hwservice)
 
 hwbinder_use(cnd)
 wakelock_use(cnd)
