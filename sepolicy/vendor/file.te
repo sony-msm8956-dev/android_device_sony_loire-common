@@ -46,6 +46,7 @@ type qns_file, file_type;
 
 # /persist
 type persist_file, file_type;
+type persist_battery_file, file_type;
 type persist_data_file, file_type;
 type persist_display_file, file_type;
 type persist_rfs_file, file_type;
@@ -65,6 +66,7 @@ type sysfs_irq, sysfs_type, fs_type;
 type sysfs_kgsl, sysfs_type, fs_type;
 type sysfs_mdss_mdp_caps, sysfs_type, fs_type;
 type sysfs_memory, sysfs_type, fs_type;
+type sysfs_mmc, sysfs_type, fs_type;
 type sysfs_msm_perf, sysfs_type, fs_type;
 type sysfs_msm_subsys, sysfs_type, fs_type;
 type sysfs_power_management, sysfs_type, fs_type;

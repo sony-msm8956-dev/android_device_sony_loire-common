@@ -1,0 +1,18 @@
+on fs
+    # For health HAL cycle count backup
+    mkdir /persist/battery 0700 system system
+
+on early-boot
+    # Health HAL needs to be able to RW
+    chown system system /sys/devices/soc/qpnp-fg-17/cycle_counts_bins
+    chown system system /sys/devices/soc/qpnp-fg-17/power_supply/bms/charge_full
+
+    # HardwareInfo needs to be able to read CC bins and charge_full
+    chmod 644 /sys/devices/soc/qpnp-fg-17/cycle_counts_bins
+    chmod 644 /sys/devices/soc/qpnp-fg-17/power_supply/bms/charge_full
+
+service vendor.health-hal-2-0 /vendor/bin/hw/android.hardware.health@2.0-service.loire
+    class hal
+    user system
+    group system
+    file /dev/kmsg w

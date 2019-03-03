@@ -1,3 +1,4 @@
 #============= vold ==============
 allow vold persist_file:dir r_dir_perms;
+allow vold sysfs_mmc:file write;
 dontaudit vold proc_irq:dir { open read };
