@@ -1,0 +1,7 @@
+type vendor_toolbox, domain;
+
+init_daemon_domain(vendor_toolbox)
+
+#============= vendor_toolbox ==============
+allow vendor_toolbox persist_file:dir setattr;
+allow vendor_toolbox self:capability sys_admin;
