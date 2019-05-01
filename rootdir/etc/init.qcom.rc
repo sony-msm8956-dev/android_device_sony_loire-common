@@ -517,8 +517,9 @@ on property:persist.radio.atfwd.start=false
 on property:radio.atfwd.start=false
     stop vendor.atfwd
 
-service vendor.charger /charger
+service vendor.charger /system/bin/charger
     class charger
+    group log system graphics
     seclabel u:r:charger:s0
 
 service vendor.cnd /vendor/bin/cnd
