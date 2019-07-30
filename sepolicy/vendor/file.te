@@ -57,6 +57,7 @@ type persist_time_file, file_type;
 type proc_irq, fs_type, proc_type;
 type proc_simslot, fs_type, proc_type;
 type proc_kernel_sched, fs_type, proc_type;
+type proc_vm_swap, fs_type, proc_type;
 
 # /sys
 type sysfs_camera, sysfs_type, fs_type;
