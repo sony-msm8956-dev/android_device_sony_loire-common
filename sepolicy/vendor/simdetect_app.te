@@ -1,0 +1,8 @@
+type simdetect_app, domain;
+app_domain(simdetect_app);
+
+#============= simdetect_app ==============
+allow simdetect_app activity_service:service_manager find;
+allow simdetect_app self:netlink_kobject_uevent_socket { bind create read setopt };
+allow simdetect_app surfaceflinger_service:service_manager find;
+allow simdetect_app system_app_data_file:dir r_dir_perms;
