@@ -291,6 +291,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     thermanager
 
+# Touch HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch@1.0-service.loire
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.loire

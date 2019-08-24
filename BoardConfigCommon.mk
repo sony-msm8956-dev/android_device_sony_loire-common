@@ -143,6 +143,7 @@ TARGET_NO_RPC := true
 
 # HIDL
 DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
+DEVICE_MANIFEST_FILE += $(PLATFORM_PATH)/manifest-lineage.xml
 DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 
 # Keymaster
@@ -192,6 +193,7 @@ WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR := $(PLATFORM_PATH)/sepolicy/public
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR := $(PLATFORM_PATH)/sepolicy/private
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
+BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy-lineage/vendor
 
 # Vendor SPL
 VENDOR_SECURITY_PATCH = "2018-09-01"
