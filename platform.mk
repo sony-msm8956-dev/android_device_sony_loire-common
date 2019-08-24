@@ -107,6 +107,10 @@ PRODUCT_PACKAGES += \
     charger_font \
     sony_charger_res_images
 
+# Device-specific settings
+PRODUCT_PACKAGES += \
+    SonyParts
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
