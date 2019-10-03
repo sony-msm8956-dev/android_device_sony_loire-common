@@ -299,8 +299,7 @@ PRODUCT_PACKAGES += \
     sct_service.rc \
     sensors.rc \
     tad.rc \
-    ta_qmi.rc \
-    wpa_supplicant.rc
+    ta_qmi.rc
 
 # SAR
 PRODUCT_PACKAGES += \
