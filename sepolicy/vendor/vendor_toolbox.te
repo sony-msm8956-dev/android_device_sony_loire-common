@@ -3,5 +3,7 @@ type vendor_toolbox, domain;
 init_daemon_domain(vendor_toolbox)
 
 #============= vendor_toolbox ==============
+allow vendor_toolbox idd_data_file:dir create_dir_perms;
+allow vendor_toolbox idd_root_dir:dir rw_dir_perms;
 allow vendor_toolbox persist_file:dir setattr;
 allow vendor_toolbox self:capability sys_admin;
