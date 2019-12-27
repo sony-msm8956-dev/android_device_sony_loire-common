@@ -73,6 +73,10 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu4/sched_mostly_idle_nr_run 3
     write /sys/devices/system/cpu/cpu5/sched_mostly_idle_nr_run 3
 
+    # Set (super) packing parameters
+    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_freq 1017600
+    write /sys/devices/system/cpu/cpu4/sched_mostly_idle_freq 0
+
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
@@ -91,14 +95,16 @@ on enable-low-power
 
     # Configure governor settings for little cluster
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 59000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 19000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 80
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 1305600
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "1 691200:80"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 10000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 40000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 1017600
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads 90
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 691200
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 20000
 
     # Bring CPU4 core online
     write /sys/devices/system/cpu/cpu4/online 1
@@ -107,13 +113,14 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "19000 1382400:39000"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 85
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 10000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 1382400
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "85 1382400:90 1747200:80"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "90 1747200:80"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 883200
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 60000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 40000
 
     # HMP Task packing settings for 8976
     write /proc/sys/kernel/sched_small_task 30
@@ -149,7 +156,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
-    write /proc/sys/kernel/sched_freq_inc_notify 50000
+    write /proc/sys/kernel/sched_freq_inc_notify 200000
     write /proc/sys/kernel/sched_freq_dec_notify 50000
 
     # Enable core control
