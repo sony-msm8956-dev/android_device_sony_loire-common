@@ -175,6 +175,7 @@ PRODUCT_PACKAGES += \
 # MISC
 PRODUCT_PACKAGES += \
     libqti_vndfwk_detect \
+    libqti_vndfwk_detect.vendor \
     libjson \
     libxml2
 
