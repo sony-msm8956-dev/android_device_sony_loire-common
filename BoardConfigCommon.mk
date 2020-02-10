@@ -180,6 +180,10 @@ endif
 BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware idd persist rca
 BOARD_ROOT_EXTRA_SYMLINKS := /data/tombstones:/tombstones
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /vendor/lib/hw/camera.vendor.qcom.so|libshim_camera.so
+
 # WiFi
 BOARD_WLAN_DEVICE           := bcmdhd
 BOARD_HOSTAPD_DRIVER        := NL80211
