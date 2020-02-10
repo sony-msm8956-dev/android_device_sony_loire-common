@@ -278,6 +278,10 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-service \
     libsensorndkbridge
 
+# Shims
+PRODUCT_PACKAGES += \
+    libshim_camera
+
 # SimDetect
 PRODUCT_PACKAGES += \
     SimDetect
