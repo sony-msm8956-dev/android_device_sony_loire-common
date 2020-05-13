@@ -19,6 +19,8 @@ COMMON_PATH := device/sony/msm8956-common
 # Vendor platform
 BOARD_VENDOR := sony
 
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8952
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno510
