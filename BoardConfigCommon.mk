@@ -182,7 +182,9 @@ BOARD_ROOT_EXTRA_SYMLINKS := /data/tombstones:/tombstones
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-    /vendor/lib/hw/camera.vendor.qcom.so|libshim_camera.so
+    /vendor/lib/hw/camera.vendor.qcom.so|libshim_camera.so \
+    /vendor/lib/libexcal_pal.so|libutilscallstack.so \
+    /vendor/lib64/libexcal_pal.so|libutilscallstack.so
 
 # WiFi
 BOARD_WLAN_DEVICE           := bcmdhd
