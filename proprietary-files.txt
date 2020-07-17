@@ -676,7 +676,6 @@ vendor/lib64/libsmemlog.so
 etc/permissions/qcrilhook.xml
 etc/permissions/telephonyservice.xml
 framework/qcrilhook.jar
-framework/qti-telephony-common.jar|b1953a3599255f08f1785c677d22810f65e0167b
 framework/QtiTelephonyServicelibrary.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|956a4017d0ba7f68e6d225e57b40d3b2bcbb4837
 vendor/bin/ATFWD-daemon
@@ -724,6 +723,9 @@ vendor/lib64/vendor.qti.hardware.radio.uim@1.0_vendor.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.0_vendor.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0_vendor.so
 vendor/radio/qcril_database/qcril.db
+
+# RIL - from daisy - xiaomi/daisy/daisy_sprout:10/QKQ1.191002.002/V11.0.7.0.QDLMIXM
+product/framework/qti-telephony-common.jar|11d6b89b31a9bf65218b3676c2bbd296275b1932
 
 # Secd
 lib64/vendor.semc.hardware.secd@1.0.so
