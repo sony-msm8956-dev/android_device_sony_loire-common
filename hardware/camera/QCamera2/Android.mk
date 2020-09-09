@@ -157,7 +157,7 @@ ifneq (,$(filter $(strip $(SOMC_KERNEL_VERSION)),4.9 4.14))
 LOCAL_SHARED_LIBRARIES += libion
 endif
 ifeq ($(USE_DISPLAY_SERVICE),true)
-LOCAL_SHARED_LIBRARIES += android.frameworks.displayservice@1.0 libhidlbase libhidltransport
+LOCAL_SHARED_LIBRARIES += android.frameworks.displayservice@1.0 libhidlbase
 else
 LOCAL_SHARED_LIBRARIES += libgui
 endif
