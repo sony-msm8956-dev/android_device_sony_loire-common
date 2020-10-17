@@ -156,6 +156,9 @@ DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
+# Memfd
+TARGET_HAS_MEMFD_BACKPORT := true
+
 # Peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
