@@ -150,7 +150,6 @@ TARGET_NO_RPC := true
 
 # HIDL
 DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
-DEVICE_MANIFEST_FILE += $(PLATFORM_PATH)/manifest-lineage.xml
 DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 
 # Keymaster
