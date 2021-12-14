@@ -28,6 +28,9 @@ PRODUCT_ENFORCE_RRO_TARGETS := \
 # Properties
 -include $(COMMON_PATH)/system_prop.mk
 
+# APEX
+PRODUCT_COMPRESSED_APEX := false
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio.service \
