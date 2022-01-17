@@ -168,10 +168,6 @@ PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
     android.hidl.manager@1.0
 
-# IMS
-PRODUCT_PACKAGES += \
-    ims-ext-common
-
 # Init
 PRODUCT_PACKAGES += \
     fstab.qcom \
@@ -299,9 +295,11 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Telephony
 PRODUCT_PACKAGES += \
+    ims-ext-common_system \
     telephony-ext
 
 PRODUCT_BOOT_JARS += \
+    ims-ext-common_system \
     telephony-ext
 
 # Thermal
