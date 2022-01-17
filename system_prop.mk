@@ -96,6 +96,7 @@ PRODUCT_PROPERTY_OVERRIDES += ro.opa.eligible_device=true
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.hw=0 \
     debug.enable.sglscale=1 \
+    debug.hwui.use_buffer_age=false \
     debug.mdpcomp.logs=0 \
     debug.sf.hw=0 \
     debug.sf.latch_unsignaled=1 \
