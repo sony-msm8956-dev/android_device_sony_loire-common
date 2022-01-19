@@ -1,6 +1,0 @@
-type qtelephony, domain;
-
-app_domain(qtelephony)
-
-hwbinder_use(qtelephony)
-add_hwservice(qtelephony, hal_atfwd_hwservice)

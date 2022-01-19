@@ -1,6 +1,0 @@
-hal_client_domain(hal_audio_default, hal_perf)
-
-#============= hal_audio_default ==============
-r_dir_file(hal_audio_default, sysfs)
-r_dir_file(hal_audio_default, sysfs_soc)
-r_dir_file(hal_audio_default, sysfs_thermal)

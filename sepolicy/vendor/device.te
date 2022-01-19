@@ -1,19 +1,10 @@
 # /dev
-type avtimer_device, dev_type;
-type diag_device, dev_type, mlstrustedobject;
 type fingerprint_device, dev_type;
 type latency_device, dev_type;
-type qdsp_device, dev_type, mlstrustedobject;
-type rmnet_device, dev_type;
-type smd_device, dev_type;
-type ssr_device, dev_type;
-type thermal_device, dev_type;
 
 # /dev/block
 type appslog_block_device, dev_type;
 type diag_block_device, dev_type;
-type modem_block_device, dev_type;
-type persist_block_device, dev_type;
 type qnovo_block_device, dev_type;
 type ramdump_block_device, dev_type;
 type rpmb_block_device, dev_type;
