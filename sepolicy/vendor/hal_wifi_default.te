@@ -1,5 +1,5 @@
 typeattribute hal_wifi_default data_between_core_and_vendor_violators;
 
 #============= hal_wifi_default ==============
-allow hal_wifi_default tombstone_vendor_data_file:dir r_dir_perms;
+allow hal_wifi_default vendor_tombstone_data_file:dir r_dir_perms;
 r_dir_file(hal_wifi_default, ta_data_file)

@@ -5,13 +5,8 @@ hal_client_domain(cameraserver, hal_configstore)
 
 unix_socket_connect(cameraserver, camera_somc, mm-qcamerad)
 
-#============= cameraserver ==============
-allow cameraserver camera_data_file:dir search;
-allow cameraserver fwk_sensor_hwservice:hwservice_manager find;
 allow cameraserver hal_idd_hwservice:hwservice_manager find;
 allow cameraserver sysfs_camera:file rw_file_perms;
 allow cameraserver sysfs_leds:dir search;
 allow cameraserver sysfs_leds:file rw_file_perms;
-allow cameraserver sysfs_mdss_mdp_caps:file r_file_perms;
-r_dir_file(cameraserver, sysfs_batteryinfo)
 r_dir_file(cameraserver, sysfs_graphics)

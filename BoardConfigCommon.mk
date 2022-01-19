@@ -205,10 +205,8 @@ WIFI_HIDL_FEATURE_DISABLE_AP_MAC_RANDOMIZATION := true
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 
 # SELinux
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR := $(PLATFORM_PATH)/sepolicy/public
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR := $(PLATFORM_PATH)/sepolicy/private
+include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
-BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy-lineage/vendor
 
 # Vendor SPL
 VENDOR_SECURITY_PATCH = "2018-09-01"

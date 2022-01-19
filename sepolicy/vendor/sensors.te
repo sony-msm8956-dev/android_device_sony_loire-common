@@ -1,19 +1,1 @@
-type sensors, domain;
-type sensors_exec, exec_type, vendor_file_type, file_type;
-
-init_daemon_domain(sensors)
-
 unix_socket_connect(sensors, tad, tad)
-
-#============= sensors ==============
-allow sensors diag_device:chr_file rw_file_perms;
-allow sensors persist_file:dir r_dir_perms;
-allow sensors persist_sensors_file:dir rw_dir_perms;
-allow sensors persist_sensors_file:file create_file_perms;
-allow sensors self:capability { setuid setgid net_bind_service };
-allow sensors self:socket create_socket_perms;
-allow sensors sensors_device:chr_file r_file_perms;
-allowxperm sensors self:socket ioctl msm_sock_ipc_ioctls;
-dontaudit sensors self:capability net_raw;
-r_dir_file(sensors, sysfs_msm_subsys)
-r_dir_file(sensors, sysfs_soc)

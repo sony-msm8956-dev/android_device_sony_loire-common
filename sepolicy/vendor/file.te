@@ -1,37 +1,14 @@
 # /data
-type cnd_data_file, file_type, data_file_type;
 type credmgrd_data_file, file_type, data_file_type, core_data_file_type;
-type location_data_file, file_type, data_file_type;
 type mediadrm_vendor_data_file, file_type, data_file_type;
-type mpctl_data_file, file_type, data_file_type;
-type netmgr_data_file, file_type, data_file_type;
-type nfc_vendor_data_file, file_type, data_file_type;
-type radio_vendor_data_file, file_type, data_file_type, mlstrustedobject;
 type ta_data_file, file_type, data_file_type, core_data_file_type;
-type tombstone_vendor_data_file, file_type, data_file_type;
-
-# debugfs
-type debugfs_kgsl, debugfs_type, fs_type;
-type debugfs_rmt_storage, debugfs_type, fs_type;
-type debugfs_rpm, debugfs_type, fs_type;
 
 # /dev/socket
 type camera_somc_socket, file_type;
-type ims_socket, file_type;
-type irqbalance_socket, file_type;
-type netmgrd_socket, file_type;
-type qmuxd_socket, file_type;
 type qns_socket, file_type;
 type secd_credmgr_socket, file_type;
 type secd_devsec_socket, file_type;
 type tad_socket, file_type;
-
-# /dsp
-type adsprpcd_file, file_type, mlstrustedobject;
-
-# non-hlos mount points
-type bt_firmware_file, fs_type, contextmount_type;
-type firmware_file, fs_type, contextmount_type;
 
 # /idd
 type idd_rca_file, file_type;
@@ -40,37 +17,19 @@ type idd_data_file, file_type;
 type idd_output_file, file_type;
 type idd_socket_file, file_type;
 
+# /persist
+type persist_battery_file, file_type;
+
 # /mnt/qns
 type qns_file, file_type;
 
-# /persist
-type persist_file, file_type;
-type persist_battery_file, file_type;
-type persist_data_file, file_type;
-type persist_display_file, file_type;
-type persist_rfs_file, file_type;
-type persist_sensors_file, file_type;
-type persist_time_file, file_type;
-
 # /proc
-type proc_irq, fs_type, proc_type;
 type proc_simslot, fs_type, proc_type;
-type proc_kernel_sched, fs_type, proc_type;
-type proc_vm_swap, fs_type, proc_type;
 
 # /sys
 type sysfs_camera, sysfs_type, fs_type;
-type sysfs_graphics, sysfs_type, fs_type;
-type sysfs_irq, sysfs_type, fs_type;
-type sysfs_kgsl, sysfs_type, fs_type;
-type sysfs_mdss_mdp_caps, sysfs_type, fs_type;
-type sysfs_memory, sysfs_type, fs_type;
 type sysfs_mmc, sysfs_type, fs_type;
-type sysfs_msm_perf, sysfs_type, fs_type;
 type sysfs_msm_subsys, sysfs_type, fs_type;
-type sysfs_power_management, sysfs_type, fs_type;
 type sysfs_qns, sysfs_type, fs_type;
-type sysfs_rmtfs, sysfs_type, fs_type;
-type sysfs_smd_open_timeout, sysfs_type, fs_type;
 type sysfs_soc, sysfs_type, fs_type;
 type sysfs_touch, sysfs_type, fs_type;

@@ -1,19 +1,6 @@
-type time_daemon, domain, mlstrustedsubject;
-type time_daemon_exec, exec_type, vendor_file_type, file_type;
 type time_vendor_data_file, file_type, data_file_type;
 
-init_daemon_domain(time_daemon)
-
-#============= time_daemon ==============
-allow time_daemon diag_device:chr_file rw_file_perms;
-allow time_daemon persist_file:dir search;
-allow time_daemon persist_time_file:dir w_dir_perms;
-allow time_daemon persist_time_file:file create_file_perms;
-allow time_daemon rtc_device:chr_file r_file_perms;
-allow time_daemon self:capability { setgid setuid sys_time };
-allow time_daemon self:socket create_socket_perms;
 allow time_daemon time_vendor_data_file:dir w_dir_perms;
 allow time_daemon time_vendor_data_file:file create_file_perms;
-allowxperm time_daemon self:socket ioctl msm_sock_ipc_ioctls;
-r_dir_file(time_daemon, sysfs_soc)
+
 r_dir_file(time_daemon, sysfs_msm_subsys)

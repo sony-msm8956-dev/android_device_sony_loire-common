@@ -1,2 +1,0 @@
-#============= init ==============
-allow init tmpfs:lnk_file create;

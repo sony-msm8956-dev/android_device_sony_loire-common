@@ -1,2 +1,0 @@
-#============= system_server ==============
-allow system_server izat_service:service_manager add;
