@@ -66,5 +66,8 @@
 # /mnt/qns
 /mnt/qns(/.*)?                 u:object_r:qns_file:s0
 
+# /mnt/rca
+/mnt/rca                       u:object_r:idd_rca_dir:s0
+
 # /
 /tombstones                    u:object_r:rootfs:s0
