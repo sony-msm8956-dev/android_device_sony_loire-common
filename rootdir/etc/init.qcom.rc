@@ -483,9 +483,6 @@ on boot
     chown system system /sys/devices/virtual/input/clearpad/cover_win_right
     chown system system /sys/devices/virtual/input/clearpad/cover_win_top
 
-on charger
-    load_system_props
-
 # Services begin here
 
 service qcamerasvr /vendor/bin/mm-qcamera-daemon
