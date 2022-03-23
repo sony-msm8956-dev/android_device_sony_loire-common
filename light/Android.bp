@@ -25,7 +25,6 @@ cc_binary {
         "libutils",
         "libhardware",
         "libhidlbase",
-        "libhidltransport",
         "android.hardware.light@2.0",
     ],
 

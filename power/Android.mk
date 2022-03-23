@@ -15,7 +15,6 @@ LOCAL_SHARED_LIBRARIES := \
     libcutils \
     libdl \
     libhidlbase \
-    libhidltransport \
     liblog \
     libutils \
     android.hardware.power@1.2
