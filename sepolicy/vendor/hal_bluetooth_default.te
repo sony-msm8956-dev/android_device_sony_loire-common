@@ -3,3 +3,4 @@ typeattribute hal_bluetooth_default data_between_core_and_vendor_violators;
 #============= hal_bluetooth_default ==============
 allow hal_bluetooth_default ta_data_file:dir search;
 allow hal_bluetooth_default ta_data_file:file r_file_perms;
+r_dir_file(hal_bluetooth_default, firmware_file)
