@@ -107,12 +107,6 @@ PRODUCT_PACKAGES += \
     camera.qcom \
     Snap
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger_anim \
-    charger_font \
-    sony_charger_res_images
-
 # CryptfsHW
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.cryptfshw@1.0-service-qti.qsee
