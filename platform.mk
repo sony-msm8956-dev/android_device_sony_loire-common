@@ -107,6 +107,10 @@ PRODUCT_PACKAGES += \
     camera.qcom \
     Snap
 
+# Charger
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.charger.enable_suspend=true
+
 # CryptfsHW
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.cryptfshw@1.0-service-qti.qsee
