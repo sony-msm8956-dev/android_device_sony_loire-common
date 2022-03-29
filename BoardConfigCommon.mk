@@ -74,7 +74,6 @@ CAMERA_DAEMON_NOT_PRESENT := true
 
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # Dex
 ifeq ($(HOST_OS),linux)

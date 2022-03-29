@@ -70,6 +70,10 @@ PRODUCT_PACKAGES += \
     libmm-qcamera \
     libqomx_core
 
+# Charger
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.charger.enable_suspend=true
+
 # Configstore
 PRODUCT_PACKAGES += \
     android.hardware.configstore@1.1-service
