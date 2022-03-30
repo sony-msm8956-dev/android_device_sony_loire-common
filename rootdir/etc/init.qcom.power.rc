@@ -194,7 +194,7 @@ on enable-low-power
     start qcom-post-boot
 
     # Set perfd properties
-    setprop sys.post_boot.parsed 1
+    setprop vendor.post_boot.parsed 1
 
 on property:dev.bootcomplete=1
     trigger enable-low-power
