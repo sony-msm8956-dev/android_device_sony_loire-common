@@ -151,7 +151,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_short_ons_3="" \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.rat_on=combine \
-    persist.vendor.radio.sib16_support=1
+    persist.vendor.radio.sib16_support=1 \
+    persist.data.qmi.adb_logmask=0
 
 # TCP
 PRODUCT_PROPERTY_OVERRIDES += \
