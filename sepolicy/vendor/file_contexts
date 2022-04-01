@@ -11,7 +11,7 @@
 
 # dev block nodes
 /dev/block/mmcblk0p1                                              u:object_r:tad_block_device:s0
-/dev/block/platform/soc/7824900\.sdhci/by-name/apps_log           u:object_r:appslog_block_device:s0
+/dev/block/platform/soc/7824900\.sdhci/by-name/apps_log           u:object_r:misc_block_device:s0
 /dev/block/platform/soc/7824900\.sdhci/by-name/config             u:object_r:frp_block_device:s0
 /dev/block/platform/soc/7824900\.sdhci/by-name/diag               u:object_r:diag_block_device:s0
 /dev/block/platform/soc/7824900\.sdhci/by-name/FOTAKernel         u:object_r:recovery_block_device:s0
