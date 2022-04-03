@@ -174,6 +174,7 @@ USE_SENSOR_MULTI_HAL := true
 BOARD_USES_QCOM_HARDWARE := true
 
 # Power
+TARGET_POWERHAL_BOOST_EXT := $(PLATFORM_PATH)/power/power-boost.cpp
 TARGET_POWERHAL_MODE_EXT := $(PLATFORM_PATH)/power/power-mode.cpp
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/clearpad/wakeup_gesture"
 TARGET_USES_INTERACTION_BOOST := true
