@@ -154,6 +154,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.sib16_support=1 \
     persist.data.qmi.adb_logmask=0
 
+# SEMC Props
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.semc.version.fs=GENERIC \
+    ro.semc.version.fs_revision=34.4.A.2.118 \
+    ro.semc.version.sw=1300-4911 \
+    ro.semc.version.sw_revision=34.4.A.2.118 \
+    ro.semc.version.sw_type=user \
+    ro.semc.version.sw_variant=GLOBAL-LTE2A
+
 # TCP
 PRODUCT_PROPERTY_OVERRIDES += \
     net.tcp.2g_init_rwnd=10
