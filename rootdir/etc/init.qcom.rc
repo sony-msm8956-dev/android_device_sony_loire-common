@@ -483,6 +483,10 @@ on boot
     chown system system /sys/devices/virtual/input/clearpad/cover_win_right
     chown system system /sys/devices/virtual/input/clearpad/cover_win_top
 
+    # DT2W
+    chmod 0660 /sys/devices/virtual/input/clearpad/wakeup_gesture
+    chown system system /sys/devices/virtual/input/clearpad/wakeup_gesture
+
 # Services begin here
 
 service qcamerasvr /vendor/bin/mm-qcamera-daemon
