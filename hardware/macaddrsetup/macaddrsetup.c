@@ -11,7 +11,7 @@
 #define LOG_TAG "macaddrsetup"
 #include <cutils/log.h>
 
-#define BT_MAC_FILE "/data/etc/bluetooth_bdaddr"
+#define BT_MAC_FILE "/data/misc/bluetooth/bluetooth_bdaddr"
 
 extern const char *__progname;
 extern int ta_open(uint8_t p, uint8_t m, uint8_t c);
@@ -70,8 +70,6 @@ int main(int argc, char **argv)
 		fclose(fpb);
 		exit(1);
 	}
-	chown(BT_MAC_FILE, AID_BLUETOOTH, AID_BLUETOOTH);
-	chmod(BT_MAC_FILE, S_IRUSR | S_IWUSR | S_IRGRP); // 640
 
 	if (argc > 1) {
 		fpw = fopen(argv[1], "w");
