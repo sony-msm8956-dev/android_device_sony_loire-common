@@ -88,7 +88,8 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libmm-omxcore \
     libOmxVdec \
-    libOmxVdecHevc
+    libOmxVdecHevc \
+    libOmxVenc
 
 # Permissions
 PRODUCT_COPY_FILES += \
