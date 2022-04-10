@@ -40,11 +40,31 @@ int main(int argc, char **argv)
 	ta_handle = dlopen(LIB_TA, RTLD_NOW);
 	if (!ta_handle) {
 		ALOGE("%s: DLOPEN failed for %s", __func__, LIB_TA);
-	} else {
-		ta_open = dlsym(ta_handle, "ta_open");
-		ta_close = dlsym(ta_handle, "ta_close");
-		ta_getsize = dlsym(ta_handle, "ta_getsize");
-		ta_read = dlsym(ta_handle, "ta_read");
+		exit(1);
+	}
+
+	ta_open = dlsym(ta_handle, "ta_open");
+	if (!ta_open) {
+		ALOGE("%s: DLSYM failed for ta_open", __func__);
+		exit(1);
+	}
+
+	ta_close = dlsym(ta_handle, "ta_close");
+	if (!ta_close) {
+		ALOGE("%s: DLSYM failed for ta_close", __func__);
+		exit(1);
+	}
+
+	ta_getsize = dlsym(ta_handle, "ta_getsize");
+	if (!ta_open) {
+		ALOGE("%s: DLSYM failed for ta_getsize", __func__);
+		exit(1);
+	}
+
+	ta_read = dlsym(ta_handle, "ta_read");
+	if (!ta_read) {
+		ALOGE("%s: DLSYM failed for ta_read", __func__);
+		exit(1);
 	}
 
 	for (;;) {
