@@ -83,7 +83,8 @@ PRODUCT_COPY_FILES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libc2dcolorconvert
+    libc2dcolorconvert \
+    libstagefrighthw
 
 # Permissions
 PRODUCT_COPY_FILES += \
