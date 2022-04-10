@@ -35,6 +35,11 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
 
+# For config.fs
+PRODUCT_PACKAGES += \
+    fs_config_files \
+    fs_config_dirs
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/gps/gps_debug.conf:system/etc/gps_debug.conf \
