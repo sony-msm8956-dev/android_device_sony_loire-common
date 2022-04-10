@@ -1,3 +1,6 @@
+on post-fs-data
+    mkdir /data/vendor/wifi 0770 wifi wifi
+
 # OSS WLAN and BT MAC setup
 service macaddrsetup /vendor/bin/macaddrsetup ${ro.wifi.addr_path}
     class main
