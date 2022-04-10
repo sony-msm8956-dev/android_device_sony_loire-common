@@ -124,7 +124,8 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full
+    libprotobuf-cpp-full \
+    librmnetctl
 
 # Permissions
 PRODUCT_COPY_FILES += \
