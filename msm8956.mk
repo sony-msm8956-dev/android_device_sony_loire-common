@@ -55,7 +55,8 @@ PRODUCT_PACKAGES += \
 
 # Graphics
 PRODUCT_PACKAGES += \
-    libqdutils
+    libqdutils \
+    libqdMetaData
 
 # GPS
 PRODUCT_COPY_FILES += \
