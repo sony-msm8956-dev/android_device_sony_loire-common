@@ -224,6 +224,10 @@ PRODUCT_PACKAGES += \
     ta_qmi.rc \
     wpa_supplicant.rc
 
+# SAR
+PRODUCT_PACKAGES += \
+    TransPowerSensors
+
 # Sec Configuration
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
