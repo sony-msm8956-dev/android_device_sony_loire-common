@@ -91,6 +91,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
+# NFC
+PRODUCT_PACKAGES += \
+    com.android.nfc_extras
+
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
