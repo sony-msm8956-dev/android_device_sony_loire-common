@@ -61,6 +61,11 @@ PRODUCT_PACKAGES += \
     fs_config_files \
     fs_config_dirs
 
+# Fingerprint
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1 \
+    android.hardware.biometrics.fingerprint@2.1-service.sony
+
 # Graphics
 PRODUCT_PACKAGES += \
     copybit.msm8952 \
