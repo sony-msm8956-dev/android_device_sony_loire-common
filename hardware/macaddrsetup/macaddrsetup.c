@@ -5,6 +5,8 @@
 #include <dlfcn.h>
 #include <string.h>
 #include <unistd.h>
+#include <net/if_arp.h>
+#include <net/if.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -29,6 +31,11 @@ int main(int argc, char **argv)
         int (*ta_close)(void) = NULL;
         int (*ta_getsize)(uint32_t id, uint32_t *size) = NULL;
         int (*ta_read)(uint32_t id, void *buf, uint32_t size) = NULL;
+
+#ifdef BRCMFMAC
+        struct ifreq ifr;
+        int sockfd;
+#endif
 
         // Sony had a check for ro.hardware here, but since all supported devices were added here anyways,
         // and the values are the same, it has been removed.
@@ -115,14 +122,6 @@ int main(int argc, char **argv)
         }
 
         if (argc > 1) {
-                fpw = fopen(argv[1], "w");
-                if (!fpw) {
-                        SLOGE("failed to open %s for writing: %s\n",
-                              argv[1], strerror(errno));
-                        ta_close();
-                        exit(1);
-                }
-
                 err = ta_getsize(wl_addr, &size);
                 if (size != 6) {
                         SLOGE("mac address have wrong size (%d) in miscta", size);
@@ -138,7 +137,38 @@ int main(int argc, char **argv)
                         fclose(fpw);
                         exit(1);
                 }
-
+#ifdef BRCMFMAC
+                sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+                if (sockfd < 0) {
+                        SLOGE("failed to open socket\n");
+                        ta_close();
+                        exit(1);
+                }
+                strcpy(ifr.ifr_name, "wlan0");
+                ifr.ifr_hwaddr.sa_data[0] = buf[5];
+                ifr.ifr_hwaddr.sa_data[1] = buf[4];
+                ifr.ifr_hwaddr.sa_data[2] = buf[3];
+                ifr.ifr_hwaddr.sa_data[3] = buf[2];
+                ifr.ifr_hwaddr.sa_data[4] = buf[1];
+                ifr.ifr_hwaddr.sa_data[5] = buf[0];
+                ifr.ifr_hwaddr.sa_family = ARPHRD_ETHER;
+                ret = ioctl(sockfd, SIOCSIFHWADDR, &ifr);
+                if (ret != 0) {
+                        SLOGE("failed to write WLAN mac address using ioctl %d\n",
+                              ret);
+                        ta_close();
+                        close(sockfd);
+                        exit(1);
+                }
+                close(sockfd);
+#else
+                fpw = fopen(argv[1], "w");
+                if (!fpw) {
+                        SLOGE("failed to open %s for writing: %s\n",
+                              argv[1], strerror(errno));
+                        ta_close();
+                        exit(1);
+                }
 #ifdef QCA_CLD3_WIFI
 #ifdef MIRROR_MAC_ADDRESS
                 ret = fprintf(fpw, "Intf0MacAddress=%02X%02X%02X%02X%02X%02X\nEND\n",
@@ -158,6 +188,7 @@ int main(int argc, char **argv)
                         fclose(fpw);
                         exit(1);
                 }
+#endif
         }
         ta_close();
         fclose(fpb);
