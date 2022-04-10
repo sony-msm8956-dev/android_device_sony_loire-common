@@ -134,8 +134,7 @@ PRODUCT_PACKAGES += \
 
 # Light
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-impl \
-    android.hardware.light@2.0-service
+    android.hardware.light@2.0-service.sony
 
 # Media
 PRODUCT_COPY_FILES += \
