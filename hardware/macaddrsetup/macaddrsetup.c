@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <dlfcn.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -11,13 +12,11 @@
 #define LOG_TAG "macaddrsetup"
 #include <cutils/log.h>
 
+#define LIB_TA "libta.so"
+
 #define BT_MAC_FILE "/data/misc/bluetooth/bluetooth_bdaddr"
 
 extern const char *__progname;
-extern int ta_open(uint8_t p, uint8_t m, uint8_t c);
-extern int ta_close(void);
-extern int ta_getsize(uint32_t id, uint32_t *size);
-extern int ta_read(uint32_t id, void *buf, uint32_t size);
 
 int main(int argc, char **argv)
 {
@@ -25,11 +24,26 @@ int main(int argc, char **argv)
 	char buf[6];
 	FILE *fpb, *fpw = NULL;
 	int ret, err, bt_addr, wl_addr;
+	void *ta_handle = NULL;
+	int (*ta_open)(uint8_t p, uint8_t m, uint8_t c) = NULL;
+	int (*ta_close)(void) = NULL;
+	int (*ta_getsize)(uint32_t id, uint32_t *size) = NULL;
+	int (*ta_read)(uint32_t id, void *buf, uint32_t size) = NULL;
 
 	// Sony had a check for ro.hardware here, but since all supported devices were added here anyways,
 	// and the values are the same, it has been removed.
 	wl_addr=2560;
 	bt_addr=2568;
+
+	ta_handle = dlopen(LIB_TA, RTLD_NOW);
+	if (!ta_handle) {
+		ALOGE("%s: DLOPEN failed for %s", __func__, LIB_TA);
+	} else {
+		ta_open = dlsym(ta_handle, "ta_open");
+		ta_close = dlsym(ta_handle, "ta_close");
+		ta_getsize = dlsym(ta_handle, "ta_getsize");
+		ta_read = dlsym(ta_handle, "ta_read");
+	}
 
 	for (;;) {
 		err = ta_open(2, 0x1, 1);
@@ -107,6 +121,7 @@ int main(int argc, char **argv)
 	fclose(fpb);
 	if (fpw)
 		fclose(fpw);
+	dlclose(ta_handle);
 
 	return 0;
 }

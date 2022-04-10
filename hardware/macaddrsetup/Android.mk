@@ -6,7 +6,6 @@ LOCAL_SRC_FILES := \
     macaddrsetup.c
 
 LOCAL_SHARED_LIBRARIES := \
-    libta \
     liblog \
     libcutils
 
