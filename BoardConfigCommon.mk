@@ -79,6 +79,9 @@ TARGET_USES_HWC2 := true
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 
+# GPS
+TARGET_NO_RPC := true
+
 # Kernel
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
