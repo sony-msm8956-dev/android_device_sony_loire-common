@@ -53,6 +53,10 @@ PRODUCT_PACKAGES += \
     fs_config_files \
     fs_config_dirs
 
+# Graphics
+PRODUCT_PACKAGES += \
+    libqdutils
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/gps/gps_debug.conf:system/etc/gps_debug.conf \
