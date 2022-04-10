@@ -25,6 +25,13 @@ PRODUCT_ENFORCE_RRO_TARGETS := \
 -include $(COMMON_PATH)/system_prop.mk
 
 # Audio
+PRODUCT_PACKAGES += \
+    audio.primary.msm8952 \
+    audio.a2dp.default \
+    audio.r_submix.default \
+    audio.usb.default \
+    libaudio-resampler
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
     $(COMMON_PATH)/audio/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
