@@ -179,6 +179,11 @@ PRODUCT_PACKAGES += \
     libOmxVdecHevc \
     libOmxVenc
 
+# OSS Time service
+PRODUCT_PACKAGES += \
+    timekeep \
+    TimeKeep \
+
 # OSS WIFI and BT MAC tool
 PRODUCT_PACKAGES += \
     macaddrsetup
