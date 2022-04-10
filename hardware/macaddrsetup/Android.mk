@@ -11,6 +11,10 @@ LOCAL_SHARED_LIBRARIES := \
     libcutils
 
 LOCAL_MODULE := macaddrsetup
+ifeq (1,$(filter 1,$(shell echo "$$(( $(PLATFORM_SDK_VERSION) >= 25 ))" )))
+LOCAL_MODULE_OWNER := sony
+LOCAL_PROPRIETARY_MODULE := true
+endif
 LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_EXECUTABLE)
