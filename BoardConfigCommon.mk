@@ -130,6 +130,9 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # Peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
+# Platform witout a vendor partition
+TARGET_COPY_OUT_VENDOR := system/vendor
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 
