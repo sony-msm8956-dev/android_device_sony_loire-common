@@ -5,6 +5,10 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := \
     macaddrsetup.c
 
+ifeq ($(WIFI_DRIVER_BUILT),qca_cld3)
+LOCAL_CFLAGS += -DQCA_CLD3_WIFI
+endif
+
 LOCAL_SHARED_LIBRARIES := \
     liblog \
     libcutils
