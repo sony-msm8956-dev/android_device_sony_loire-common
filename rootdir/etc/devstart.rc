@@ -1,0 +1,6 @@
+service devstart_sh /vendor/bin/init.qcom.devstart.sh
+    class core
+    user root
+    group root system
+    disabled
+    oneshot

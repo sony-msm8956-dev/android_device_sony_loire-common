@@ -1,0 +1,21 @@
+on post-fs-data
+    # Fix sensors permissions
+    chown system system /persist/sensors
+
+    # remove deprecated .reg
+    rm /persist/sensors/sns.reg
+
+    # /dev/sensors only supports an ioctl to get the current SLPI timestamp;
+    # allow the sensors daemon to perform this as non-root
+    chown root system /dev/sensors
+    chmod 660 /dev/sensors
+
+# Sensor service
+service sensors /vendor/bin/sensors.qcom
+    class core
+    user system
+    group system
+    disabled
+
+on property:sys.qcom.devup=1
+    enable sensors

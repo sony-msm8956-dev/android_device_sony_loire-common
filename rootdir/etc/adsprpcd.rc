@@ -1,0 +1,14 @@
+# ADSP FastRPC
+service adsprpcd /vendor/bin/adsprpcd
+   class main
+   user media
+   group media
+
+service audiopd /vendor/bin/adsprpcd audiopd
+   class main
+   user media
+   group media
+   disabled
+
+on property:ro.board.platform=sdm660
+    enable audiopd

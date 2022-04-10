@@ -1,0 +1,16 @@
+on boot
+    # Allow QMUX daemon to assign port open wait time
+    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+
+# Qmi MUX Daemon
+service qmuxd /vendor/bin/qmuxd
+    class main
+    user radio
+    group radio audio bluetooth wakelock gps nfc diag
+    disabled
+    writepid /dev/cpuset/system-background/tasks
+
+on property:ro.boot.baseband=apq
+    setprop ro.radio.noril yes
+    stop ril-daemon
+    enable qmuxd
