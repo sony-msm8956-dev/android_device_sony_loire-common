@@ -31,7 +31,8 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
-    libtinyalsa
+    libtinyalsa \
+    libaudioroute
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
