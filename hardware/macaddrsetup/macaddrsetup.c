@@ -24,13 +24,27 @@ int main(int argc, char **argv)
 	int ret, err, bt_addr, wl_addr;
 
 	property_get("ro.hardware",record,"");
-	SLOGI("Importing BT and WLAN address for %s platform\n", record);
+	SLOGI("Importing BT and WLAN address for %s device\n", record);
 
-	if ((strcmp(record,"rhine")==0)||(strcmp(record,"shinano")==0)||(strcmp(record,"yukon")==0)||(strcmp(record,"kanuti")==0)||(strcmp(record,"kitakami")==0)){
+	if ((strcmp(record,"seagull")==0)||(strcmp(record,"tianchi")==0)){
+		wl_addr=2560;
+		bt_addr=2568;
+	} else if ((strcmp(record,"amami")==0)||(strcmp(record,"honami")==0)||(strcmp(record,"togari")==0)){
+		wl_addr=2560;
+		bt_addr=2568;
+	} else if ((strcmp(record,"sirius")==0)||(strcmp(record,"castor")==0)||(strcmp(record,"castor_windy")==0)||(strcmp(record,"leo")==0)
+			||(strcmp(record,"aries")==0)||(strcmp(record,"scorpion")==0)||(strcmp(record,"scorpion_windy")==0)){
+		wl_addr=2560;
+		bt_addr=2568;
+	} else if ((strcmp(record,"tulip")==0)){
+		wl_addr=2560;
+		bt_addr=2568;
+	} else if ((strcmp(record,"ivy")==0)||(strcmp(record,"karin")==0)||(strcmp(record,"karin_windy")==0)||(strcmp(record,"sumire")==0)
+			||(strcmp(record,"suzuran")==0)||(strcmp(record,"satsuki")==0)){
 		wl_addr=2560;
 		bt_addr=2568;
 	} else {
-		SLOGE("Unsupported platform\n");
+		SLOGE("Unsupported device\n");
 		exit(1);
 	}
 
@@ -110,6 +124,6 @@ int main(int argc, char **argv)
 	fclose(fpb);
 	if (fpw)
 		fclose(fpw);
-	
+
 	return 0;
 }
