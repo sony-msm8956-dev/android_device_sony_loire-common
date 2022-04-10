@@ -241,6 +241,10 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/netmgr_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/netmgr_config.xml \
     $(COMMON_PATH)/configs/qmi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/qmi_config.xml
 
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.0 \
