@@ -313,6 +313,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/sensors_settings:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensors_settings
 
+# Thermal HAL
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
+    android.hardware.thermal@1.0-service
+
 # WiFi
 PRODUCT_PACKAGES += \
     hostapd \
