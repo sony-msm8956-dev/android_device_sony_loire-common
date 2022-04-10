@@ -85,7 +85,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libstagefrighthw \
-    libOmxCore
+    libOmxCore \
+    libmm-omxcore
 
 # Permissions
 PRODUCT_COPY_FILES += \
