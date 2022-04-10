@@ -22,10 +22,16 @@ LOCAL_SHARED_LIBRARIES := \
     libcutils
 
 LOCAL_MODULE := macaddrsetup
-ifneq ($(call math_gt_or_eq, $(PLATFORM_SDK_VERSION), 25),)
+ifneq ($(call math_gt_or_eq, $(PLATFORM_SDK_VERSION), 29),)
 LOCAL_MODULE_OWNER := sony
 LOCAL_INIT_RC_64   := macaddrsetup.rc
 LOCAL_PROPRIETARY_MODULE := true
+else
+ifneq ($(call math_gt_or_eq, $(PLATFORM_SDK_VERSION), 25),)
+LOCAL_MODULE_OWNER := sony
+LOCAL_INIT_RC_64   := macaddrsetup_sdk25.rc
+LOCAL_PROPRIETARY_MODULE := true
+endif
 endif
 
 LOCAL_MODULE_TAGS := optional
