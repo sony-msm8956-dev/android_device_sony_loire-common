@@ -171,7 +171,8 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8952
+    power.msm8952 \
+    librqbalance
 
 # Public Libraries
 PRODUCT_COPY_FILES += \
