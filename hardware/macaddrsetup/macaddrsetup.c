@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <cutils/properties.h>
 #include <private/android_filesystem_config.h>
 
@@ -23,6 +24,7 @@ int main(int argc, char **argv)
 	uint32_t size;
 	char buf[6];
 	FILE *fpb, *fpw = NULL;
+	mode_t orig_mask;
 	int ret, err, bt_addr, wl_addr;
 	void *ta_handle = NULL;
 	int (*ta_open)(uint8_t p, uint8_t m, uint8_t c) = NULL;
@@ -54,7 +56,10 @@ int main(int argc, char **argv)
 		sleep(5);
 	}
 
+	// This file needs to be readable by the bluetooth group
+	orig_mask = umask(S_IWGRP | S_IROTH | S_IWOTH);
 	fpb = fopen(BT_MAC_FILE, "w");
+	umask(orig_mask);
 	if (!fpb) {
 		SLOGE("failed to open %s for writing\n", BT_MAC_FILE);
 		ta_close();
