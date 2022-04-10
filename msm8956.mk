@@ -32,7 +32,8 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libaudio-resampler \
     libtinyalsa \
-    libaudioroute
+    libaudioroute \
+    tinymix
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
