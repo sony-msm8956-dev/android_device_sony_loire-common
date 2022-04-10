@@ -94,7 +94,8 @@ PRODUCT_COPY_FILES += \
 # NFC
 PRODUCT_PACKAGES += \
     com.android.nfc_extras \
-    NfcNci
+    NfcNci \
+    Tag
 
 # OMX
 PRODUCT_PACKAGES += \
