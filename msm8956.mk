@@ -93,7 +93,8 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    com.android.nfc_extras
+    com.android.nfc_extras \
+    NfcNci
 
 # OMX
 PRODUCT_PACKAGES += \
