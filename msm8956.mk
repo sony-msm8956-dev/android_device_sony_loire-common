@@ -61,7 +61,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libqdutils \
     libqdMetaData \
-    libLLVM
+    libLLVM \
+    libion
 
 # GPS
 PRODUCT_PACKAGES += \
