@@ -43,6 +43,9 @@ int main(int argc, char **argv)
 			||(strcmp(record,"suzuran")==0)||(strcmp(record,"satsuki")==0)){
 		wl_addr=2560;
 		bt_addr=2568;
+        } else if ((strcmp(record,"suzu")==0)){
+		wl_addr=2560;
+		bt_addr=2568;
 	} else {
 		SLOGE("Unsupported device\n");
 		exit(1);
