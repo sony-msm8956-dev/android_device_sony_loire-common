@@ -63,6 +63,11 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service
 
+# Configstore
+PRODUCT_PACKAGES += \
+    android.hardware.configstore@1.0-impl \
+    android.hardware.configstore@1.0-service
+
 # For config.fs
 PRODUCT_PACKAGES += \
     fs_config_files \
