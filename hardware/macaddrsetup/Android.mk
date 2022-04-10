@@ -9,6 +9,10 @@ ifeq ($(WIFI_DRIVER_BUILT),qca_cld3)
 LOCAL_CFLAGS += -DQCA_CLD3_WIFI
 endif
 
+ifeq ($(BOARD_HAS_MIRROR_MACADDRESS),true)
+LOCAL_CFLAGS += -DMIRROR_MAC_ADDRESS
+endif
+
 LOCAL_SHARED_LIBRARIES := \
     liblog \
     libcutils

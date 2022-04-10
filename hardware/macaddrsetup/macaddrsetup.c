@@ -82,7 +82,11 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
+#ifdef MIRROR_MAC_ADDRESS
+	ret = fprintf(fpb, "%02x:%02x:%02x:%02x:%02x:%02x\n", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5]);
+#else
 	ret = fprintf(fpb, "%02x:%02x:%02x:%02x:%02x:%02x\n", buf[5], buf[4], buf[3], buf[2], buf[1], buf[0]);
+#endif
 	if (ret != 18) {
 		SLOGE("failed to write BT mac address\n");
 		ta_close();
@@ -115,7 +119,11 @@ int main(int argc, char **argv)
 		}
 
 #ifdef QCA_CLD3_WIFI
+#ifdef MIRROR_MAC_ADDRESS
+		ret = fprintf(fpw, "Intf0MacAddress=%02X%02X%02X%02X%02X%02X\nEND\n", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5]);
+#else
 		ret = fprintf(fpw, "Intf0MacAddress=%02X%02X%02X%02X%02X%02X\nEND\n", buf[5], buf[4], buf[3], buf[2], buf[1], buf[0]);
+#endif
 		if (ret != 33) {
 #else
 		ret = fprintf(fpw, "%02x:%02x:%02x:%02x:%02x:%02x\n", buf[5], buf[4], buf[3], buf[2], buf[1], buf[0]);
