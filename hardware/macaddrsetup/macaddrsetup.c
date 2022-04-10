@@ -109,8 +109,8 @@ int main(int argc, char **argv)
 			exit(1);
 		}
 
-		ret = fprintf(fpw, "%02x:%02x:%02x:%02x:%02x:%02x\n", buf[5], buf[4], buf[3], buf[2], buf[1], buf[0]);
-		if (ret != 18) {
+		ret = fprintf(fpw, "Intf0MacAddress=%02X%02X%02X%02X%02X%02X\nEND\n", buf[5], buf[4], buf[3], buf[2], buf[1], buf[0]);
+		if (ret != 33) {
 			SLOGE("failed to write WLAN mac address\n");
 			ta_close();
 			fclose(fpw);
