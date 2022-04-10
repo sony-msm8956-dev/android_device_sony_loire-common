@@ -32,8 +32,8 @@ int main(int argc, char **argv)
 
 	// Sony had a check for ro.hardware here, but since all supported devices were added here anyways,
 	// and the values are the same, it has been removed.
-	wl_addr=2560;
-	bt_addr=2568;
+	wl_addr = 2560;
+	bt_addr = 2568;
 
 	ta_handle = dlopen(LIB_TA, RTLD_NOW);
 	if (!ta_handle) {
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 		if (!err)
 			break;
 
-		SLOGE("failed to open misc ta: %d\n",err);
+		SLOGE("failed to open misc ta: %d\n", err);
 		sleep(5);
 	}
 
