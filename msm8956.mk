@@ -59,6 +59,16 @@ PRODUCT_PACKAGES += \
     libqdMetaData
 
 # GPS
+PRODUCT_PACKAGES += \
+    libloc_core \
+    libgps.utils \
+    liblocation_api \
+    libloc_pla \
+    libgnss \
+    libloc_api_v02 \
+    libloc_ds_api \
+    libgnsspps
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/gps/gps_debug.conf:system/etc/gps_debug.conf \
     $(COMMON_PATH)/gps/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf
