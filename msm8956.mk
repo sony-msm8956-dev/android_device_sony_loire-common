@@ -183,12 +183,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librsjni
 
-# RIL
-PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full \
-    librmnetctl \
-    Stk
-
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
@@ -251,7 +245,10 @@ PRODUCT_PACKAGES += \
     android.hardware.radio@1.0 \
     android.hardware.radio@1.1 \
     android.hardware.radio.deprecated@1.0 \
-    android.hardware.radio@1.0-service
+    android.hardware.radio@1.0-service \
+    libprotobuf-cpp-full \
+    librmnetctl \
+    Stk
 
 # RQBalance-PowerHAL configuration
 PRODUCT_COPY_FILES += \
