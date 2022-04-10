@@ -241,6 +241,13 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/netmgr_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/netmgr_config.xml \
     $(COMMON_PATH)/configs/qmi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/qmi_config.xml
 
+# RIL
+PRODUCT_PACKAGES += \
+    android.hardware.radio@1.0 \
+    android.hardware.radio@1.1 \
+    android.hardware.radio.deprecated@1.0 \
+    android.hardware.radio@1.0-service
+
 # RQBalance-PowerHAL configuration
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/rqbalance_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/rqbalance_config.xml
