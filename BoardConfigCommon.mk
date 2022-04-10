@@ -63,6 +63,15 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_HAL_STATIC_LIBRARIES += libhealthd.$(TARGET_DEVICE)
 
+# Dex
+ifeq ($(HOST_OS),linux)
+  ifneq ($(TARGET_BUILD_VARIANT),eng)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+    endif
+  endif
+endif
+
 # Display
 USE_OPENGL_RENDERER := true
 BOARD_USES_ADRENO := true
