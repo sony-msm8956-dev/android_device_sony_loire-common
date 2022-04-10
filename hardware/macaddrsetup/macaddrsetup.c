@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	property_get("ro.hardware",record,"");
 	fprintf(stderr, "Importing BT and WLAN address for %s platform\n", record);
 
-	if ((strcmp(record,"rhine")==0)||(strcmp(record,"shinano")==0)||(strcmp(record,"yukon")==0)||(strcmp(record,"kitakami")==0)){
+	if ((strcmp(record,"rhine")==0)||(strcmp(record,"shinano")==0)||(strcmp(record,"yukon")==0)||(strcmp(record,"kanuti")==0)||(strcmp(record,"kitakami")==0)){
 		wl_addr=2560;
 		bt_addr=2568;
 	} else {
