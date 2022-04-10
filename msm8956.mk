@@ -70,6 +70,7 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
+    gps.msm8952 \
     libloc_core \
     libgps.utils \
     liblocation_api \
