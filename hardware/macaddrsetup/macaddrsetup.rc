@@ -2,7 +2,7 @@
 service macaddrsetup /vendor/bin/macaddrsetup
     class core
     user system
-    group system bluetooth
+    group system bluetooth wifi
     disabled
     oneshot
 
