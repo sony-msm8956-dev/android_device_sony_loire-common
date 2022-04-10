@@ -95,6 +95,7 @@ PRODUCT_COPY_FILES += \
 
 # MISC
 PRODUCT_PACKAGES += \
+    libjson \
     libxml2
 
 # MSM IRQ Balancer configuration file
