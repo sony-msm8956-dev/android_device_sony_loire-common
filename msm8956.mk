@@ -87,7 +87,8 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     libOmxCore \
     libmm-omxcore \
-    libOmxVdec
+    libOmxVdec \
+    libOmxVdecHevc
 
 # Permissions
 PRODUCT_COPY_FILES += \
