@@ -33,7 +33,10 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libtinyalsa \
     libaudioroute \
-    tinymix
+    tinymix \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    libqcompostprocbundle
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
