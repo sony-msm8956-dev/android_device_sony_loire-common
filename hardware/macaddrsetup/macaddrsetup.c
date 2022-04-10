@@ -35,6 +35,7 @@ int main(int argc, char **argv)
 #ifdef BRCMFMAC
         struct ifreq ifr;
         int sockfd;
+        argv = NULL;
 #endif
 
         // Sony had a check for ro.hardware here, but since all supported devices were added here anyways,
