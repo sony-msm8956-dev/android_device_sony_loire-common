@@ -13,7 +13,7 @@
 
 #define LIB_TA "libta.so"
 
-#define BT_MAC_FILE "/data/misc/bluetooth/bluetooth_bdaddr"
+#define BT_MAC_FILE "/data/vendor/bluetooth/bluetooth_bdaddr"
 
 extern const char *__progname;
 
