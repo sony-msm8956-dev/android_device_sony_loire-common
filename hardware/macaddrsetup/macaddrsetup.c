@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 	}
 
 	// This file needs to be readable by the bluetooth group
-	orig_mask = umask(S_IWGRP | S_IROTH | S_IWOTH);
+	orig_mask = umask(0026);
 	fpb = fopen(BT_MAC_FILE, "w");
 	umask(orig_mask);
 	if (!fpb) {
