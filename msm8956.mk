@@ -187,7 +187,7 @@ PRODUCT_PACKAGES += \
 # OSS Time service
 PRODUCT_PACKAGES += \
     timekeep \
-    TimeKeep \
+    TimeKeep
 
 # OSS WIFI and BT MAC tool
 PRODUCT_PACKAGES += \
