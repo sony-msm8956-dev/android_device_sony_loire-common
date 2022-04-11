@@ -339,6 +339,7 @@ PRODUCT_PACKAGES += \
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0 \
+    android.hardware.wifi@1.1 \
     android.hardware.wifi@1.0-service \
     hostapd \
     libwpa_client \
