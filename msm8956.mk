@@ -63,7 +63,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
-    camera.msm8952
+    camera.msm8952 \
+    libmmcamera_interface \
+    libmmjpeg_interface \
+    libmmlib2d_interface \
+    libmm-qcamera \
+    libqomx_core
 
 # Configstore
 PRODUCT_PACKAGES += \

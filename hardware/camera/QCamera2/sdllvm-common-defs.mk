@@ -1,0 +1,33 @@
+# Use SDCLANG if its version is >= 4.
+# Else use SDCLANG_2 if it exists and its version is >= 4.
+# Else use SDCLANG.
+
+ifeq ($(CAMERA_USE_SDCLANG),)
+  CAMERA_USE_SDCLANG := true
+  CAMERA_USE_SDCLANG_2 := false
+
+  ifneq ($(wildcard $(SDCLANG_PATH)),)
+    CAMERA_SDCLANG_VERSION := $(shell $(SDCLANG_PATH)/llvm-config --version)
+
+    ifneq ($(shell expr $(CAMERA_SDCLANG_VERSION) \>= 4), 1)
+      ifneq ($(wildcard $(SDCLANG_PATH_2)),)
+	CAMERA_SDCLANG_VERSION_2 := $(shell $(SDCLANG_PATH_2)/llvm-config --version)
+	ifeq ($(shell expr $(CAMERA_SDCLANG_VERSION_2) \>= 4), 1)
+	  CAMERA_USE_SDCLANG := false
+	  CAMERA_USE_SDCLANG_2 := true
+	endif
+      else
+	# SDCLANG_PATH_2 does not exist.
+	CAMERA_USE_SDCLANG_2 := false
+      endif
+    endif
+
+  else
+  # SDCLANG_PATH does not exist.
+  CAMERA_USE_SDCLANG := false
+  endif
+endif
+
+LOCAL_SDCLANG := $(CAMERA_USE_SDCLANG)
+LOCAL_SDCLANG_2 := $(CAMERA_USE_SDCLANG_2)
+LOCAL_SDCLANG_LTO := true
