@@ -282,8 +282,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     adsprpcd.rc \
-    android.hardware.gatekeeper@1.0-service-qti.rc \
-    android.hardware.keymaster@3.0-service-qti.rc \
     cdsprpcd.rc \
     irsc_util.rc \
     mlog_qmi.rc \

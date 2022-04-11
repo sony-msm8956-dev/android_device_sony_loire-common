@@ -84,26 +84,6 @@ LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)/etc/init
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE        := android.hardware.gatekeeper@1.0-service-qti.rc
-LOCAL_SRC_FILES     := etc/android.hardware.gatekeeper@1.0-service-qti.rc
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_STEM   := android.hardware.gatekeeper@1.0-service-qti.rc
-LOCAL_MODULE_SUFFIX := .rc
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(TARGET_OUT_VENDOR)/etc/init
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := android.hardware.keymaster@3.0-service-qti.rc
-LOCAL_SRC_FILES     := etc/android.hardware.keymaster@3.0-service-qti.rc
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_STEM   := android.hardware.keymaster@3.0-service-qti.rc
-LOCAL_MODULE_SUFFIX := .rc
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(TARGET_OUT_VENDOR)/etc/init
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE       := cdsprpcd.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := etc/cdsprpcd.rc
