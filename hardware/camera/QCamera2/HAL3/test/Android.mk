@@ -26,8 +26,8 @@ LOCAL_C_INCLUDES += \
     $(LOCAL_PATH)/../ \
     $(LOCAL_PATH)/../../stack/mm-camera-interface/inc \
     hardware/libhardware/include/hardware \
-    $(SRC_MEDIA_HAL_DIR)/libstagefrighthw \
-    $(SRC_MEDIA_HAL_DIR)/mm-core/inc
+    $(call project-path-for,qcom-media)/libstagefrighthw \
+    $(call project-path-for,qcom-media)/mm-core/inc
 
 LOCAL_HEADER_LIBRARIES := libhardware_headers
 LOCAL_HEADER_LIBRARIES += libbinder_headers
