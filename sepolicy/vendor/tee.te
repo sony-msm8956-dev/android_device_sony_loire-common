@@ -1,0 +1,1 @@
+allow tee system_data_root_file:dir rw_dir_perms;
