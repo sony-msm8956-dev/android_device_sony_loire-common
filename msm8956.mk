@@ -332,6 +332,10 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service \
     thermanager
 
+# Trust
+PRODUCT_PACKAGES += \
+    vendor.lineage.trust@1.0-service
+
 # Usb HAL
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0 \
