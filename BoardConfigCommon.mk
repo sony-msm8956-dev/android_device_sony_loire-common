@@ -62,6 +62,9 @@ BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/vnd_generic.txt
 # BCMDHD
 TARGET_USES_64_BIT_BCMDHD := true
 
+# Build
+BUILD_BROKEN_DUP_RULES := true
+
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 DEVICE_SPECIFIC_CAMERA_PATH := $(COMMON_PATH)/hardware/camera
