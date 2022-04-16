@@ -104,8 +104,8 @@ LOCAL_C_INCLUDES := \
         $(LOCAL_PATH)/stack/mm-camera-interface/inc \
         $(LOCAL_PATH)/util \
         $(LOCAL_PATH)/HAL3 \
-        $(call project-path-for,qcom-media)/libstagefrighthw \
-        $(call project-path-for,qcom-media)/mm-core/inc
+        $(SRC_MEDIA_HAL_DIR)/libstagefrighthw \
+        $(SRC_MEDIA_HAL_DIR)/mm-core/inc
 
 ifneq (,$(filter $(strip $(SOMC_KERNEL_VERSION)),4.9 4.14))
 LOCAL_C_INCLUDES += \
@@ -148,7 +148,7 @@ LOCAL_CFLAGS += -DUSE_CAMERA_METABUFFER_UTILS
 LOCAL_C_INCLUDES += \
         $(TARGET_OUT_HEADERS)/qcom/display
 LOCAL_C_INCLUDES += \
-        $(call project-path-for,qcom-display)/libqservice
+        $(SRC_DISPLAY_HAL_DIR)/libqservice
 LOCAL_SHARED_LIBRARIES := liblog libhardware libutils libcutils libdl libsync
 LOCAL_SHARED_LIBRARIES += libmmcamera_interface libmmjpeg_interface libui libcamera_metadata
 LOCAL_SHARED_LIBRARIES += libqdMetaData libqservice libbinder
