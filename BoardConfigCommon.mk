@@ -22,6 +22,7 @@ BOARD_VENDOR := sony
 # Platform
 TARGET_BOARD_PLATFORM := msm8952
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno510
+TARGET_BOARD_AUTO := true
 
 # Bootloader
 TARGET_NO_BOOTLOADER := true
