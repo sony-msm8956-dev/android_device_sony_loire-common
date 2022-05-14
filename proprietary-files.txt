@@ -329,6 +329,9 @@ vendor/firmware/venus-v1.b04
 vendor/firmware/venus-v1.mbn
 vendor/firmware/venus-v1.mdt
 
+# NFC
+vendor/firmware/libpn547_fw.so|da032599b677d2d7ecc27e54320f0cd49962f182
+
 # Peripheral manager
 vendor/bin/pm-proxy
 vendor/bin/pm-service
