@@ -176,7 +176,8 @@ PRODUCT_PACKAGES += \
     android.hardware.nfc@1.0-service \
     android.hardware.nfc@1.0-impl \
     NfcNci \
-    Tag
+    Tag \
+    nfc_nci.msm8952
 
 # OMX
 PRODUCT_PACKAGES += \
