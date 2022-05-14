@@ -486,3 +486,7 @@ vendor/firmware/touch_module_id_0x94.img
 vendor/firmware/touch_module_id_0xa0.img
 vendor/firmware/touch_module_id_0xa1.img
 vendor/firmware/touch_module_id_0xa2.img
+
+# WiFi Firmware
+vendor/firmware/fw_bcmdhd.bin|02f89a84a439b6fac5400a0e016b5affa0ef878d
+vendor/firmware/fw_bcmdhd_apsta.bin|b49522da726b69ebac4a3d897f7d47f3af5e81b4
