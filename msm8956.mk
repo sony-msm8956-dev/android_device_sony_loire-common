@@ -115,15 +115,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl-qti \
     android.hardware.gnss@1.0-service-qti \
-    gps.msm8952 \
-    libloc_core \
+    libgnss \
+    libgnsspps \
     libgps.utils \
     liblocation_api \
+    libloc_core \
     libloc_pla \
-    libgnss \
-    libloc_api_v02 \
-    libloc_ds_api \
-    libgnsspps
+    libvehiclenetwork-native
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/gps/gps_debug.conf:system/etc/gps_debug.conf \
