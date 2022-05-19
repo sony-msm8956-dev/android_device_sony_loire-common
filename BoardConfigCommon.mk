@@ -160,6 +160,8 @@ TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 # Seccomp filters
 BOARD_SECCOMP_POLICY := $(COMMON_PATH)/seccomp
 
+# SEPolicy
+BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
 # Wi-Fi
 BOARD_WLAN_DEVICE           := bcmdhd
