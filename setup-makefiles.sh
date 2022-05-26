@@ -39,7 +39,7 @@ setup_vendor "$DEVICE_COMMON" "$VENDOR" "$LINEAGE_ROOT" true
 write_headers "kugo suzu"
 
 # The standard common blobs
-write_makefiles "$MY_DIR"/proprietary-files.txt
+write_makefiles "$MY_DIR"/proprietary-files.txt true
 
 # We are done!
 write_footers
@@ -52,7 +52,7 @@ setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" false
 write_headers
 
 # The standard device blobs
-write_makefiles "$MY_DIR"/../$DEVICE/proprietary-files.txt
+write_makefiles "$MY_DIR"/../$DEVICE/proprietary-files.txt true
 
 # We are done!
 write_footers
