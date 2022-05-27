@@ -21,7 +21,7 @@ common_libs := liblog libutils libcutils libhardware
 #Common C flags
 common_flags := -DDEBUG_CALC_FPS -Wno-missing-field-initializers
 #TODO: Add -Werror back once all the current warnings are fixed
-common_flags += -Wconversion -Wall
+common_flags += -Wno-error -Wno-sign-compare -Wno-sign-conversion -Wno-float-conversion
 
 ifeq ($(ARCH_ARM_HAVE_NEON),true)
     common_flags += -D__ARM_HAVE_NEON
@@ -38,9 +38,6 @@ ifeq ($(DISPLAY_DEBUG_SWAPINTERVAL),true)
 endif
 
 common_flags += -D__STDC_FORMAT_MACROS
-
-common_deps  :=
-kernel_includes :=
 
 # Executed only on QCOM BSPs
 ifeq ($(TARGET_USES_QCOM_BSP),true)

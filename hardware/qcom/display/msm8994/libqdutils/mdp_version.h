@@ -151,8 +151,6 @@ public:
     bool is8994();
     bool is8x16();
     bool is8x39();
-    bool is8x52();
-    bool is8976();
 
 private:
     bool updateSysFsInfo();

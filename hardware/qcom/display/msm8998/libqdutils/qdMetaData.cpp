@@ -111,8 +111,8 @@ int setMetaData(private_handle_t *handle, DispParamType paramType,
         case SET_VT_TIMESTAMP:
             data->vtTimeStamp = *((uint64_t *)param);
             break;
-        case COLOR_METADATA:
 #ifdef USE_COLOR_METADATA
+        case COLOR_METADATA:
             data->color = *((ColorMetaData *)param);
 #endif
             break;
@@ -218,8 +218,8 @@ int getMetaData(private_handle_t *handle, DispFetchParamType paramType,
                 ret = 0;
             }
             break;
-        case GET_COLOR_METADATA:
 #ifdef USE_COLOR_METADATA
+        case GET_COLOR_METADATA:
             if (data->operation & COLOR_METADATA) {
                 *((ColorMetaData *)param) = data->color;
                 ret = 0;
