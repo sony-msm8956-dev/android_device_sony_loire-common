@@ -18,10 +18,11 @@
 //#define LOG_NDEBUG 0
 #define LOG_NDDEBUG 0
 
+#include <errno.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <dlfcn.h>
-#include <cutils/log.h>
+#include <log/log.h>
 #include <cutils/str_parms.h>
 #include <system/audio.h>
 #include <tinyalsa/asoundlib.h>
@@ -98,7 +99,13 @@ int acdb_init(int snd_card_num)
         ctl = mixer_get_ctl_by_name(mixer, CVD_VERSION_MIXER_CTL);
         if (!ctl) {
             ALOGE("%s: Could not get ctl for mixer cmd - %s",  __func__, CVD_VERSION_MIXER_CTL);
-            goto cleanup;
+            /* CVD is required for ACDB v2/3, so fail fully there.
+             * For ACDB v1, the CVD version code can be skipped.
+             */
+            if (my_data->acdb_init_v2 || my_data->acdb_init_v3)
+                goto cleanup;
+            else
+                goto card_name;
         }
         mixer_ctl_update(ctl);
 
@@ -113,6 +120,7 @@ int acdb_init(int snd_card_num)
         }
     }
 
+card_name:
     /* Get Sound card name */
     snd_card_name = strdup(mixer_get_name(mixer));
     if (!snd_card_name) {

@@ -21,7 +21,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <math.h>
-#include <cutils/log.h>
+#include <log/log.h>
 #include <cutils/str_parms.h>
 
 #include "audio_hw.h"
@@ -66,6 +66,7 @@ static bool voice_is_sidetone_device(snd_device_t out_device,
         strlcpy(mixer_path, "sidetone-handset", MIXER_PATH_MAX_LENGTH);
         break;
     case SND_DEVICE_OUT_VOICE_HEADPHONES:
+    case SND_DEVICE_OUT_VOICE_HEADSET:
         strlcpy(mixer_path, "sidetone-headphones", MIXER_PATH_MAX_LENGTH);
         break;
     case SND_DEVICE_OUT_VOICE_USB_HEADSET:
@@ -207,6 +208,9 @@ int voice_start_usecase(struct audio_device *adev, audio_usecase_t usecase_id)
         goto error_start_voice;
     }
 
+    if (adev->mic_break_enabled)
+        platform_set_mic_break_det(adev->platform, true);
+
     pcm_start(session->pcm_tx);
     pcm_start(session->pcm_rx);
 
@@ -309,6 +313,10 @@ int voice_check_and_set_incall_rec_usecase(struct audio_device *adev,
         session_id = voice_get_active_session_id(adev);
         ret = platform_set_incall_recording_session_id(adev->platform,
                                                        session_id, rec_mode);
+#ifdef INCALL_STEREO_CAPTURE_ENABLED
+        ret = platform_set_incall_recording_session_channels(adev->platform,
+                                                        in->config.channels);
+#endif
         ALOGV("%s: Update usecase to %d",__func__, in->usecase);
     } else {
         ALOGV("%s: voice call not active", __func__);

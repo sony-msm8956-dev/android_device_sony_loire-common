@@ -20,7 +20,7 @@
 
 #include <stdlib.h>
 #include <dlfcn.h>
-#include <cutils/log.h>
+#include <log/log.h>
 #include <cutils/str_parms.h>
 #include "audio_hw.h"
 #include "platform.h"
@@ -47,15 +47,21 @@ static void update_hardware_info_8x16(struct hardware_info *hw_info, const char 
     } else if (!strcmp(snd_card_name, "msm8909-snd-card") ||
                !strcmp(snd_card_name, "msm8909-pm8916-snd-card")) {
         strlcpy(hw_info->name, "msm8909", sizeof(hw_info->name));
+    } else if (!strcmp(snd_card_name, "msm-bg-snd-card")) {
+        strlcpy(hw_info->name, "msm8909", sizeof(hw_info->name));
     }  else if (!strcmp(snd_card_name, "msm8952-snd-card") ||
                 !strcmp(snd_card_name, "msm8952-snd-card-mtp")) {
         strlcpy(hw_info->name, "msm8952", sizeof(hw_info->name));
     }  else if (!strcmp(snd_card_name, "msm8952-l9300-snd-card")) {
         strlcpy(hw_info->name, "msm8952", sizeof(hw_info->name));
-    }  else if (!strcmp(snd_card_name, "msm8976-tasha-snd-card")) {
+    } else if (!strcmp(snd_card_name, "msm8976-tasha-snd-card")) {
         strlcpy(hw_info->name, "msm8976", sizeof(hw_info->name));
+    } else if (!strcmp(snd_card_name, "sdm660-snd-card")) {
+        strlcpy(hw_info->name, "sdm660", sizeof(hw_info->name));
+    } else if (!strcmp(snd_card_name, "sdm660-tasha-snd-card")) {
+        strlcpy(hw_info->name, "sdm660", sizeof(hw_info->name));
     } else {
-        ALOGW("%s: Not an  8x16/8909/8952 device", __func__);
+        ALOGW("%s: Not an 8x16/8909/8952/8976/sdm660 device", __func__);
     }
 }
 
@@ -69,8 +75,10 @@ void *hw_info_init(const char *snd_card_name)
         return NULL;
     }
 
-    if (strstr(snd_card_name, "msm8x16") || strstr(snd_card_name, "msm8909")
-        || strstr(snd_card_name, "msm8952") || strstr(snd_card_name, "msm8976")) {
+    if (strstr(snd_card_name, "msm8x16") || strstr(snd_card_name, "msm8909") ||
+        strstr(snd_card_name, "msm8952") || strstr(snd_card_name, "msm8976") ||
+	strstr(snd_card_name, "sdm660") ||
+        strstr(snd_card_name, "msm-bg-snd-card")) {
         ALOGV("8x16 - variant soundcard");
 
         strlcpy(hw_info->type, "", sizeof(hw_info->type));

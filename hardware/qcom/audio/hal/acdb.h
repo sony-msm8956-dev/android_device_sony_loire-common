@@ -26,16 +26,18 @@
 #define ACDB_METAINFO_KEY_MODULE_NAME_LEN 100
 
 /* Audio calibration related functions */
-typedef void (*acdb_deallocate_t)();
+typedef void (*acdb_deallocate_t)(void);
 typedef int  (*acdb_init_v3_t)(const char *, char *, struct listnode *);
 typedef int  (*acdb_init_v2_cvd_t)(char *, char *, int);
 typedef int  (*acdb_init_v2_t)(char *);
 typedef int  (*acdb_init_t)();
 typedef void (*acdb_send_audio_cal_t)(int, int);
 typedef void (*acdb_send_voice_cal_t)(int, int);
+typedef int (*acdb_get_audio_cal_t) (void *, void *, uint32_t*);
 typedef int (*acdb_reload_vocvoltable_t)(int);
 typedef int (*acdb_send_gain_dep_cal_t)(int, int, int, int, int);
 typedef int (*acdb_send_custom_top_t) (void);
+typedef int (*acdb_set_audio_cal_t) (void *, void *, uint32_t);
 
 struct meta_key_list {
     struct listnode list;
