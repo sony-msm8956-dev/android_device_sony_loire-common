@@ -90,7 +90,10 @@ on fs
     restorecon_recursive /dsp
     mount rootfs rootfs /dsp ro remount
 
-    restorecon_recursive /persist
+    # Set permissions for persist partition
+    chown root system /mnt/vendor/persist
+    chmod 0771 /mnt/vendor/persist
+    restorecon_recursive /mnt/vendor/persist
 
 on post-fs
     # Wait qseecomd started
@@ -145,11 +148,6 @@ on post-fs-data
     # LEGACY: Create directory for audio delta files
     mkdir /data/misc/audio/acdbdata 0770 media audio
     mkdir /data/misc/audio/acdbdata/delta 0770 media audio
-
-    # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
-    # We chown/chmod /persist again so because mount is run as root + defaults
-    chown system system /persist
-    chmod 0771 /persist
 
     mkdir /data/etc 0775
     mkdir /data/system 0775 system system
