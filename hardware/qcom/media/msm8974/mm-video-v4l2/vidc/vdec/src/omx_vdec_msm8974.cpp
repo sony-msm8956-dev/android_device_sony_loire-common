@@ -2472,10 +2472,10 @@ OMX_ERRORTYPE  omx_vdec::send_command_proxy(OMX_IN OMX_HANDLETYPE hComp,
     /* Current State is Invalid */
     /*******************************/
     else if (m_state == OMX_StateInvalid) {
-        /* State Transition from Inavlid to any state */
-        if (eState == (OMX_StateLoaded || OMX_StateWaitForResources
-                    || OMX_StateIdle || OMX_StateExecuting
-                    || OMX_StatePause || OMX_StateInvalid)) {
+        /* State Transition from Invalid to any state */
+        if (eState == OMX_StateLoaded || eState == OMX_StateWaitForResources ||
+            eState == OMX_StateIdle || eState == OMX_StateExecuting ||
+            eState == OMX_StatePause || eState == OMX_StateInvalid) {
             DEBUG_PRINT_ERROR("ERROR::send_command_proxy(): Invalid -->Loaded");
             post_event(OMX_EventError,OMX_ErrorInvalidState,\
                     OMX_COMPONENT_GENERATE_EVENT);
@@ -4310,6 +4310,7 @@ OMX_ERRORTYPE  omx_vdec::get_config(OMX_IN OMX_HANDLETYPE      hComp,
                         default:
                             DEBUG_PRINT_HIGH("Unknown perf level %d, reporting Nominal instead", control.value);
                             /* Fall through */
+                            [[fallthrough]];
                         case V4L2_CID_MPEG_VIDC_PERF_LEVEL_NOMINAL:
                             perf->ePerfLevel = OMX_QCOM_PerfLevelNominal;
                             break;
@@ -10913,7 +10914,7 @@ OMX_ERRORTYPE omx_vdec::describeColorFormat(OMX_PTR pParam) {
 
     MediaImage *img = &(params->sMediaImage);
     switch(params->eColorFormat) {
-        case QOMX_COLOR_FORMATYUV420PackedSemiPlanar32m:
+        case static_cast <OMX_COLOR_FORMATTYPE> (QOMX_COLOR_FORMATYUV420PackedSemiPlanar32m):
         {
             img->mType = MediaImage::MEDIA_IMAGE_TYPE_YUV;
             img->mNumPlanes = 3;

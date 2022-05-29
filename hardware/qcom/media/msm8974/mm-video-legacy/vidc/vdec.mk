@@ -69,6 +69,10 @@ LOCAL_MODULE_TAGS               := optional
 LOCAL_CFLAGS                    := $(libOmxVdec-def)
 LOCAL_C_INCLUDES                += $(libmm-vdec-inc)
 
+LOCAL_HEADER_LIBRARIES  := generated_kernel_headers
+
+LOCAL_HEADER_LIBRARIES  += libnativebase_headers
+
 LOCAL_SHARED_LIBRARIES  := liblog libutils libbinder libcutils libdl
 
 LOCAL_SHARED_LIBRARIES  += libdivxdrmdecrypt
@@ -82,6 +86,8 @@ LOCAL_SRC_FILES         += vdec/src/mp4_utils.cpp
 LOCAL_SRC_FILES         += vdec/src/omx_vdec.cpp
 LOCAL_SRC_FILES         += common/src/extra_data_handler.cpp
 LOCAL_SRC_FILES         += common/src/vidc_color_converter.cpp
+
+LOCAL_CFLAGS            += -Wno-error
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -97,6 +103,8 @@ LOCAL_MODULE                    := mm-vdec-omx-test
 LOCAL_MODULE_TAGS               := optional
 LOCAL_CFLAGS                    := $(libOmxVdec-def)
 LOCAL_C_INCLUDES                := $(mm-vdec-test-inc)
+
+LOCAL_HEADER_LIBRARIES    := generated_kernel_headers
 
 LOCAL_SHARED_LIBRARIES    := libutils liblog libOmxCore libOmxVdec libbinder
 
@@ -117,6 +125,8 @@ LOCAL_MODULE                    := mm-video-driver-test
 LOCAL_MODULE_TAGS               := optional
 LOCAL_CFLAGS                    := $(libOmxVdec-def)
 LOCAL_C_INCLUDES                := $(mm-vdec-drv-test-inc)
+
+LOCAL_HEADER_LIBRARIES          := generated_kernel_headers
 
 LOCAL_SRC_FILES                 := vdec/src/message_queue.c
 LOCAL_SRC_FILES                 += vdec/test/decoder_driver_test.c

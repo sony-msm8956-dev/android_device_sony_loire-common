@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------------
-Copyright (c) 2010 - 2017, The Linux Foundation. All rights reserved.
+Copyright (c) 2010 - 2018, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -1042,6 +1042,7 @@ OMX_ERRORTYPE omx_vdec::decide_dpb_buffer_mode(bool split_opb_dpb_with_same_colo
     bool cpu_access = (capture_capability != V4L2_PIX_FMT_NV12_UBWC) &&
         capture_capability != V4L2_PIX_FMT_NV12_TP10_UBWC;
     bool tp10_enable = !drv_ctx.idr_only_decoding &&
+        !client_buffers.is_color_conversion_enabled() &&
         dpb_bit_depth == MSM_VIDC_BIT_DEPTH_10;
     bool dither_enable = true;
 
@@ -3161,10 +3162,10 @@ OMX_ERRORTYPE  omx_vdec::send_command_proxy(OMX_IN OMX_HANDLETYPE hComp,
     /* Current State is Invalid */
     /*******************************/
     else if (m_state == OMX_StateInvalid) {
-        /* State Transition from Inavlid to any state */
-        if (eState == (OMX_StateLoaded || OMX_StateWaitForResources
-                    || OMX_StateIdle || OMX_StateExecuting
-                    || OMX_StatePause || OMX_StateInvalid)) {
+        /* State Transition from Invalid to any state */
+        if (eState == OMX_StateLoaded || eState == OMX_StateWaitForResources ||
+            eState == OMX_StateIdle || eState == OMX_StateExecuting ||
+            eState == OMX_StatePause || eState == OMX_StateInvalid) {
             DEBUG_PRINT_ERROR("ERROR::send_command_proxy(): Invalid -->Loaded");
             post_event(OMX_EventError,OMX_ErrorInvalidState,\
                     OMX_COMPONENT_GENERATE_EVENT);
@@ -3328,13 +3329,21 @@ bool omx_vdec::execute_omx_flush(OMX_U32 flushType)
     struct v4l2_decoder_cmd dec;
     DEBUG_PRINT_LOW("in %s, flushing %u", __func__, (unsigned int)flushType);
     memset((void *)&v4l2_buf,0,sizeof(v4l2_buf));
+#ifndef _TARGET_KERNEL_VERSION_49_
     dec.cmd = V4L2_DEC_QCOM_CMD_FLUSH;
+#else
+    dec.cmd = V4L2_QCOM_CMD_FLUSH;
+#endif
 
     DEBUG_PRINT_HIGH("in %s: reconfig? %d", __func__, in_reconfig);
 
     if (in_reconfig && flushType == OMX_CORE_OUTPUT_PORT_INDEX) {
         output_flush_progress = true;
+#ifndef _TARGET_KERNEL_VERSION_49_
         dec.flags = V4L2_DEC_QCOM_CMD_FLUSH_CAPTURE;
+#else
+        dec.flags = V4L2_QCOM_CMD_FLUSH_CAPTURE;
+#endif
     } else {
         /* XXX: The driver/hardware does not support flushing of individual ports
          * in all states. So we pretty much need to flush both ports internally,
@@ -3343,7 +3352,11 @@ bool omx_vdec::execute_omx_flush(OMX_U32 flushType)
          * we automatically omit sending the FLUSH done for the "opposite" port. */
         input_flush_progress = true;
         output_flush_progress = true;
+#ifndef _TARGET_KERNEL_VERSION_49_
         dec.flags = V4L2_DEC_QCOM_CMD_FLUSH_OUTPUT | V4L2_DEC_QCOM_CMD_FLUSH_CAPTURE;
+#else
+        dec.flags = V4L2_QCOM_CMD_FLUSH_OUTPUT | V4L2_QCOM_CMD_FLUSH_CAPTURE;
+#endif
         request_perf_level(VIDC_TURBO);
     }
 
@@ -4048,6 +4061,10 @@ OMX_ERRORTYPE  omx_vdec::get_parameter(OMX_IN OMX_HANDLETYPE     hComp,
                     case V4L2_MPEG_VIDEO_H264_LEVEL_5_2:
                         pParam->eLevel = OMX_VIDEO_AVCLevel52;
                         break;
+#ifdef _TARGET_KERNEL_VERSION_49_
+                    case V4L2_MPEG_VIDEO_H264_LEVEL_UNKNOWN:
+                        return OMX_ErrorUnsupportedIndex;
+#endif
                 }
              } else {
                  eRet = OMX_ErrorUnsupportedIndex;
@@ -4522,17 +4539,29 @@ OMX_ERRORTYPE  omx_vdec::set_parameter(OMX_IN OMX_HANDLETYPE     hComp,
                                         DEBUG_PRINT_ERROR("%s: Failed to get format on capture mplane", __func__);
                                         return OMX_ErrorBadParameter;
                                     }
+#ifndef _TARGET_KERNEL_VERSION_49_
                                     enum vdec_output_fromat op_format;
+#else
+                                    enum vdec_output_format op_format;
+#endif
                                     if (portFmt->eColorFormat == (OMX_COLOR_FORMATTYPE)
                                             QOMX_COLOR_FORMATYUV420PackedSemiPlanar32m ||
                                             portFmt->eColorFormat == (OMX_COLOR_FORMATTYPE)
                                             QOMX_COLOR_FORMATYUV420PackedSemiPlanar32mMultiView ||
                                             portFmt->eColorFormat == OMX_COLOR_FormatYUV420Planar ||
                                             portFmt->eColorFormat == OMX_COLOR_FormatYUV420SemiPlanar) {
+#ifndef _TARGET_KERNEL_VERSION_49_
                                         op_format = (enum vdec_output_fromat)VDEC_YUV_FORMAT_NV12;
+#else
+                                        op_format = (enum vdec_output_format)VDEC_YUV_FORMAT_NV12;
+#endif
                                     } else if (portFmt->eColorFormat == (OMX_COLOR_FORMATTYPE)
                                             QOMX_COLOR_FORMATYUV420PackedSemiPlanar32mCompressed) {
+#ifndef _TARGET_KERNEL_VERSION_49_
                                         op_format = (enum vdec_output_fromat)VDEC_YUV_FORMAT_NV12_UBWC;
+#else
+                                        op_format = (enum vdec_output_format)VDEC_YUV_FORMAT_NV12_UBWC;
+#endif
                                     } else
                                         eRet = OMX_ErrorBadParameter;
 
@@ -5093,12 +5122,11 @@ OMX_ERRORTYPE  omx_vdec::set_parameter(OMX_IN OMX_HANDLETYPE     hComp,
                     if (!rc) {
                         DEBUG_PRINT_HIGH("%s buffer mode",
                            (metabuffer->bStoreMetaData == true)? "Enabled dynamic" : "Disabled dynamic");
-                               dynamic_buf_mode = metabuffer->bStoreMetaData;
                     } else {
                         DEBUG_PRINT_ERROR("Failed to %s buffer mode",
                            (metabuffer->bStoreMetaData == true)? "enable dynamic" : "disable dynamic");
-                        eRet = OMX_ErrorUnsupportedSetting;
                     }
+                    dynamic_buf_mode = metabuffer->bStoreMetaData;
                 } else {
                     DEBUG_PRINT_ERROR(
                        "OMX_QcomIndexParamVideoMetaBufferMode not supported for port: %u",
@@ -6736,7 +6764,7 @@ OMX_ERRORTYPE  omx_vdec::allocate_input_buffer(
     OMX_BUFFERHEADERTYPE *input = NULL;
     unsigned   i = 0;
     unsigned char *buf_addr = NULL;
-    int pmem_fd = -1;
+    int pmem_fd = -1, ret = 0;
     unsigned int align_size = 0;
 
     (void) hComp;
@@ -6750,6 +6778,21 @@ OMX_ERRORTYPE  omx_vdec::allocate_input_buffer(
     }
 
     if (!m_inp_mem_ptr) {
+        struct v4l2_requestbuffers bufreq;
+        bufreq.memory = V4L2_MEMORY_USERPTR;
+        bufreq.type=V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;
+        bufreq.count = drv_ctx.ip_buf.actualcount;
+        ret = ioctl(drv_ctx.video_driver_fd,VIDIOC_REQBUFS, &bufreq);
+        if (ret) {
+            DEBUG_PRINT_ERROR("Setting buffer requirements (reqbufs) failed %s", strerror(errno));
+            /*TODO: How to handle this case */
+            eRet = OMX_ErrorInsufficientResources;
+        } else if (bufreq.count != drv_ctx.ip_buf.actualcount) {
+            DEBUG_PRINT_ERROR("%s Count(%d) is not expected to change to %d",
+                __FUNCTION__, drv_ctx.ip_buf.actualcount, bufreq.count);
+            eRet = OMX_ErrorInsufficientResources;
+        }
+
         DEBUG_PRINT_HIGH("Allocate i/p buffer Header: Cnt(%d) Sz(%u)",
                 drv_ctx.ip_buf.actualcount,
                 (unsigned int)drv_ctx.ip_buf.buffer_size);
@@ -11049,6 +11092,12 @@ void omx_vdec::convert_color_space_info(OMX_U32 primaries, OMX_U32 range,
         case MSM_VIDC_TRANSFER_SRGB:
             aspects->mTransfer = ColorAspects::TransferSRGB;
             break;
+        case MSM_VIDC_TRANSFER_SMPTE_ST2084:
+            aspects->mTransfer = ColorAspects::TransferST2084;
+            break;
+        case MSM_VIDC_TRANSFER_HLG:
+            aspects->mTransfer = ColorAspects::TransferHLG;
+            break;
         default:
             //aspects->mTransfer = ColorAspects::TransferOther;
             aspects->mTransfer = m_client_color_space.sAspects.mTransfer;
@@ -11384,12 +11433,12 @@ bool omx_vdec::handle_mastering_display_color_info(void* data, MasteringDisplay*
     mastering_display_mdata->maxDisplayLuminance = mastering_display_payload->nMaxDisplayMasteringLuminance;
     mastering_display_mdata->minDisplayLuminance = mastering_display_payload->nMinDisplayMasteringLuminance;
 
-    internal_disp_changed_flag |= (hdr_info->sType1.mR.x != mastering_display_payload->nDisplayPrimariesX[0]) ||
-        (hdr_info->sType1.mR.y != mastering_display_payload->nDisplayPrimariesY[0]);
-    internal_disp_changed_flag |= (hdr_info->sType1.mG.x != mastering_display_payload->nDisplayPrimariesX[1]) ||
-        (hdr_info->sType1.mG.y != mastering_display_payload->nDisplayPrimariesY[1]);
-    internal_disp_changed_flag |= (hdr_info->sType1.mB.x != mastering_display_payload->nDisplayPrimariesX[2]) ||
-        (hdr_info->sType1.mB.y != mastering_display_payload->nDisplayPrimariesY[2]);
+    internal_disp_changed_flag |= (hdr_info->sType1.mG.x != mastering_display_payload->nDisplayPrimariesX[0]) ||
+        (hdr_info->sType1.mG.y != mastering_display_payload->nDisplayPrimariesY[0]);
+    internal_disp_changed_flag |= (hdr_info->sType1.mB.x != mastering_display_payload->nDisplayPrimariesX[1]) ||
+        (hdr_info->sType1.mB.y != mastering_display_payload->nDisplayPrimariesY[1]);
+    internal_disp_changed_flag |= (hdr_info->sType1.mR.x != mastering_display_payload->nDisplayPrimariesX[2]) ||
+        (hdr_info->sType1.mR.y != mastering_display_payload->nDisplayPrimariesY[2]);
 
     internal_disp_changed_flag |= (hdr_info->sType1.mW.x != mastering_display_payload->nWhitePointX) ||
         (hdr_info->sType1.mW.y != mastering_display_payload->nWhitePointY);
@@ -11403,12 +11452,12 @@ bool omx_vdec::handle_mastering_display_color_info(void* data, MasteringDisplay*
         (hdr_info->sType1.mMinDisplayLuminance != mastering_display_payload->nMinDisplayMasteringLuminance);
 
     if (internal_disp_changed_flag) {
-        hdr_info->sType1.mR.x = mastering_display_payload->nDisplayPrimariesX[0];
-        hdr_info->sType1.mR.y = mastering_display_payload->nDisplayPrimariesY[0];
-        hdr_info->sType1.mG.x = mastering_display_payload->nDisplayPrimariesX[1];
-        hdr_info->sType1.mG.y = mastering_display_payload->nDisplayPrimariesY[1];
-        hdr_info->sType1.mB.x = mastering_display_payload->nDisplayPrimariesX[2];
-        hdr_info->sType1.mB.y = mastering_display_payload->nDisplayPrimariesY[2];
+        hdr_info->sType1.mG.x = mastering_display_payload->nDisplayPrimariesX[0];
+        hdr_info->sType1.mG.y = mastering_display_payload->nDisplayPrimariesY[0];
+        hdr_info->sType1.mB.x = mastering_display_payload->nDisplayPrimariesX[1];
+        hdr_info->sType1.mB.y = mastering_display_payload->nDisplayPrimariesY[1];
+        hdr_info->sType1.mR.x = mastering_display_payload->nDisplayPrimariesX[2];
+        hdr_info->sType1.mR.y = mastering_display_payload->nDisplayPrimariesY[2];
         hdr_info->sType1.mW.x = mastering_display_payload->nWhitePointX;
         hdr_info->sType1.mW.y = mastering_display_payload->nWhitePointY;
 

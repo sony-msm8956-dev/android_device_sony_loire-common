@@ -467,7 +467,11 @@ void* venc_dev::async_venc_message_thread (void *input)
                     break;
                 }
 
+#ifndef _TARGET_KERNEL_VERSION_49_
                 venc_msg.msgcode = VEN_MSG_FLUSH_OUPUT_DONE;
+#else
+                venc_msg.msgcode = VEN_MSG_FLUSH_OUTPUT_DONE;
+#endif
                 venc_msg.statuscode = VEN_S_SUCCESS;
 
                 if (omx->async_message_process(input,&venc_msg) < 0) {
@@ -2411,14 +2415,14 @@ bool venc_dev::venc_set_param(void *paramData, OMX_INDEXTYPE index)
 
                 break;
             }
-        case OMX_QcomIndexParamH264AUDelimiter:
+        case OMX_QcomIndexParamAUDelimiter:
             {
-                OMX_QCOM_VIDEO_CONFIG_H264_AUD * pParam =
-                    (OMX_QCOM_VIDEO_CONFIG_H264_AUD *)paramData;
+                OMX_QCOM_VIDEO_CONFIG_AUD * pParam =
+                    (OMX_QCOM_VIDEO_CONFIG_AUD *)paramData;
 
                 DEBUG_PRINT_LOW("set AU delimiters: %d", pParam->bEnable);
                 if(venc_set_au_delimiter(pParam->bEnable) == false) {
-                    DEBUG_PRINT_ERROR("ERROR: set H264 AU delimiter failed");
+                    DEBUG_PRINT_ERROR("ERROR: set AU delimiter failed");
                     return OMX_ErrorUnsupportedSetting;
                 }
 
@@ -3582,7 +3586,11 @@ unsigned venc_dev::venc_flush( unsigned port)
         }
     }
 
+#ifndef _TARGET_KERNEL_VERSION_49_
     enc.cmd = V4L2_ENC_QCOM_CMD_FLUSH;
+#else
+    enc.cmd = V4L2_QCOM_CMD_FLUSH;
+#endif
     enc.flags = V4L2_QCOM_CMD_FLUSH_OUTPUT | V4L2_QCOM_CMD_FLUSH_CAPTURE;
 
     if (ioctl(m_nDriver_fd, VIDIOC_ENCODER_CMD, &enc)) {
@@ -4504,11 +4512,11 @@ bool venc_dev::venc_set_au_delimiter(OMX_BOOL enable)
 {
     struct v4l2_control control;
 
-    control.id = V4L2_CID_MPEG_VIDC_VIDEO_H264_AU_DELIMITER;
+    control.id = V4L2_CID_MPEG_VIDC_VIDEO_AU_DELIMITER;
     if(enable) {
-        control.value = V4L2_MPEG_VIDC_VIDEO_H264_AU_DELIMITER_ENABLED;
+        control.value = V4L2_MPEG_VIDC_VIDEO_AU_DELIMITER_ENABLED;
     } else {
-        control.value = V4L2_MPEG_VIDC_VIDEO_H264_AU_DELIMITER_DISABLED;
+        control.value = V4L2_MPEG_VIDC_VIDEO_AU_DELIMITER_DISABLED;
     }
 
     DEBUG_PRINT_HIGH("Set au delimiter: %d", enable);

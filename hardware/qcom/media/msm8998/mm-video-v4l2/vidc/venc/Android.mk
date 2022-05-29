@@ -25,6 +25,9 @@ TARGETS_THAT_USE_FLAG_MSM8226 := msm8226 msm8916 msm8909
 TARGETS_THAT_NEED_SW_VENC_MPEG4 := msm8909 msm8937
 TARGETS_THAT_NEED_SW_VENC_HEVC := msm8992
 TARGETS_THAT_SUPPORT_UBWC := msm8996 msm8998
+TARGETS_THAT_SUPPORT_VQZIP :=
+TARGETS_THAT_SUPPORT_PQ := msm8998
+TARGETS_THAT_USE_NV21 := sdm660 msm8953
 
 ifeq ($(TARGET_BOARD_PLATFORM),msm8610)
 libmm-venc-def += -DMAX_RES_720P
@@ -36,6 +39,10 @@ else
 libmm-venc-def += -DMAX_RES_1080P
 libmm-venc-def += -DMAX_RES_1080P_EBI
 endif
+endif
+
+ifeq ($(TARGET_KERNEL_VERSION), 4.9)
+libmm-venc-def += -D_TARGET_KERNEL_VERSION_49_
 endif
 
 ifeq ($(call is-board-platform-in-list, $(TARGETS_THAT_SUPPORT_UBWC)),true)
@@ -129,6 +136,9 @@ LOCAL_SRC_FILES   := src/omx_video_base.cpp
 LOCAL_SRC_FILES   += src/omx_video_encoder.cpp
 LOCAL_SRC_FILES   += src/video_encoder_device_v4l2.cpp
 
+# Allow implicit fallthrough in omx_video_encoder.cpp:2322 until it is fixed.
+LOCAL_CFLAGS += -Wno-error=implicit-fallthrough
+
 include $(BUILD_SHARED_LIBRARY)
 
 ifeq ($(call is-board-platform-in-list, $(TARGETS_THAT_NEED_SW_VENC_MPEG4)),true)
@@ -158,6 +168,8 @@ LOCAL_STATIC_LIBRARIES    := libOmxVidcCommon
 
 LOCAL_SRC_FILES   := src/omx_video_base.cpp
 LOCAL_SRC_FILES   += src/omx_swvenc_mpeg4.cpp
+
+LOCAL_CFLAGS      += -Wno-error
 
 include $(BUILD_SHARED_LIBRARY)
 endif

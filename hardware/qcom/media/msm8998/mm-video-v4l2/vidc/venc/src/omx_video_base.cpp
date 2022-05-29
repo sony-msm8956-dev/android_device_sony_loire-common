@@ -1137,10 +1137,10 @@ OMX_ERRORTYPE  omx_video::send_command_proxy(OMX_IN OMX_HANDLETYPE hComp,
     /* Current State is Invalid */
     /*******************************/
     else if (m_state == OMX_StateInvalid) {
-        /* State Transition from Inavlid to any state */
-        if (eState == (OMX_StateLoaded || OMX_StateWaitForResources
-                    || OMX_StateIdle || OMX_StateExecuting
-                    || OMX_StatePause || OMX_StateInvalid)) {
+        /* State Transition from Invalid to any state */
+        if (eState == OMX_StateLoaded || eState == OMX_StateWaitForResources ||
+            eState == OMX_StateIdle || eState == OMX_StateExecuting ||
+            eState == OMX_StatePause || eState == OMX_StateInvalid) {
             DEBUG_PRINT_ERROR("ERROR: OMXCORE-SM: Invalid -->Loaded");
             post_event(OMX_EventError,OMX_ErrorInvalidState,\
                     OMX_COMPONENT_GENERATE_EVENT);
@@ -1898,8 +1898,13 @@ OMX_ERRORTYPE  omx_video::get_parameter(OMX_IN OMX_HANDLETYPE     hComp,
                 }
                 else if (pParam->nIndex == (OMX_INDEXTYPE)OMX_ExtraDataVideoLTRInfo) {
                     if (pParam->nPortIndex == PORT_INDEX_OUT) {
+#ifndef _TARGET_KERNEL_VERSION_49_
                         pParam->bEnabled =
                             (OMX_BOOL)(m_sExtraData & VEN_EXTRADATA_LTRINFO);
+#else
+                        pParam->bEnabled =
+                            (OMX_BOOL)(m_sExtraData & VENC_EXTRADATA_LTRINFO);
+#endif
                         DEBUG_PRINT_HIGH("LTR Info extradata %d", pParam->bEnabled);
                     } else {
                         DEBUG_PRINT_ERROR("get_parameter: LTR information is "
@@ -5069,6 +5074,7 @@ bool omx_video::omx_c2d_conv::open(unsigned int height,unsigned int width,
         if (c2dcc) {
             src_format = src;
             status = true;
+            mFlags = flags;
         } else
             DEBUG_PRINT_ERROR("mConvertOpen failed");
     }
@@ -5130,6 +5136,11 @@ bool omx_video::omx_c2d_conv::get_buffer_size(int port,unsigned int &buf_size)
         buf_size = bufferreq.size;
     }
     return ret;
+}
+bool omx_video::omx_c2d_conv::isUBWCChanged(unsigned int flags)
+{
+    return (mFlags & private_handle_t::PRIV_FLAGS_UBWC_ALIGNED) !=
+           (flags  & private_handle_t::PRIV_FLAGS_UBWC_ALIGNED);
 }
 
 bool omx_video::is_conv_needed(int hal_fmt, int hal_flags)
@@ -5212,7 +5223,8 @@ OMX_ERRORTYPE  omx_video::empty_this_buffer_opaque(OMX_IN OMX_HANDLETYPE hComp,
       updated correctly*/
 
     if (buffer->nFilledLen > 0 && handle) {
-        if (c2d_opened && handle->format != c2d_conv.get_src_format()) {
+        if (c2d_opened && (handle->format != c2d_conv.get_src_format() ||
+                           c2d_conv.isUBWCChanged(handle->flags))) {
             c2d_conv.close();
             c2d_opened = false;
         }

@@ -2422,7 +2422,7 @@ void venc_dev::venc_config_print()
             multislice.mslice_size);
 
     DEBUG_PRINT_HIGH("ENC_CONFIG: EntropyMode: %d, CabacModel: %ld",
-            entropy.longentropysel, entropy.cabacmodel);
+            entropy.entropysel, entropy.cabacmodel);
 
     DEBUG_PRINT_HIGH("ENC_CONFIG: DB-Mode: %ld, alpha: %ld, Beta: %ld",
             dbkfilter.db_mode, dbkfilter.slicealpha_offset,
@@ -2440,7 +2440,7 @@ void venc_dev::venc_config_print()
     }
 
     if (temporal_layers_config.nPLayers) {
-        DEBUG_PRINT_INFO("ENC_CONFIG: Temporal layers: P-layers: %u, B-layers: %u, Adjusted I-frame-interval: %u",
+        DEBUG_PRINT_INFO("ENC_CONFIG: Temporal layers: P-layers: %u, B-layers: %u, Adjusted I-frame-interval: %lu",
                 temporal_layers_config.nPLayers, temporal_layers_config.nBLayers,
                 intra_period.num_pframes + intra_period.num_bframes + 1);
     }
@@ -2813,7 +2813,7 @@ bool venc_dev::venc_empty_buf(void *buffer, void *pmem_data_buf, unsigned index,
 			fmt.fmt.pix_mp.height = m_sVenc_cfg.input_height;
 			fmt.fmt.pix_mp.width = m_sVenc_cfg.input_width;
 			if (ioctl(m_nDriver_fd, VIDIOC_S_FMT, &fmt)) {
-				DEBUG_PRINT_ERROR("Failed setting color format in in etb %x", m_sVenc_cfg.inputformat);
+				DEBUG_PRINT_ERROR("Failed setting color format in in etb %lx", m_sVenc_cfg.inputformat);
 				return false;
 			}
 		}
@@ -3807,7 +3807,7 @@ bool venc_dev::venc_set_entropy_config(OMX_BOOL enable, OMX_U32 i_cabac_level)
         }
 
         DEBUG_PRINT_LOW("Success IOCTL set control for id=%d, value=%d", control.id, control.value);
-        entropy.longentropysel = control.value;
+        entropy.entropysel = control.value;
 
         if (i_cabac_level == 0) {
             control.value = V4L2_CID_MPEG_VIDC_VIDEO_H264_CABAC_MODEL_0;
@@ -3841,7 +3841,7 @@ bool venc_dev::venc_set_entropy_config(OMX_BOOL enable, OMX_U32 i_cabac_level)
         }
 
         DEBUG_PRINT_LOW("Success IOCTL set control for id=%d, value=%d", control.id, control.value);
-        entropy.longentropysel=control.value;
+        entropy.entropysel=control.value;
     } else {
         DEBUG_PRINT_ERROR("Invalid Entropy mode for Baseline Profile");
         return false;

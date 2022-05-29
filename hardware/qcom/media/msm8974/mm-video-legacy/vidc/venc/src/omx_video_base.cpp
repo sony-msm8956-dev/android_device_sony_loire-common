@@ -1165,10 +1165,10 @@ OMX_ERRORTYPE  omx_video::send_command_proxy(OMX_IN OMX_HANDLETYPE hComp,
   /*******************************/
   else if(m_state == OMX_StateInvalid)
   {
-    /* State Transition from Inavlid to any state */
-    if(eState == (OMX_StateLoaded || OMX_StateWaitForResources
-                  || OMX_StateIdle || OMX_StateExecuting
-                  || OMX_StatePause || OMX_StateInvalid))
+    /* State Transition from Invalid to any state */
+    if(eState == OMX_StateLoaded || eState == OMX_StateWaitForResources ||
+       eState == OMX_StateIdle || eState == OMX_StateExecuting ||
+       eState == OMX_StatePause || eState == OMX_StateInvalid)
     {
       DEBUG_PRINT_ERROR("ERROR: OMXCORE-SM: Invalid -->Loaded\n");
       post_event(OMX_EventError,OMX_ErrorInvalidState,\
@@ -2618,7 +2618,7 @@ OMX_ERRORTYPE omx_video::allocate_input_meta_buffer(
                     OMX_U32              bytes)
 {
   unsigned index = 0;
-  if(!bufferHdr || bytes < sizeof(encoder_media_buffer_type))
+  if(!bufferHdr || bytes != sizeof(encoder_media_buffer_type))
   {
     DEBUG_PRINT_ERROR("wrong params allocate_input_meta_buffer Hdr %p len %d",
                      bufferHdr,bytes);
