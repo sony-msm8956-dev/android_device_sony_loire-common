@@ -121,9 +121,6 @@ on post-fs-data
     # To observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp system /data/misc/dhcp
 
-    # Create directory for hostapd
-    mkdir /data/hostapd 0770 system wifi
-
     # create directory for scd
     mkdir /dev/socket/scd 0755 system system
     mkdir /data/scd 0755 system system
