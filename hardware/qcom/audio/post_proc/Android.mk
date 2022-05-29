@@ -1,4 +1,4 @@
-ifneq ($(filter msm8974 msm8226 msm8084 msm8992 msm8994 msm8996 msm8909 msm8952 msm8998 sdm660 sdm845 sdm710 sm8150,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8974 msm8226 msm8084 msm8952 msm8992 msm8994 msm8996 msm8909 msm8998 sdm845 sdm710 msmnile,$(TARGET_BOARD_PLATFORM)),)
 
 LOCAL_PATH:= $(call my-dir)
 
@@ -39,14 +39,17 @@ LOCAL_C_INCLUDES := \
 LOCAL_HEADER_LIBRARIES += libhardware_headers
 LOCAL_HEADER_LIBRARIES += libsystem_headers
 
-LOCAL_HEADER_LIBRARIES += generated_kernel_headers
+ifeq ($(TARGET_COMPILE_WITH_MSM_KERNEL),true)
+LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+endif
 
 include $(BUILD_SHARED_LIBRARY)
 endif
 
 ################################################################################
 
-ifneq ($(filter msm8992 msm8994 msm8996 msm8909 msm8952 msm8998 sdm660 sdm845 sdm710 sm8150,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8952 msm8992 msm8994 msm8996 msm8909 msm8998 sdm845 sdm710 msmnile,$(TARGET_BOARD_PLATFORM)),)
 
 include $(CLEAR_VARS)
 
@@ -68,13 +71,16 @@ LOCAL_MODULE_OWNER := qcom
 LOCAL_PROPRIETARY_MODULE := true
 
 LOCAL_C_INCLUDES := \
-	$(call project-path-for,qcom-audio)/hal \
+        hardware/qcom/audio/hal \
 	$(call include-path-for, audio-effects)
 
 LOCAL_HEADER_LIBRARIES += libhardware_headers
 LOCAL_HEADER_LIBRARIES += libsystem_headers
 
-LOCAL_HEADER_LIBRARIES += generated_kernel_headers
+ifeq ($(TARGET_COMPILE_WITH_MSM_KERNEL),true)
+LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+endif
 
 include $(BUILD_SHARED_LIBRARY)
 

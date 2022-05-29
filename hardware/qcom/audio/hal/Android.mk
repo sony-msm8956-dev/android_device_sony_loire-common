@@ -10,7 +10,7 @@ AUDIO_PLATFORM := $(TARGET_BOARD_PLATFORM)
 ifneq ($(filter msm8960,$(TARGET_BOARD_PLATFORM)),)
   LOCAL_CFLAGS += -DMAX_TARGET_SPECIFIC_CHANNEL_CNT="2"
 endif
-ifneq ($(filter msm8974 msm8226 msm8084 msm8992 msm8994 msm8996 msm8998 sdm845 sdm710 sm8150,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8974 msm8226 msm8084 msm8992 msm8994 msm8996 msm8998 sdm845 sdm710 msmnile,$(TARGET_BOARD_PLATFORM)),)
   # B-family platform uses msm8974 code base
   AUDIO_PLATFORM = msm8974
 ifneq ($(filter msm8974,$(TARGET_BOARD_PLATFORM)),)
@@ -62,7 +62,7 @@ ifneq ($(filter sdm710,$(TARGET_BOARD_PLATFORM)),)
   LOCAL_CFLAGS += -DINCALL_STEREO_CAPTURE_ENABLED
   MULTIPLE_HW_VARIANTS_ENABLED := true
 endif
-ifneq ($(filter sm8150,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msmnile,$(TARGET_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_SM8150
   LOCAL_CFLAGS += -DMAX_TARGET_SPECIFIC_CHANNEL_CNT="4"
   LOCAL_CFLAGS += -DINCALL_MUSIC_ENABLED
@@ -71,7 +71,7 @@ ifneq ($(filter sm8150,$(TARGET_BOARD_PLATFORM)),)
 endif
 endif
 
-ifneq ($(filter msm8916 msm8909 msm8952 sdm660,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter msm8916 msm8909 msm8952,$(TARGET_BOARD_PLATFORM)),)
   AUDIO_PLATFORM = msm8916
   LOCAL_CFLAGS := -DPLATFORM_MSM8916
 ifneq ($(filter msm8909,$(TARGET_BOARD_PLATFORM)),)
@@ -110,6 +110,7 @@ LOCAL_SHARED_LIBRARIES := \
 	libaudioutils \
 	liblog \
 	libcutils \
+	libprocessgroup \
 	libtinyalsa \
 	libtinycompress \
 	libaudioroute \
@@ -135,6 +136,11 @@ endif
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS)),true)
     LOCAL_CFLAGS += -DMULTI_VOICE_SESSION_ENABLED
     LOCAL_SRC_FILES += voice_extn/voice_extn.c
+endif
+
+ifeq ($(TARGET_COMPILE_WITH_MSM_KERNEL),true)
+    LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+    LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 endif
 
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_HFP)),true)
@@ -197,7 +203,6 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_SND_MONITOR)), true)
     LOCAL_SRC_FILES += audio_extn/sndmonitor.c
 endif
 
-
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_USB_SERVICE_INTERVAL)), true)
     LOCAL_CFLAGS += -DUSB_SERVICE_INTERVAL_ENABLED
 endif
@@ -205,6 +210,11 @@ endif
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_MAXX_AUDIO)), true)
     LOCAL_CFLAGS += -DMAXXAUDIO_QDSP_ENABLED
     LOCAL_SRC_FILES += audio_extn/maxxaudio.c
+endif
+
+ifeq ($(strip $(AUDIO_FEATURE_ENABLED_AUDIO_ZOOM)), true)
+    LOCAL_CFLAGS += -DAUDIOZOOM_QDSP_ENABLED
+    LOCAL_SRC_FILES += audio_extn/audiozoom.c
 endif
 
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_24BITS_CAMCORDER)), true)
@@ -215,14 +225,9 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_BG_CAL)),true)
     LOCAL_CFLAGS += -DBG_CODEC_CAL
 endif
 
-LOCAL_CFLAGS += -Wall -Werror
-LOCAL_CFLAGS += \
-    -Wno-error \
-    -Wno-format \
-    -Wno-unused-value \
-    -Wno-unused-variable \
-    -Wno-unused-function \
-    -Wno-missing-field-initializers
+ifeq ($(strip $(AUDIO_FEATURE_ENABLED_DYNAMIC_ECNS)),true)
+    LOCAL_CFLAGS += -DDYNAMIC_ECNS_ENABLED
+endif
 
 LOCAL_SHARED_LIBRARIES += libbase libhidlbase libhwbinder libutils android.hardware.power@1.2 liblog
 

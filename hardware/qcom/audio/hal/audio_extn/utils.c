@@ -281,6 +281,10 @@ static int derive_playback_app_type_cfg(struct audio_device *adev,
                                                    usecase->out_snd_device,
                                                    out->sample_rate,
                                                    sample_rate);
+    } else if (out->devices & AUDIO_DEVICE_OUT_ALL_A2DP) {
+        audio_extn_a2dp_get_sample_rate(sample_rate);
+        ALOGI("%s: Using sample rate %d for A2DP CoPP", __func__,
+               *sample_rate);
     }
 
     app_type_cfg->mode = flags_to_mode(0 /*playback*/, out->flags);
@@ -537,7 +541,9 @@ int audio_extn_utils_get_snd_card_num()
     struct acdb_platform_data *my_data = calloc(1, sizeof(struct acdb_platform_data));
 
     bool card_verifed[MAX_SND_CARD] = {0};
-    const int retry_limit = property_get_int32("audio.snd_card.open.retries", RETRY_NUMBER);
+    const int retry_limit = property_get_int32(
+        "vendor.audio.snd_card.open.retries",
+        property_get_int32("audio.snd_card.open.retries", RETRY_NUMBER));
 
     for (;;) {
         if (snd_card_num >= MAX_SND_CARD) {
@@ -577,7 +583,7 @@ int audio_extn_utils_get_snd_card_num()
         }
 
         /* Initialize snd card name specific ids and/or backends*/
-        if (snd_card_info_init(platform_info_file, my_data,
+        if (platform_info_init(platform_info_file, my_data, false,
                                &acdb_set_parameters) < 0) {
             ALOGE("Failed to find platform_info_file");
             goto cleanup;
