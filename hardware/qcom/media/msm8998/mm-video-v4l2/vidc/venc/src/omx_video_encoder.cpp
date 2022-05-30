@@ -1427,6 +1427,7 @@ OMX_ERRORTYPE  omx_venc::set_parameter(OMX_IN OMX_HANDLETYPE     hComp,
 #else
                             mask = VENC_EXTRADATA_LTRINFO;
 #endif
+
                         DEBUG_PRINT_HIGH("LTRInfo extradata %s",
                                 ((pParam->bEnabled == OMX_TRUE) ? "enabled" : "disabled"));
                     } else {

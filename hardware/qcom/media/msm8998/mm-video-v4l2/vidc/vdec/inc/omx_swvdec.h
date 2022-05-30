@@ -48,6 +48,7 @@
 #ifndef _TARGET_KERNEL_VERSION_49_
 #include <linux/msm_vidc_dec.h>
 #endif
+
 #include "qc_omx_component.h"
 
 #include "omx_swvdec_utils.h"
