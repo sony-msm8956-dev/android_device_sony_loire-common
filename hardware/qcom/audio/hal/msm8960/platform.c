@@ -38,7 +38,7 @@
  * This is the sysfs path for the HDMI audio data block
  */
 #define AUDIO_DATA_BLOCK_PATH "/sys/class/graphics/fb1/audio_data_block"
-#define MIXER_XML_PATH "mixer_paths.xml"
+#define MIXER_XML_PATH "/system/etc/mixer_paths.xml"
 
 /*
  * This file will have a maximum of 38 bytes:
@@ -134,7 +134,6 @@ static const char * const device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_OUT_VOICE_TTY_FULL_HEADPHONES] = "voice-tty-full-headphones",
     [SND_DEVICE_OUT_VOICE_TTY_VCO_HEADPHONES] = "voice-tty-vco-headphones",
     [SND_DEVICE_OUT_VOICE_TTY_HCO_HANDSET] = "voice-tty-hco-handset",
-    [SND_DEVICE_OUT_VOICE_MUSIC_TX] = "voice-music-tx",
     [SND_DEVICE_OUT_USB_HEADSET] = "usb-headset",
     [SND_DEVICE_OUT_USB_HEADPHONES] = "usb-headphones",
     [SND_DEVICE_OUT_VOICE_USB_HEADSET] = "usb-headset",
@@ -191,7 +190,6 @@ static const int acdb_device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_OUT_VOICE_TTY_FULL_HEADPHONES] = 17,
     [SND_DEVICE_OUT_VOICE_TTY_VCO_HEADPHONES] = 17,
     [SND_DEVICE_OUT_VOICE_TTY_HCO_HANDSET] = 37,
-    [SND_DEVICE_OUT_VOICE_MUSIC_TX] = 3,
     [SND_DEVICE_OUT_USB_HEADSET] = 45,
     [SND_DEVICE_OUT_USB_HEADPHONES] = 45,
     [SND_DEVICE_OUT_VOICE_USB_HEADSET] = 45,
@@ -227,6 +225,24 @@ static const int acdb_device_table[SND_DEVICE_MAX] = {
 
 #define DEEP_BUFFER_PLATFORM_DELAY (29*1000LL)
 #define LOW_LATENCY_PLATFORM_DELAY (13*1000LL)
+
+static int audio_usecase_delay_ms[AUDIO_USECASE_MAX] = {0};
+
+static int audio_source_delay_ms[AUDIO_SOURCE_CNT] = {0};
+
+static struct name_to_index audio_source_index[AUDIO_SOURCE_CNT] = {
+    {TO_NAME_INDEX(AUDIO_SOURCE_DEFAULT)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_MIC)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_VOICE_UPLINK)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_VOICE_DOWNLINK)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_VOICE_CALL)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_CAMCORDER)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_VOICE_RECOGNITION)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_VOICE_COMMUNICATION)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_REMOTE_SUBMIX)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_UNPROCESSED)},
+    {TO_NAME_INDEX(AUDIO_SOURCE_VOICE_PERFORMANCE)},
+};
 
 static pthread_once_t check_op_once_ctl = PTHREAD_ONCE_INIT;
 static bool is_tmus = false;
@@ -270,35 +286,12 @@ static int set_echo_reference(struct mixer *mixer, const char* ec_ref)
     return 0;
 }
 
-// Treblized config files will be located in /odm/etc or /vendor/etc.
-static const char *kConfigLocationList[] =
-        {"/odm/etc", "/vendor/etc", "/system/etc"};
-static const int kConfigLocationListSize =
-        (sizeof(kConfigLocationList) / sizeof(kConfigLocationList[0]));
-
-bool resolveConfigFile(char file_name[MIXER_PATH_MAX_LENGTH]) {
-    char full_config_path[MIXER_PATH_MAX_LENGTH];
-    for (int i = 0; i < kConfigLocationListSize; i++) {
-        snprintf(full_config_path,
-                 MIXER_PATH_MAX_LENGTH,
-                 "%s/%s",
-                 kConfigLocationList[i],
-                 file_name);
-        if (F_OK == access(full_config_path, 0)) {
-            strcpy(file_name, full_config_path);
-            return true;
-        }
-    }
-    return false;
-}
-
 void *platform_init(struct audio_device *adev)
 {
     char platform[PROPERTY_VALUE_MAX];
     char baseband[PROPERTY_VALUE_MAX];
     char value[PROPERTY_VALUE_MAX];
     struct platform_data *my_data;
-    char mixer_xml_file[MIXER_PATH_MAX_LENGTH] = MIXER_XML_PATH;
 
     adev->mixer = mixer_open(MIXER_CARD);
 
@@ -307,8 +300,7 @@ void *platform_init(struct audio_device *adev)
         return NULL;
     }
 
-    resolveConfigFile(mixer_xml_file);
-    adev->audio_route = audio_route_init(MIXER_CARD, mixer_xml_file);
+    adev->audio_route = audio_route_init(MIXER_CARD, MIXER_XML_PATH);
     if (!adev->audio_route) {
         ALOGE("%s: Failed to init audio route controls, aborting.", __func__);
         return NULL;
@@ -608,11 +600,6 @@ int platform_stop_voice_call(void *platform, uint32_t vsid __unused)
     }
 
     return ret;
-}
-
-int platform_set_mic_break_det(void *platform __unused, bool enable __unused)
-{
-    return 0;
 }
 
 void platform_set_speaker_gain_in_combo(struct audio_device *adev __unused,
@@ -1057,17 +1044,85 @@ int platform_set_parameters(void *platform __unused,
     return -ENOSYS;
 }
 
-/* Delay in Us */
-int64_t platform_render_latency(audio_usecase_t usecase)
+void platform_set_audio_source_delay(audio_source_t audio_source, int delay_ms)
 {
-    switch (usecase) {
-        case USECASE_AUDIO_PLAYBACK_DEEP_BUFFER:
-            return DEEP_BUFFER_PLATFORM_DELAY;
-        case USECASE_AUDIO_PLAYBACK_LOW_LATENCY:
-            return LOW_LATENCY_PLATFORM_DELAY;
-        default:
-            return 0;
+    if ((audio_source < AUDIO_SOURCE_DEFAULT) ||
+           (audio_source > AUDIO_SOURCE_MAX)) {
+        ALOGE("%s: Invalid audio_source = %d", __func__, audio_source);
+        return;
     }
+
+    audio_source_delay_ms[audio_source] = delay_ms;
+}
+
+/* Delay in Us */
+int64_t platform_get_audio_source_delay(audio_source_t audio_source)
+{
+    if ((audio_source < AUDIO_SOURCE_DEFAULT) ||
+            (audio_source > AUDIO_SOURCE_MAX)) {
+        ALOGE("%s: Invalid audio_source = %d", __func__, audio_source);
+        return 0;
+    }
+
+    return 1000LL * audio_source_delay_ms[audio_source];
+}
+
+void platform_set_audio_usecase_delay(audio_usecase_t usecase, int delay_ms)
+{
+    if ((usecase <= USECASE_INVALID) || (usecase >= AUDIO_USECASE_MAX)) {
+        ALOGE("%s: invalid usecase case idx %d", __func__, usecase);
+        return;
+    }
+
+    audio_usecase_delay_ms[usecase] = delay_ms;
+}
+
+/* Delay in Us */
+int64_t platform_get_audio_usecase_delay(audio_usecase_t usecase)
+{
+    if ((usecase <= USECASE_INVALID) || (usecase >= AUDIO_USECASE_MAX)) {
+        ALOGE("%s: invalid usecase case idx %d", __func__, usecase);
+        return 0;
+    }
+
+    return 1000LL *  audio_usecase_delay_ms[usecase] ;
+}
+
+/* Delay in Us */
+int64_t platform_render_latency(struct stream_out *out)
+{
+    int64_t delay = 0LL;
+
+    if (!out)
+        return delay;
+
+    switch (out->usecase) {
+        case USECASE_AUDIO_PLAYBACK_DEEP_BUFFER:
+            delay = DEEP_BUFFER_PLATFORM_DELAY;
+            break;
+        case USECASE_AUDIO_PLAYBACK_LOW_LATENCY:
+            delay = LOW_LATENCY_PLATFORM_DELAY;
+            break;
+        default:
+            break;
+    }
+
+/* out->usecase could be used to add delay time if it's necessary */
+    delay += platform_get_audio_usecase_delay(out->usecase);
+    return delay;
+}
+
+int64_t platform_capture_latency(struct stream_in *in)
+{
+    int64_t delay = 0LL;
+
+    if (!in)
+        return delay;
+
+    delay = platform_get_audio_source_delay(in->source);
+
+/* in->device could be used to add delay time if it's necessary */
+    return delay;
 }
 
 int platform_switch_voice_call_enable_device_config(void *platform __unused,
@@ -1092,6 +1147,11 @@ int platform_get_sample_rate(void *platform __unused, uint32_t *rate __unused)
 int platform_get_usecase_index(const char * usecase __unused)
 {
     return -ENOSYS;
+}
+
+int platform_get_audio_source_index(const char *audio_source_name)
+{
+    return find_index(audio_source_index, AUDIO_SOURCE_CNT, audio_source_name);
 }
 
 int platform_set_usecase_pcm_id(audio_usecase_t usecase __unused, int32_t type __unused,
@@ -1401,11 +1461,6 @@ int platform_get_microphones(void *platform __unused,
                              struct audio_microphone_characteristic_t *mic_array __unused,
                              size_t *mic_count __unused) {
     return -ENOSYS;
-}
-
-bool platform_set_microphone_map(void *platform __unused, snd_device_t in_snd_device __unused,
-                                 const struct mic_info *info __unused) {
-    return false;
 }
 
 int platform_get_active_microphones(void *platform __unused, unsigned int channels __unused,

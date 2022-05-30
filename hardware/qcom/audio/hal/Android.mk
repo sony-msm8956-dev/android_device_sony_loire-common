@@ -229,13 +229,16 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_DYNAMIC_ECNS)),true)
     LOCAL_CFLAGS += -DDYNAMIC_ECNS_ENABLED
 endif
 
-LOCAL_SHARED_LIBRARIES += libbase libhidlbase libhwbinder libutils android.hardware.power@1.2 liblog
+LOCAL_SHARED_LIBRARIES += libbase libhidlbase libutils android.hardware.power@1.2 liblog
+
+LOCAL_SHARED_LIBRARIES += android.hardware.power-ndk_platform
+LOCAL_SHARED_LIBRARIES += libbinder_ndk
 
 LOCAL_SRC_FILES += audio_perf.cpp
 
 LOCAL_HEADER_LIBRARIES += libhardware_headers
 
-LOCAL_HEADER_LIBRARIES += generated_kernel_headers
+LOCAL_HEADER_LIBRARIES += audio_headers generated_kernel_headers
 
 LOCAL_MODULE := audio.primary.$(TARGET_BOARD_PLATFORM)
 
@@ -250,5 +253,10 @@ LOCAL_PROPRIETARY_MODULE := true
 LOCAL_CFLAGS += -Werror
 
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := audio_headers
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/audio_extn
+include $(BUILD_HEADER_LIBRARY)
 
 endif
