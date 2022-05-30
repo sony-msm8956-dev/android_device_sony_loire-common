@@ -150,6 +150,9 @@ TARGET_PER_MGR_ENABLED := true
 # Platform witout a vendor partition
 TARGET_COPY_OUT_VENDOR := system/vendor
 
+# Power
+TARGET_HAS_NO_WLAN_STATS := true
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 
