@@ -96,7 +96,8 @@ struct nlmsg {
 	char data[NLMSG_DATA_SIZE];
 };
 
-#define RMNETCTL_NUM_TX_QUEUES 10
+/* 0 reserved, 1-15 for data, 16-30 for acks */
+#define RMNETCTL_NUM_TX_QUEUES 31
 
 /* This needs to be hardcoded here because some legacy linux systems
  * do not have this definition
