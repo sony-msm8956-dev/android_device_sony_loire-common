@@ -1,33 +1,33 @@
-# RQBalance based PowerHAL #
+# RQBalance based PowerHAL (binder) #
 
-This is an Open Source Android HAL, made specifically to manage power states 
+This is an Open Source Android HAL, made specifically to manage power states
 on devices that are using the RQBalance hotplugging governor kernel driver.
 
 ## Overview ##
 
-RQBalance-PowerHAL includes the possibility to get advanced interaction with 
-the RQBalance driver by using an "HAL Extension" which code gets used by the 
-main PowerHAL PowerServer that is needed to communicate, through UNIX sockets, 
-with external libraries (currently, librqbalance) running in either 64-bits or 
+RQBalance-PowerHAL includes the possibility to get advanced interaction with
+the RQBalance driver by using an "HAL Extension" which code gets used by the
+main PowerHAL PowerServer that is needed to communicate, through UNIX sockets,
+with external libraries (currently, librqbalance) running in either 64-bits or
 32-bits mode.
 
-It supports easily extensible and configurable (through Android Properties) 
-Power Modes, Special PowerHints (non-standard, forced parameters, 
-non-compliant to the user configuration, only for really critical situations) 
+It supports easily extensible and configurable (through Android Properties)
+Power Modes, Special PowerHints (non-standard, forced parameters,
+non-compliant to the user configuration, only for really critical situations)
 and Timed Optimizations (using POSIX timers).
 
 
 ## Notes ##
 
-The external librqbalance library is made for Qualcomm based devices, 
-implementing Qualcomm specific functions to send advanced performance hints, 
-but the concept of the modularity of RQBalance-PowerHAL is done for easy 
+The external librqbalance library is made for Qualcomm based devices,
+implementing Qualcomm specific functions to send advanced performance hints,
+but the concept of the modularity of RQBalance-PowerHAL is done for easy
 porting across various SoC vendors' specific way of sending special hints.
 
 
 ## License ##
 
-Copyright (C) 2017 AngeloGioacchino Del Regno <kholk11@gmail.com>
+Copyright (C) 2017-2019 AngeloGioacchino Del Regno <kholk11@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
