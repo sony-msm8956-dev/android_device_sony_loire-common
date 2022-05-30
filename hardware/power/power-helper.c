@@ -44,7 +44,7 @@
 #include "power-helper.h"
 
 #ifndef RPM_SYSTEM_STAT
-#define RPM_SYSTEM_STAT "/d/system_stats"
+#define RPM_SYSTEM_STAT "/d/rpm_stats"
 #endif
 
 #ifndef RPMH_MASTER_STATS_FILE
