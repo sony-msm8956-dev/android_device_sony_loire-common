@@ -65,6 +65,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.use_buffer_age=false \
     debug.sf.latch_unsignaled=1 \
     ro.opengles.version=196610 \
     ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0 \
