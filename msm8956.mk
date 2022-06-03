@@ -133,6 +133,10 @@ PRODUCT_PACKAGES += \
     libhidltransport.vendor \
     libhwbinder.vendor
 
+# Init
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/init/android.hardware.wifi@1.0-service.legacy.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.wifi@1.0-service.legacy.rc
+
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/keylayout/clearpad.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/clearpad.idc \
