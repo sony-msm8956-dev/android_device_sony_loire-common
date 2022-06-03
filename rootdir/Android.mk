@@ -84,6 +84,14 @@ LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)/etc/init
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE       := android.hardware.gnss@2.0-service-qti.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/android.hardware.gnss@2.0-service-qti.rc
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)/etc/init
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE       := cdsprpcd.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := etc/cdsprpcd.rc
@@ -95,6 +103,22 @@ include $(CLEAR_VARS)
 LOCAL_MODULE       := irsc_util.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := etc/irsc_util.rc
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)/etc/init
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := loc_launcher.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/loc_launcher.rc
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)/etc/init
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := mlid.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/mlid.rc
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)/etc/init
 include $(BUILD_PREBUILT)

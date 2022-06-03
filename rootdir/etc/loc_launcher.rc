@@ -1,0 +1,4 @@
+service vendor.loc_launcher /vendor/bin/loc_launcher
+    class late_start
+    user gps
+    group gps

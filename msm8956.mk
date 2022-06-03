@@ -115,20 +115,13 @@ PRODUCT_PACKAGES += \
     libion
 
 # GPS
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl-qti \
-    android.hardware.gnss@1.0-service-qti \
-    libgnss \
-    libgnsspps \
-    libgps.utils \
-    liblocation_api \
-    libloc_core \
-    libloc_pla \
-    libvehiclenetwork-native
-
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/gps/gps_debug.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/gps_debug.conf \
-    $(COMMON_PATH)/gps/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf
+    $(COMMON_PATH)/gps/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
+    $(COMMON_PATH)/gps/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf \
+    $(COMMON_PATH)/gps/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
+    $(COMMON_PATH)/gps/lowi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/lowi.conf \
+    $(COMMON_PATH)/gps/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf \
+    $(COMMON_PATH)/gps/xtwifi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/xtwifi.conf
 
 # Health
 PRODUCT_PACKAGES += \
@@ -164,6 +157,7 @@ PRODUCT_PACKAGES += \
 
 # MISC
 PRODUCT_PACKAGES += \
+    libqti_vndfwk_detect \
     libjson \
     libxml2
 
@@ -289,8 +283,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     adsprpcd.rc \
+    android.hardware.gnss@2.0-service-qti.rc \
     cdsprpcd.rc \
     irsc_util.rc \
+    loc_launcher.rc \
+    mlid.rc \
     mlog_qmi.rc \
     msm_irq.rc \
     netmgrd.rc \
