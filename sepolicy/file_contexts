@@ -52,3 +52,5 @@
 /dev/block/bootdevice/by-name/rdimage                          u:object_r:ramdump_block_device:s0
 
 /dev/block/zram0                                               u:object_r:swap_block_device:s0
+
+/(system/vendor|vendor)/bin/hw/vendor\.lineage\.touch@1\.0-service\.loire         u:object_r:hal_lineage_touch_default_exec:s0

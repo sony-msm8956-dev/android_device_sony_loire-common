@@ -342,6 +342,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     thermanager
 
+# Touch HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch@1.0-service.loire
+
 # Trust
 PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service
