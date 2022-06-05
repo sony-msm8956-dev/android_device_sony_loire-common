@@ -283,6 +283,7 @@ vendor/lib64/vendor.qti.gnss@2.0.so|9c84aefbc31f5d001148f91041483b61d9c4adf9
 vendor/lib64/vendor.qti.gnss@2.1.so|55ec661c8e9f52e373098d65b0ad2100473ad369
 vendor/lib64/vendor.qti.gnss@3.0.so|00bf10ebe87ad3268443c844c2a2dea54bf743dd
 vendor/lib64/vendor.qti.gnss@3.0-service.so|51e7a189e56e4329ea28f49fae52dcc27fac23d4
+vendor/lib64/vendor.qti.hardware.cacert@1.0.so|e3642596bd6d801c388698b02728214b8ec807aa
 vendor/lib/hw/android.hardware.gnss@2.0-impl-qti.so|b46c246164433df9255745717e47d7050406e678
 vendor/lib/hw/vendor.qti.gnss@3.0-impl.so|caffcbfe7d918848cbd6da3eafa5030735cf6487
 vendor/lib/libaoa.so|ab2cd461f41f429f68fdf1b802ed343b48623535
@@ -315,6 +316,7 @@ vendor/lib/vendor.qti.gnss@2.0.so|ff2fa7a1af94ea0eb2cf470f7bcbc1d9b9faade8
 vendor/lib/vendor.qti.gnss@2.1.so|cadc033aca6a849efc2de2c068acf24ddd1f77da
 vendor/lib/vendor.qti.gnss@3.0.so|f032e98103fc4b340d07347268af32edf84509ec
 vendor/lib/vendor.qti.gnss@3.0-service.so|8841a508500a3086d5e83436a0582322a8dd7dda
+vendor/lib/vendor.qti.hardware.cacert@1.0.so|3200b2c1d261acf551252031fcce97defb688d9b
 
 # Graphics
 vendor/lib/egl/eglSubDriverAndroid.so
