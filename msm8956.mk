@@ -393,4 +393,4 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
 # Vendor
-$(call inherit-product-if-exists, vendor/sony/msm8956-common/msm8956-common-vendor.mk)
+$(call inherit-product, vendor/sony/msm8956-common/msm8956-common-vendor.mk)
