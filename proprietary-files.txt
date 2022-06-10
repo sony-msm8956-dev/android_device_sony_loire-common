@@ -344,7 +344,6 @@ vendor/lib/libOpenCL.so
 vendor/lib/libqseed3.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/librs_adreno.so
-vendor/lib/libRSDriver_adreno.so
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -370,7 +369,6 @@ vendor/lib64/libOpenCL.so
 vendor/lib64/libqseed3.so
 vendor/lib64/librs_adreno_sha1.so
 vendor/lib64/librs_adreno.so
-vendor/lib64/libRSDriver_adreno.so
 
 # Graphics firmware
 vendor/firmware/a530_gpmu.fw2
