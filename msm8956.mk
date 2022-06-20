@@ -205,7 +205,8 @@ PRODUCT_PACKAGES += \
     libmm-omxcore \
     libOmxVdec \
     libOmxVdecHevc \
-    libOmxVenc
+    libOmxVenc \
+    libminijail
 
 # OSS Time service
 PRODUCT_PACKAGES += \
