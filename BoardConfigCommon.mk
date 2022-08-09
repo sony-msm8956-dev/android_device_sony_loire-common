@@ -132,9 +132,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 TARGET_FS_CONFIG_GEN := $(PLATFORM_PATH)/config.fs
 
-# Extended Filesystem Support
-TARGET_EXFAT_DRIVER := exfat
-
 # Recovery
 TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
