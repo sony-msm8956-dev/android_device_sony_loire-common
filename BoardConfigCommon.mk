@@ -171,14 +171,6 @@ TARGET_POWERHAL_MODE_EXT := $(PLATFORM_PATH)/power/power-mode.cpp
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/clearpad/wakeup_gesture"
 TARGET_USES_INTERACTION_BOOST := true
 
-# Dex
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    WITH_DEXPREOPT := true
-    WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := false
-  endif
-endif
-
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware idd persist rca
 BOARD_ROOT_EXTRA_SYMLINKS := /data/tombstones:/tombstones
