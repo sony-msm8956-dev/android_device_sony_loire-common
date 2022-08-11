@@ -1,1 +1,3 @@
 unix_socket_connect(sensors, tad, tad)
+
+r_dir_file(sensors, sysfs_msm_subsys)
