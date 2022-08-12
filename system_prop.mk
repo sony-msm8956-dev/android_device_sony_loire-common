@@ -45,6 +45,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.kpi.debug=0 \
     persist.camera.global.debug=0
 
+# Dalvik
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapstartsize=16m \
+    dalvik.vm.heapgrowthlimit=192m \
+    dalvik.vm.heapsize=512m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=4m \
+    dalvik.vm.heapmaxfree=8m
+
 # DRM service
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
