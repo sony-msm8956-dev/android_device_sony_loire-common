@@ -76,6 +76,9 @@ on init
     chmod 0660 /sys/devices/system/cpu/cpuquiet/rqbalance/cluster_freq_vote_max
     chmod 0660 /sys/devices/system/cpu/cpuquiet/rqbalance/cluster_freq_vote_min
 
+    # Change permissions for /dev/diag
+    chmod 0666 /dev/diag
+
 on fs
     # Start HW service manager early
     start hwservicemanager
