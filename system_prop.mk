@@ -160,6 +160,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.qualcomm.sns.hal=0 \
     debug.qualcomm.sns.libsensor1=0
 
+# SurfaceFlinger
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+
 # USB
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.usb.controller=msm_hsusb \
