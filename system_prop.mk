@@ -66,6 +66,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.use_buffer_age=false \
+    debug.sf.early_phase_offset_ns=1500000 \
+    debug.sf.early_app_phase_offset_ns=1500000 \
+    debug.sf.early_gl_phase_offset_ns=3000000 \
+    debug.sf.early_gl_app_phase_offset_ns=15000000 \
     debug.sf.latch_unsignaled=1 \
     ro.opengles.version=196610 \
     ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0 \
