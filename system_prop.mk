@@ -179,5 +179,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # WiFi
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0 \
-    ro.vendor.wifi.addr_path=/sys/devices/soc/soc:bcmdhd_wlan/macaddr
+    wifi.interface=wlan0
