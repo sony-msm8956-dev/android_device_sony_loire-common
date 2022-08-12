@@ -45,6 +45,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.kpi.debug=0 \
     persist.camera.global.debug=0
 
+# Chipset
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.soc.manufacturer=Qualcomm \
+    ro.soc.model=MSM8952
+
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=16m \
