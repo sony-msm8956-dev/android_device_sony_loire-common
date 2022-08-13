@@ -136,7 +136,6 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist
 BOARD_ROOT_EXTRA_SYMLINKS := /system/vendor/lib/dsp:/dsp /system/vendor/firmware:/odm/firmware /system/vendor/lib:/odm/lib /system/vendor/radio:/odm/radio
-TARGET_USES_MKE2FS := true
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # Peripheral manager
