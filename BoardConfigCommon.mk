@@ -77,16 +77,6 @@ CAMERA_DAEMON_NOT_PRESENT := true
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
-# Dex
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-    endif
-  endif
-endif
-WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY ?= true
-
 # Display
 USE_DEVICE_SPECIFIC_DISPLAY := true
 DEVICE_SPECIFIC_DISPLAY_PATH := $(COMMON_PATH)/hardware/qcom/display/msm8998
