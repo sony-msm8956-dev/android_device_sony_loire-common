@@ -135,6 +135,7 @@ TARGET_PER_MGR_ENABLED := true
 TARGET_COPY_OUT_VENDOR := system/vendor
 
 # Power
+TARGET_POWERHAL_BOOST_EXT := $(COMMON_PATH)/hardware/power/power-boost.cpp
 TARGET_POWERHAL_MODE_EXT := $(COMMON_PATH)/hardware/power/power-mode.cpp
 TARGET_HAS_NO_WLAN_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
