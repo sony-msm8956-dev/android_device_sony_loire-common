@@ -136,6 +136,7 @@ TARGET_COPY_OUT_VENDOR := system/vendor
 
 # Power
 TARGET_HAS_NO_WLAN_STATS := true
+TARGET_USES_INTERACTION_BOOST := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom

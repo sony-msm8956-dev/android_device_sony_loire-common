@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2013, 2018-2019 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- *     * Redistributions of source code must retain the above copyright
+ * *    * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above
  *       copyright notice, this list of conditions and the following
@@ -26,31 +26,32 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef __POWER_COMMON_H__
+#define __POWER_COMMON_H__
 
-#ifndef ANDROID_HARDWARE_POWER_POWER_H
-#define ANDROID_HARDWARE_POWER_POWER_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#include <aidl/android/hardware/power/BnPower.h>
-#include "power-common.h"
+#define INTERACTIVE_GOVERNOR "interactive"
+#define SCHEDUTIL_GOVERNOR "schedutil"
 
-namespace aidl {
-namespace android {
-namespace hardware {
-namespace power {
-namespace impl {
+#define HINT_HANDLED (0)
+#define HINT_NONE (-1)
 
-class Power : public BnPower {
-  public:
-    Power() : BnPower() { power_init(); }
-    ndk::ScopedAStatus setMode(Mode type, bool enabled) override;
-    ndk::ScopedAStatus isModeSupported(Mode type, bool* _aidl_return) override;
-    ndk::ScopedAStatus setBoost(Boost type, int32_t durationMs) override;
-    ndk::ScopedAStatus isBoostSupported(Boost type, bool* _aidl_return) override;
-};
+#include <hardware/power.h>
 
-}  // namespace impl
-}  // namespace power
-}  // namespace hardware
-}  // namespace android
-}  // namespace aidl
-#endif  // ANDROID_HARDWARE_POWER_POWER_H
+enum CPU_GOV_CHECK { CPU0 = 0, CPU1 = 1, CPU2 = 2, CPU3 = 3 };
+
+void power_init(void);
+void power_hint(power_hint_t hint, void* data);
+void set_interactive(int on);
+
+#define ARRAY_SIZE(x) (sizeof((x)) / sizeof((x)[0]))
+#define CHECK_HANDLE(x) ((x) > 0)
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif  //__POWER_COMMON_H___

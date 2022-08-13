@@ -255,8 +255,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.sony \
-    librqbalance
+    android.hardware.power-service-qti
 
 # Public Libraries
 PRODUCT_COPY_FILES += \
@@ -281,10 +280,6 @@ PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     librmnetctl \
     Stk
-
-# RQBalance-PowerHAL configuration
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/rqbalance_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/rqbalance_config.xml
 
 # Rootdir
 PRODUCT_PACKAGES += \

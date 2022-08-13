@@ -82,10 +82,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0 \
     persist.hwc2.skip_client_color_transform=false
 
-# IRQBalance
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=/vendor/lib/librqbalance.so
-
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.gralloc.gfx_ubwc_disable=1 \

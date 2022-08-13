@@ -1,5 +1,4 @@
-/*
- * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -25,32 +24,31 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
 
-#ifndef ANDROID_HARDWARE_POWER_POWER_H
-#define ANDROID_HARDWARE_POWER_POWER_H
+#define ATTRIBUTE_VALUE_DELIM ('=')
+#define ATTRIBUTE_STRING_DELIM (";")
 
-#include <aidl/android/hardware/power/BnPower.h>
-#include "power-common.h"
+#define METADATA_PARSING_ERR (-1)
+#define METADATA_PARSING_CONTINUE (0)
+#define METADATA_PARSING_DONE (1)
 
-namespace aidl {
-namespace android {
-namespace hardware {
-namespace power {
-namespace impl {
+#define MIN(x, y) (((x) > (y)) ? (y) : (x))
 
-class Power : public BnPower {
-  public:
-    Power() : BnPower() { power_init(); }
-    ndk::ScopedAStatus setMode(Mode type, bool enabled) override;
-    ndk::ScopedAStatus isModeSupported(Mode type, bool* _aidl_return) override;
-    ndk::ScopedAStatus setBoost(Boost type, int32_t durationMs) override;
-    ndk::ScopedAStatus isBoostSupported(Boost type, bool* _aidl_return) override;
+struct video_encode_metadata_t {
+    int hint_id;
+    int state;
 };
 
-}  // namespace impl
-}  // namespace power
-}  // namespace hardware
-}  // namespace android
-}  // namespace aidl
-#endif  // ANDROID_HARDWARE_POWER_POWER_H
+struct video_decode_metadata_t {
+    int hint_id;
+    int state;
+};
+
+int parse_metadata(char* metadata, char** metadata_saveptr, char* attribute,
+                   unsigned int attribute_size, char* value, unsigned int value_size);
+int parse_video_encode_metadata(char* metadata,
+                                struct video_encode_metadata_t* video_encode_metadata);
+int parse_video_decode_metadata(char* metadata,
+                                struct video_decode_metadata_t* video_decode_metadata);

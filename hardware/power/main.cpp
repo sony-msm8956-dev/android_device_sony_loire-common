@@ -1,65 +1,53 @@
 /*
- * Copyright (C) 2016-2019 AngeloGioacchino Del Regno <kholk11@gmail.com>
+ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ *       copyright notice, this list of conditions and the following
+ *       disclaimer in the documentation and/or other materials provided
+ *       with the distribution.
+ *     * Neither the name of The Linux Foundation nor the names of its
+ *       contributors may be used to endorse or promote products derived
+ *       from this software without specific prior written permission.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define LOG_TAG "RQBalance-PowerHAL"
-
-#include <android/log.h>
-#include <hidl/HidlTransportSupport.h>
-
-#include "common.h"
-#include "RQBalanceHALExt.h"
-#include "Hints.h"
 #include "Power.h"
 
-#define UNUSED __attribute__((unused))
+#include <android-base/logging.h>
+#include <android/binder_manager.h>
+#include <android/binder_process.h>
 
-using android::sp;
-using android::status_t;
-using android::OK;
+using aidl::android::hardware::power::impl::Power;
 
-// libhwbinder:
-using android::hardware::configureRpcThreadpool;
-using android::hardware::joinRpcThreadpool;
-
-// Generated HIDL files
-using android::hardware::power::V1_3::IPower;
-using android::hardware::power::V1_3::implementation::Power;
-
-int main(int argc UNUSED, char** argv UNUSED)
-{
-    ALOGI("Initializing RQBalance-PowerHAL...");
-
-    android::sp<IPower> service = new Power();
-    if (service == nullptr) {
-        ALOGE("Can not create an instance of Power HAL Iface, exiting.");
-        return 1;
-    }
-    configureRpcThreadpool(1, true /*callerWillJoin*/);
-
-    status_t status = service->registerAsService();
-    if (status != OK) {
-        ALOGE("Could not register service for Power HAL Iface (%d), exiting.", status);
-        return 1;
+int main() {
+    ABinderProcess_setThreadPoolMaxThreadCount(0);
+    std::shared_ptr<Power> vib = ndk::SharedRefBase::make<Power>();
+    const std::string instance = std::string() + Power::descriptor + "/default";
+    LOG(INFO) << "Instance " << instance;
+    if (vib) {
+        binder_status_t status = AServiceManager_addService(vib->asBinder().get(), instance.c_str());
+        LOG(INFO) << "Status " << status;
+        if (status != STATUS_OK) {
+            LOG(ERROR) << "Could not register" << instance;
+        }
     }
 
-    ALOGI("HIDL Service started.");
-
-    joinRpcThreadpool();
-
-    // In normal operation, we don't expect the thread pool to exit
-    ALOGE("Power Service is shutting down");
-    return 1;
+    ABinderProcess_joinThreadPool();
+    return 1;  // should not reach
 }

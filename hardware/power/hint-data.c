@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2012, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- *     * Redistributions of source code must retain the above copyright
+ * *    * Redistributions of source code must retain the above copyright
  *       notice, this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above
  *       copyright notice, this list of conditions and the following
@@ -27,30 +27,20 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef ANDROID_HARDWARE_POWER_POWER_H
-#define ANDROID_HARDWARE_POWER_POWER_H
+#include <utils/Log.h>
 
-#include <aidl/android/hardware/power/BnPower.h>
-#include "power-common.h"
+#include "hint-data.h"
 
-namespace aidl {
-namespace android {
-namespace hardware {
-namespace power {
-namespace impl {
+int hint_compare(struct hint_data* first_hint, struct hint_data* other_hint) {
+    if (first_hint == other_hint) {
+        return 0;
+    } else if ((first_hint && other_hint) && (first_hint->hint_id == other_hint->hint_id)) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
 
-class Power : public BnPower {
-  public:
-    Power() : BnPower() { power_init(); }
-    ndk::ScopedAStatus setMode(Mode type, bool enabled) override;
-    ndk::ScopedAStatus isModeSupported(Mode type, bool* _aidl_return) override;
-    ndk::ScopedAStatus setBoost(Boost type, int32_t durationMs) override;
-    ndk::ScopedAStatus isBoostSupported(Boost type, bool* _aidl_return) override;
-};
-
-}  // namespace impl
-}  // namespace power
-}  // namespace hardware
-}  // namespace android
-}  // namespace aidl
-#endif  // ANDROID_HARDWARE_POWER_POWER_H
+void hint_dump(struct hint_data* hint) {
+    ALOGV("hint_id: %lu", hint->hint_id);
+}
