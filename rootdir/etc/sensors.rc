@@ -17,5 +17,5 @@ service vendor.sensors /vendor/bin/sensors.qcom
     group system
     disabled
 
-on property:sys.qcom.devup=1
+on property:vendor.qcom.devup=1
     enable vendor.sensors
