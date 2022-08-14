@@ -148,7 +148,7 @@ TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 BOARD_SECCOMP_POLICY := $(COMMON_PATH)/seccomp
 
 # SEPolicy
-BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
 # Setting vendor SPL
 VENDOR_SECURITY_PATCH := "2019-03-01"
