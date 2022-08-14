@@ -1,6 +1,3 @@
-genfscon sysfs /bus/esoc/devices                                        u:object_r:sysfs_msm_subsys:s0
-
-genfscon sysfs /devices/soc/soc:qcom,mdss_rotator                       u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /devices/soc/7af6000.i2c                                 u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /devices/soc/1c00000.qcom,kgsl-3d0                       u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /devices/soc/c200000.qcom,lpass                          u:object_r:sysfs_msm_subsys:s0
