@@ -53,7 +53,4 @@ genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-02/200f000.q
 genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-02/200f000.qcom,spmi:qcom,pmi8950@2:qcom,fg/power_supply/bms/capacity                     u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-02/200f000.qcom,spmi:qcom,pmi8950@2:qcom,qpnp-smbcharger/power_supply/battery/capacity    u:object_r:sysfs_batteryinfo:s0
 
-genfscon sysfs /devices/virtual/input/input4/glove                      u:object_r:sysfs_touch:s0
-genfscon sysfs /devices/virtual/input/input6/glove                      u:object_r:sysfs_touch:s0
-
 genfscon proc /sys/vm/dirty_writeback_centisecs                       u:object_r:proc_dirty:s0 
