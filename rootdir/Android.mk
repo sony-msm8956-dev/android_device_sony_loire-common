@@ -226,3 +226,11 @@ LOCAL_SRC_FILES    := etc/ta_qmi.rc
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)/etc/init
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := vendor.qti.hardware.perf@2.0-service.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/vendor.qti.hardware.perf@2.0-service.rc
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR)/etc/init
+include $(BUILD_PREBUILT)

@@ -255,7 +255,16 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti
+    android.hardware.power-service-qti \
+    vendor.qti.hardware.perf@1.0 \
+    vendor.qti.hardware.perf@2.0
+
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/configs/perf/commonresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/commonresourceconfigs.xml \
+    $(COMMON_PATH)/configs/perf/perfboostsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfboostsconfig.xml \
+    $(COMMON_PATH)/configs/perf/perfconfigstore.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfconfigstore.xml \
+    $(COMMON_PATH)/configs/perf/targetconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetconfig.xml \
+    $(COMMON_PATH)/configs/perf/targetresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetresourceconfigs.xml
 
 # Public Libraries
 PRODUCT_COPY_FILES += \
@@ -315,7 +324,8 @@ PRODUCT_PACKAGES += \
     sct_service.rc \
     sensors.rc \
     tad.rc \
-    ta_qmi.rc
+    ta_qmi.rc \
+    vendor.qti.hardware.perf@2.0-service.rc
 
 # SAR
 PRODUCT_PACKAGES += \
