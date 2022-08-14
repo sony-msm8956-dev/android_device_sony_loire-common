@@ -1,6 +1,12 @@
 # adsp firmware
 /dsp(/.*)?                u:object_r:adsprpcd_file:s0
 
+# BT Firmware
+/bt_firmware(/.*)?        u:object_r:vendor_firmware_file:s0
+
+# Firmware
+/firmware(/.*)?           u:object_r:vendor_firmware_file:s0
+
 ###################################
 # Dev block nodes
 #
