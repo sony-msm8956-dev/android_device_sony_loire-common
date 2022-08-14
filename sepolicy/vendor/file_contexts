@@ -1,3 +1,6 @@
+# adsp firmware
+/dsp(/.*)?                u:object_r:adsprpcd_file:s0
+
 ###################################
 # Dev block nodes
 #
