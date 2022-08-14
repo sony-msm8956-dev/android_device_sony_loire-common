@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Common path
-COMMON_PATH := device/sony/msm8956-common
+COMMON_PATH := device/sony/loire-common
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -404,4 +404,4 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
 # Vendor
-$(call inherit-product, vendor/sony/msm8956-common/msm8956-common-vendor.mk)
+$(call inherit-product, vendor/sony/loire-common/loire-common-vendor.mk)

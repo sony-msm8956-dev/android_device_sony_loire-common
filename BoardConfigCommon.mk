@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-COMMON_PATH := device/sony/msm8956-common
+COMMON_PATH := device/sony/loire-common
 
 # Vendor platform
 BOARD_VENDOR := sony
@@ -22,6 +22,7 @@ BOARD_VENDOR := sony
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Platform
+PRODUCT_PLATFORM := loire
 TARGET_BOARD_PLATFORM := msm8952
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno510
 TARGET_BOARD_AUTO := true
