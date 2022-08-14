@@ -54,3 +54,24 @@
 /dev/block/zram0                                               u:object_r:swap_block_device:s0
 
 /(system/vendor|vendor)/bin/hw/vendor\.lineage\.touch@1\.0-service\.loire         u:object_r:hal_lineage_touch_default_exec:s0
+
+# files in /vendor
+/(system/vendor|vendor)/bin/adsprpcd                                                         u:object_r:adsprpcd_exec:s0
+/(system/vendor|vendor)/bin/cdsprpcd                                                         u:object_r:cdsprpcd_exec:s0
+/(system/vendor|vendor)/bin/irsc_util                                                        u:object_r:irsc_util_exec:s0
+/(system/vendor|vendor)/bin/mlog_qmi_service                                                 u:object_r:mlog_qmi_exec:s0
+/(system/vendor|vendor)/bin/msm_irqbalance                                                   u:object_r:msm_irqbalance_exec:s0
+/(system/vendor|vendor)/bin/netmgrd                                                          u:object_r:netmgrd_exec:s0
+/(system/vendor|vendor)/bin/pm-service                                                       u:object_r:per_mgr_exec:s0
+/(system/vendor|vendor)/bin/pm-proxy                                                         u:object_r:per_proxy_exec:s0
+/(system/vendor|vendor)/bin/pd-mapper                                                        u:object_r:pd_mapper_exec:s0
+/(system/vendor|vendor)/bin/qmuxd                                                            u:object_r:qmuxd_exec:s0
+/(system/vendor|vendor)/bin/qseecomd                                                         u:object_r:tee_exec:s0
+/(system/vendor|vendor)/bin/rmt_storage                                                      u:object_r:rmt_storage_exec:s0
+/(system/vendor|vendor)/bin/sct_service                                                      u:object_r:sct_exec:s0
+/(system/vendor|vendor)/bin/sensors\.qcom                                                    u:object_r:sensors_exec:s0
+/(system/vendor|vendor)/bin/sscrpcd                                                          u:object_r:sscrpcd_exec:s0
+/(system/vendor|vendor)/bin/tad_static                                                       u:object_r:tad_exec:s0
+/(system/vendor|vendor)/bin/ta_qmi_service                                                   u:object_r:ta_qmi_exec:s0
+/(system/vendor|vendor)/bin/tftp_server                                                      u:object_r:tad_exec:s0
+/(system/vendor|vendor)/bin/cnss-daemon                                                      u:object_r:wcnss_service_exec:s0
