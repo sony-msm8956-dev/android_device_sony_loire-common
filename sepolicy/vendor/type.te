@@ -1,0 +1,4 @@
+type sysfs_slpi, fs_type, sysfs_type;
+
+# for adsp to load /sys/kernel/b ot_adsp/boot
+type sysfs_boot_adsp, sysfs_type, fs_type;
