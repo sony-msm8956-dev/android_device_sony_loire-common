@@ -81,7 +81,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.vulkan=msm8952 \
     ro.opengles.version=196610 \
     ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0 \
-    persist.hwc2.skip_client_color_transform=false
+    persist.hwc2.skip_client_color_transform=false \
+    debug.cpurend.vsync=false
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
