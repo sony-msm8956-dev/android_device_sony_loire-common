@@ -72,6 +72,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.use_buffer_age=false \
     debug.renderengine.backend=threaded \
+    debug.sf.recomputecrop=0 \
     debug.sf.early_phase_offset_ns=500000 \
     debug.sf.early_app_phase_offset_ns=500000 \
     debug.sf.early_gl_phase_offset_ns=3000000 \
